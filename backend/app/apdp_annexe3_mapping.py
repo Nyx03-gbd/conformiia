@@ -113,9 +113,9 @@ ANNEXE_3_INTERCONNEXION_MAPPING = {
         "modalites_mise_en_oeuvre": {
             "type": "multiline",
             "x": 103.08,
-            "y": 392.58,
+            "y": 372.00,
             "width": 431.11,
-            "height": 22.60,
+            "height": 20.00,
         },
 
         # ------------------------------------------------------------
@@ -123,11 +123,11 @@ ANNEXE_3_INTERCONNEXION_MAPPING = {
         # ------------------------------------------------------------
 
         "nature_portee_automatisation": {
-            "type": "multiline",
+            "type": "text",
             "x": 103.08,
-            "y": 337.84,
+            "y": 296.00,
             "width": 431.11,
-            "height": 31.64,
+            "height": 12.00,
         },
 
         # ------------------------------------------------------------
@@ -203,9 +203,9 @@ ANNEXE_3_INTERCONNEXION_MAPPING = {
         "donnees_concernees": {
             "type": "multiline",
             "x": 103.08,
-            "y": 191.44,
+            "y": 136.00,
             "width": 430.84,
-            "height": 91.41,
+            "height": 38.00,
         },
 
         # ------------------------------------------------------------
@@ -295,9 +295,9 @@ ANNEXE_3_INTERCONNEXION_MAPPING = {
         "raisons_interconnexion": {
             "type": "multiline",
             "x": 103.08,
-            "y": 67.92,
+            "y": 48.00,
             "width": 431.11,
-            "height": 22.60,
+            "height": 20.00,
         },
     },
 

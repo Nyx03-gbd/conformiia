@@ -18,6 +18,12 @@ from app.apdp_site_web_mapping import APDP_SITE_WEB_MAPPING
 from app.apdp_engagement_conformite_mapping import (
     APDP_ENGAGEMENT_CONFORMITE_MAPPING,
 )
+from app.apdp_engagement_dpo_mapping import APDP_ENGAGEMENT_DPO_MAPPING
+from app.apdp_signalement_mapping import APDP_SIGNALEMENT_MAPPING
+from app.apdp_consentement_electronique_mapping import APDP_CONSENTEMENT_ELECTRONIQUE_MAPPING
+from app.apdp_registre_activites_mapping import APDP_REGISTRE_ACTIVITES_MAPPING
+from app.apdp_registre_videosurveillance_mapping import APDP_REGISTRE_VIDEOSURVEILLANCE_MAPPING
+from app.apdp_outil_verification_mapping import APDP_OUTIL_VERIFICATION_MAPPING
 
 
 # ============================================================
@@ -37,6 +43,12 @@ MAPPINGS: dict[str, dict[str, Any]] = {
     "formulaire_capteurs": APDP_CAPTEURS_MAPPING,
     "formulaire_site_web": APDP_SITE_WEB_MAPPING,
     "engagement_conformite": APDP_ENGAGEMENT_CONFORMITE_MAPPING,
+    "engagement_dpo": APDP_ENGAGEMENT_DPO_MAPPING,
+    "formulaire_signalement": APDP_SIGNALEMENT_MAPPING,
+    "consentement_transmission_electronique": APDP_CONSENTEMENT_ELECTRONIQUE_MAPPING,
+    "registre_activites_traitement": APDP_REGISTRE_ACTIVITES_MAPPING,
+    "registre_videosurveillance": APDP_REGISTRE_VIDEOSURVEILLANCE_MAPPING,
+    "outil_verification": APDP_OUTIL_VERIFICATION_MAPPING,
 }
 
 
@@ -240,6 +252,21 @@ def _make_text_overlay(
     rect = _position_from_zone(zone)
 
     if rect is None:
+        # Position [x, y] sans taille (ex. lignes libres) :
+        # ligne de texte standard 350x14. Aucun mapping modifié.
+        bare = None
+        if isinstance(zone, (list, tuple)) and len(zone) == 2:
+            bare = zone
+        elif isinstance(zone, dict):
+            for key in ("position", "rect"):
+                value_pos = zone.get(key)
+                if isinstance(value_pos, (list, tuple)) and len(value_pos) == 2:
+                    bare = value_pos
+                    break
+        if bare is not None and all(_is_number(v) for v in bare):
+            rect = (float(bare[0]), float(bare[1]), 350.0, 14.0)
+
+    if rect is None:
         return None
 
     overlay_type = "text"
@@ -267,6 +294,20 @@ def _make_checkbox_overlay(
 ) -> dict[str, Any] | None:
 
     rect = _position_from_zone(zone)
+
+    if rect is None:
+        # Position [x, y] sans taille -> case standard 12x12.
+        bare = None
+        if isinstance(zone, (list, tuple)) and len(zone) == 2:
+            bare = zone
+        elif isinstance(zone, dict):
+            for key in ("position", "rect"):
+                value_pos = zone.get(key)
+                if isinstance(value_pos, (list, tuple)) and len(value_pos) == 2:
+                    bare = value_pos
+                    break
+        if bare is not None and all(_is_number(v) for v in bare):
+            rect = (float(bare[0]), float(bare[1]), 12.0, 12.0)
 
     if rect is None:
         return None
@@ -301,7 +342,20 @@ def _checkbox_option_rect(option: Any) -> tuple[float, float, float, float] | No
             "type": "checkbox",
             "position": [...]
         }
+
+        Positions [x, y] sans taille -> case standard 12x12.
     """
+    if isinstance(option, (list, tuple)) and len(option) == 2 and all(
+        _is_number(v) for v in option
+    ):
+        return (float(option[0]), float(option[1]), 12.0, 12.0)
+    if isinstance(option, dict):
+        for key in ("position", "rect"):
+            value = option.get(key)
+            if isinstance(value, (list, tuple)) and len(value) == 2 and all(
+                _is_number(v) for v in value
+            ):
+                return (float(value[0]), float(value[1]), 12.0, 12.0)
     return _position_from_zone(option)
 
 
@@ -310,6 +364,48 @@ def _build_checkbox_group(
     mapping: dict[str, Any],
     data: dict[str, Any],
 ) -> list[dict[str, Any]]:
+
+    # --------------------------------------------------------
+    # Cas particulier : un champ typé "checkbox_group" qui est en
+    # réalité une CASE UNIQUE (option de radio aplatie), c.-à-d. un
+    # rectangle direct, sans sous-options ni "cases". Le moteur de
+    # groupe ci-dessous n'a pas d'option à parcourir et ne dessine
+    # rien. On le traite ici comme une case simple, cochée si
+    # data[field_name] est vrai. (Ex. formulaire unique : secteur_*,
+    # sous_traitance_oui/non, communication_donnees_oui/non, etc.)
+    # --------------------------------------------------------
+    if "cases" not in mapping:
+        has_option_zones = any(
+            option_name not in _SKIP_KEYS
+            and option_name not in {"zone", "cases", "choices"}
+            and not (
+                isinstance(option_zone, dict)
+                and option_zone.get("type")
+                in {"text", "multiline", "multiline_text", "same_area"}
+            )
+            and _position_from_zone(option_zone) is not None
+            for option_name, option_zone in mapping.items()
+        )
+
+        if not has_option_zones:
+            rect = _position_from_zone(mapping)
+
+            if rect is not None:
+                value = data.get(field_name)
+                checked = bool(value)
+
+                if isinstance(value, str):
+                    checked = value.strip().lower() in {
+                        "true",
+                        "1",
+                        "yes",
+                        "oui",
+                        "checked",
+                        "on",
+                    }
+
+                overlay = _make_checkbox_overlay(mapping, checked)
+                return [overlay] if overlay is not None else []
 
     overlays: list[dict[str, Any]] = []
 
@@ -374,6 +470,12 @@ def _build_checkbox_group(
         rect = _checkbox_option_rect(option_zone)
 
         if rect is None:
+            continue
+
+        # Une "case" trop grande n'est pas une case à cocher mais une
+        # zone de texte / description (ex. "justifiez", "précisez").
+        # Y dessiner un X le remplirait d'un X géant : on l'ignore.
+        if rect[2] > 25 or rect[3] > 22:
             continue
 
         checked = (
@@ -666,6 +768,42 @@ def _build_table(
             rows,
         )
 
+    # Colonnes en liste (ex. site web : ["type", "fonction", ...])
+    # + un rect d'en-tête : lignes empilées sous l'en-tête,
+    # colonnes réparties équitablement. Mapping inchangé.
+    colonnes_liste = mapping.get("columns") or mapping.get("colonnes")
+    if isinstance(colonnes_liste, list) and colonnes_liste:
+        rect_entete = _position_from_zone(mapping)
+        if rect_entete is not None:
+            x0, y0, w0, h0 = rect_entete
+            largeur_col = w0 / len(colonnes_liste)
+            # (construit ci-dessous pour garder un flux clair)
+            overlays = []
+            for index_ligne, ligne in enumerate(rows, start=1):
+                if not isinstance(ligne, dict):
+                    continue
+                for index_col, nom_col in enumerate(colonnes_liste):
+                    if not isinstance(nom_col, str):
+                        continue
+                    valeur = ligne.get(nom_col)
+                    if not _value_is_present(valeur):
+                        continue
+                    overlay = _make_text_overlay(
+                        {
+                            "type": "text",
+                            "rect": [
+                                x0 + index_col * largeur_col,
+                                y0 - index_ligne * h0,
+                                largeur_col,
+                                h0,
+                            ],
+                        },
+                        valeur,
+                    )
+                    if overlay is not None:
+                        overlays.append(overlay)
+            return overlays
+
     # Structure directe :
     # denomination/date/... : rect
     overlays: list[dict[str, Any]] = []
@@ -852,6 +990,10 @@ def _build_field(
     data: dict[str, Any],
 ) -> list[dict[str, Any]]:
 
+    # Zone brute [x, y, w, h] (ex. zones graphiques) : texte direct.
+    if isinstance(mapping, (list, tuple)) and len(mapping) == 4:
+        return _build_simple_field(field_name, {"rect": list(mapping)}, data)
+
     if not isinstance(mapping, dict):
         return []
 
@@ -966,6 +1108,79 @@ def _build_field(
         )
 
     # --------------------------------------------------------
+    # Signature : rendue comme du texte (nom du signataire).
+    # --------------------------------------------------------
+
+    if mapping_type == "signature":
+        return _build_simple_field(
+            field_name,
+            mapping,
+            data,
+        )
+
+    # --------------------------------------------------------
+    # Feuille sans type mais avec géométrie directe
+    # (ex. {"rect": [x, y, w, h]}) : remplissage texte.
+    # Les conteneurs sans géométrie continuent en récursion.
+    # --------------------------------------------------------
+
+    if mapping_type is None:
+        rect = _position_from_zone(mapping)
+        raw_value = data.get(field_name)
+        if rect is not None and isinstance(
+            raw_value, (str, int, float, bool)
+        ):
+            return _build_simple_field(
+                field_name,
+                mapping,
+                data,
+            )
+
+    # --------------------------------------------------------
+    # Grille "colonnes + data_rows" (ex. registre vidéosurveillance) :
+    # colonnes = {nom: [x, y, w, h]}, data_rows = {first_data_y,
+    # row_height, count}. Lignes empilées vers le haut.
+    # --------------------------------------------------------
+
+    if mapping_type is None:
+        colonnes_grille = mapping.get("colonnes") or mapping.get("columns")
+        lignes_grille = mapping.get("data_rows")
+        if isinstance(colonnes_grille, dict) and isinstance(lignes_grille, dict):
+            premier_y = lignes_grille.get("first_data_y")
+            hauteur_ligne = lignes_grille.get("row_height", 15.0)
+            donnees_lignes = data.get(field_name)
+            if (
+                _is_number(premier_y)
+                and _is_number(hauteur_ligne)
+                and isinstance(donnees_lignes, list)
+            ):
+                grilles: list[dict[str, Any]] = []
+                for index_ligne, ligne in enumerate(donnees_lignes):
+                    if not isinstance(ligne, dict):
+                        continue
+                    for nom_col, zone_col in colonnes_grille.items():
+                        if not isinstance(zone_col, (list, tuple)) or len(zone_col) < 3:
+                            continue
+                        valeur = ligne.get(nom_col)
+                        if not _value_is_present(valeur):
+                            continue
+                        overlay = _make_text_overlay(
+                            {
+                                "type": "text",
+                                "rect": [
+                                    float(zone_col[0]),
+                                    float(premier_y) + index_ligne * float(hauteur_ligne),
+                                    float(zone_col[2]),
+                                    float(hauteur_ligne),
+                                ],
+                            },
+                            valeur,
+                        )
+                        if overlay is not None:
+                            grilles.append(overlay)
+                return grilles
+
+    # --------------------------------------------------------
     # Section : certains mappings utilisent "section"
     # comme conteneur.
     # --------------------------------------------------------
@@ -1001,6 +1216,33 @@ def _build_field(
     for child_name, child_mapping in mapping.items():
 
         if child_name in _SKIP_KEYS:
+            continue
+
+        if isinstance(child_mapping, (list, tuple)) and len(child_mapping) == 4:
+            # zone brute imbriquée (ex. zones graphiques)
+            overlays.extend(
+                _build_field(
+                    child_name,
+                    child_mapping,
+                    data,
+                )
+            )
+            continue
+
+        if (
+            child_name == "table"
+            and isinstance(child_mapping, dict)
+            and child_mapping.get("type") == "table"
+        ):
+            # Table enveloppée (ex. registres) : la donnée est
+            # rattachée au nom du champ parent.
+            overlays.extend(
+                _build_table(
+                    field_name,
+                    child_mapping,
+                    data,
+                )
+            )
             continue
 
         if not isinstance(child_mapping, dict):

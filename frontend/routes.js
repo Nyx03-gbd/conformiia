@@ -1,4 +1,4 @@
-/* ComplianceForge — une URL par page : https://complianceforge.test/<page> */
+/* ConformiIA — une URL par page : https://conformiia.localhost/<page> */
 (function () {
     "use strict";
 
@@ -9,7 +9,7 @@
 
     const PAGES = [
         "dashboard", "organisation", "profil", "registre", "formulaires",
-        "conformite", "risques", "incidents", "documents"
+        "conformite", "ecarts", "risques", "incidents", "documents", "utilisateurs", "audit"
     ];
 
     const USER_PAGES = {
@@ -51,7 +51,7 @@
                 history.replaceState({}, "", "/dashboard");
             }
         } catch (error) {
-            console.warn("[ComplianceForge] Route non appliquée :", error);
+            console.warn("[ConformiIA] Route non appliquée :", error);
         }
         setTimeout(function () { applying = false; }, 150);
     }

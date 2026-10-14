@@ -1,4 +1,4 @@
-# ComplianceForge
+# ConformiIA
 
 Plateforme GRC-as-Code : registre des traitements APDP, génération des formulaires APDP (PDF), scoring de conformité et de risque, suivi des incidents (notification de violation sous 72 h).
 
@@ -11,16 +11,16 @@ Interface web (HTML/CSS/JS) -> proxy HTTPS (Caddy) -> API FastAPI -> base Postgr
 Linux, Docker et Docker Compose, Caddy, Git.
 
 ## Installation
-1. Cloner le dépôt : `git clone https://github.com/Nyx03-gbd/complianceforge.git && cd complianceforge-repo`
+1. Cloner le dépôt : `git clone https://github.com/Nyx03-gbd/conformiia.git && cd conformiia-repo`
 2. Créer la configuration : `cp .env.example .env`, puis remplacer les valeurs `CHANGE_ME` (même mot de passe dans `POSTGRES_PASSWORD` et dans `DATABASE_URL` ; générer `SECRET_KEY` avec `openssl rand -hex 32`).
 3. Lancer l'API et la base : `docker compose up -d --build`
 4. Créer les tables : `docker compose exec api alembic upgrade head`
    (alternative : `docker compose exec -T db sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"' < database/schema.sql`)
-5. Déclarer les noms locaux : `echo "127.0.0.1 complianceforge.test api.complianceforge.test" | sudo tee -a /etc/hosts`
+5. Déclarer les noms locaux : `echo "127.0.0.1 conformiia api.conformiia conformiia.test api.conformiia.test" | sudo tee -a /etc/hosts`
 6. Lancer le serveur HTTPS depuis la racine du dépôt : `sudo caddy run --config Caddyfile`, puis `sudo caddy trust` dans un autre terminal.
-7. Ouvrir https://complianceforge.test et créer un compte depuis l'écran de connexion.
+7. Ouvrir https://conformiia et créer un compte depuis l'écran de connexion.
 
-La documentation de l'API est disponible sur https://api.complianceforge.test/docs
+La documentation de l'API est disponible sur https://api.conformiia/docs
 
 ## Structure
 - `backend/` : API FastAPI, moteur de génération PDF, modèles, migrations (`alembic/`), formulaires APDP (`templates/`)

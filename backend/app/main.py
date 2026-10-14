@@ -11,10 +11,12 @@ from app.routers import (
     dashboard,
     apdp_generation,
     auth,
+    ecarts,
+    documents,
 )
 
 app = FastAPI(
-    title="ComplianceForge API",
+    title="ConformiIA API",
     description=(
         "Plateforme GRC-as-Code : automatisation du registre APDP, "
         "scoring de risque et notification de violation sous 72h."
@@ -25,9 +27,15 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://complianceforge.test",
+        "https://conformiia",
+        "https://conformiia.localhost",
+        "https://conformiia.test",
         "http://127.0.0.1:8080",
         "http://localhost:8080",
+        "http://127.0.0.1:8081",
+        "http://localhost:8081",
+        "http://127.0.0.1:8082",
+        "http://localhost:8082",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -43,6 +51,8 @@ app.include_router(incidents.router)
 app.include_router(dashboard.router)
 app.include_router(apdp_generation.router)
 app.include_router(auth.router)
+app.include_router(ecarts.router)
+app.include_router(documents.router)
 
 @app.get("/health", tags=["système"])
 def health_check():

@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 from app import models
 from app.database import get_db
+from app.services.security import get_current_user, resolve_org_scope
 
 router = APIRouter(prefix="/dashboard", tags=["dashboard"])
 
@@ -13,12 +14,14 @@ router = APIRouter(prefix="/dashboard", tags=["dashboard"])
 def dashboard_incidents(
     organisation_id: str | None = None,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
+    org_filter = resolve_org_scope(utilisateur, organisation_id)
     query = db.query(models.Incident)
 
-    if organisation_id:
+    if org_filter:
         query = query.filter(
-            models.Incident.organisation_id == organisation_id
+            models.Incident.organisation_id == org_filter
         )
 
     incidents = query.order_by(

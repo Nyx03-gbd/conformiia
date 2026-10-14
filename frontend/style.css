@@ -365,7 +365,7 @@ button {
 }
 
 /* =========================================================
-   COMPLIANCEFORGE — ESPACEMENT ET ESTHETIQUE DES BLOCS
+   CONFORMIIA — ESPACEMENT ET ESTHETIQUE DES BLOCS
    ========================================================= */
 
 .main-content {
@@ -2270,7 +2270,7 @@ button {
 
 
 /* =========================================================
-   COMPLIANCEFORGE — NAVIGATION OVERLAY
+   CONFORMIIA — NAVIGATION OVERLAY
    Sidebar fermée par défaut
    ========================================================= */
 
@@ -2285,7 +2285,7 @@ button {
     transform: translateX(0);
 }
 
-/* Bouton ComplianceForge visible lorsque le menu est fermé */
+/* Bouton ConformiIA visible lorsque le menu est fermé */
 
 .sidebar-toggle {
     position: fixed;
@@ -2421,7 +2421,7 @@ button {
 
 
 /* ============================================================
-   COMPLIANCEFORGE — DASHBOARD FINAL V2
+   CONFORMIIA — DASHBOARD FINAL V2
    Couche visuelle finale
    ============================================================ */
 
@@ -2917,7 +2917,7 @@ body.dashboard-active .cf-logo-button {
 
 
 /* ============================================================
-   COMPLIANCEFORGE — DASHBOARD VISUEL FINAL
+   CONFORMIIA — DASHBOARD VISUEL FINAL
    ============================================================ */
 
 /* ============================================================
@@ -3517,7 +3517,7 @@ body.dashboard-active .dashboard-footer .quick-card > span {
 
 
 /* ============================================================
-   COMPLIANCEFORGE — CORRECTION MENU UTILISATEUR
+   CONFORMIIA — CORRECTION MENU UTILISATEUR
    ============================================================ */
 
 /* Le menu utilisateur est fermé par défaut */
@@ -3754,7 +3754,7 @@ body {
 
 
 /* ============================================================
-   COMPLIANCEFORGE — ACCÈS RAPIDES — CORRECTION TYPOGRAPHIE
+   CONFORMIIA — ACCÈS RAPIDES — CORRECTION TYPOGRAPHIE
    ============================================================ */
 
 /*
@@ -3921,7 +3921,7 @@ body.dashboard-active
 
 
 /* ============================================================
-   COMPLIANCEFORGE — ESPACE UTILISATEUR
+   CONFORMIIA — ESPACE UTILISATEUR
    STYLE PROFESSIONNEL
    ============================================================ */
 
@@ -4536,7 +4536,7 @@ body.dashboard-active
 
 
 /* ============================================================
-   COMPLIANCEFORGE — THÈME / AFFICHAGE / DÉCONNEXION
+   CONFORMIIA — THÈME / AFFICHAGE / DÉCONNEXION
    ============================================================ */
 
 /* ------------------------------------------------------------
@@ -4764,11 +4764,11 @@ body.theme-dark .logout-card p {
 
 
 /* ============================================================
-   COMPLIANCEFORGE — PARAMETRES FINAL STYLE
+   CONFORMIIA — PARAMETRES FINAL STYLE
    ============================================================ */
 
 /* ============================================================
-   COMPLIANCEFORGE — PARAMETRES FINAL STYLE
+   CONFORMIIA — PARAMETRES FINAL STYLE
    ============================================================ */
 
 .cf-settings-page {
@@ -5169,7 +5169,7 @@ body.compact-mode .cf-settings-header {
 
 
 /* ============================================================
-   COMPLIANCEFORGE — AUTHENTIFICATION
+   CONFORMIIA — AUTHENTIFICATION
    ============================================================ */
 
 .cf-auth-overlay {
@@ -5363,7 +5363,7 @@ body.compact-mode .cf-settings-header {
 
 
 /* ============================================================
-   COMPLIANCEFORGE — MODAL SÉCURITÉ
+   CONFORMIIA — MODAL SÉCURITÉ
    ============================================================ */
 
 .cf-security-modal {
@@ -5517,7 +5517,7 @@ body.compact-mode .cf-settings-header {
 
 
 /* ============================================================
-   COMPLIANCEFORGE — TYPOGRAPHIE OFFICIELLE
+   CONFORMIIA — TYPOGRAPHIE OFFICIELLE
    Bebas Neue : titres
    Roboto     : interface et contenu
    ============================================================ */
@@ -5675,7 +5675,7 @@ i,
 
 
 /* ============================================================
-   COMPLIANCEFORGE — SESSION ACTUELLE
+   CONFORMIIA — SESSION ACTUELLE
    ============================================================ */
 
 .cf-current-session {
@@ -5733,7 +5733,7 @@ i,
 
 /*
  * Lorsqu'aucun utilisateur n'est authentifié,
- * le shell ComplianceForge ne doit pas être visible.
+ * le shell ConformiIA ne doit pas être visible.
  */
 body.cf-auth-locked > *:not(#cf-auth-overlay) {
     visibility: hidden !important;
@@ -5775,7 +5775,7 @@ body.cf-auth-locked #cf-auth-overlay {
 }
 
 /* ============================================================
-   COMPLIANCEFORGE — AUTHENTIFICATION PLEIN ÉCRAN DÉFINITIVE
+   CONFORMIIA — AUTHENTIFICATION PLEIN ÉCRAN DÉFINITIVE
    ============================================================ */
 
 #cf-auth-overlay {
@@ -5831,7 +5831,7 @@ body.cf-auth-locked #cf-auth-overlay {
 }
 
 /* ============================================================
-   COMPLIANCEFORGE — CORRECTION CLICS INTERFACE
+   CONFORMIIA — CORRECTION CLICS INTERFACE
    ============================================================ */
 
 /*
@@ -5864,4 +5864,13 @@ body:not(.cf-auth-locked) #user-menu-button {
  */
 body:not(.cf-auth-locked) #cf-auth-overlay {
     pointer-events: none !important;
+}
+
+/* Plateforme : tous les émoticônes en noir & blanc */
+.cf-emoji-bw {
+    filter: grayscale(1) !important;
+}
+.user-big-avatar {
+    background: #111 !important;
+    color: #fff !important;
 }

@@ -1,12 +1,17 @@
-/* ComplianceForge — Incidents : déclaration + liste avec délai de 72 h */
+/* ConformiIA — Incidents : déclaration + liste avec délai de 72 h */
 (function () {
     "use strict";
     if (window.__cfIncidentsInstalled) { return; }
     window.__cfIncidentsInstalled = true;
 
-    const API = () => window.API_BASE || "https://api.complianceforge.test";
+    const API = () => window.API_BASE || "http://127.0.0.1:8001";
     const esc = (v) => String(v == null ? "" : v).replace(/[&<>"']/g, (c) =>
         ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    function authHeaders() {
+        const h = { "Content-Type": "application/json" };
+        try { const t = localStorage.getItem("conformiia_access_token"); if (t) { h["Authorization"] = "Bearer " + t; } } catch (_) { /* ignore */ }
+        return h;
+    }
 
     const label = (v) => { const t = String(v || "").replace(/_/g, " ").trim(); return t.charAt(0).toUpperCase() + t.slice(1); };
     const DEF_VIOL = ["Accès non autorisé", "Perte ou vol de données", "Vol ou perte de matériel",
@@ -31,7 +36,7 @@
     }
 
     async function getOrganisationId() {
-        const ctx = window.complianceForgeContext;
+        const ctx = window.conformiiaContext;
         if (ctx && ctx.organisationId) { return ctx.organisationId; }
         const data = await (await fetch(API() + "/organisations")).json();
         const arr = Array.isArray(data) ? data : (data.items || data.data || []);
@@ -47,38 +52,121 @@
         return { txt: "Reste " + h + " h " + m + " min sur 72 h", color: left < 24 * 3600e3 ? "#b54708" : "#067647" };
     }
 
+    const STATUT_INCIDENT = {
+        nouveau: "Nouveau", analyse: "En analyse",
+        notification_preparee: "Notification préparée", notifie: "Notifié à l'APDP", cloture: "Clôturé",
+    };
+    const NIVEAU = {
+        retard: { bg: "#fef3f2", fg: "#b42318", bd: "#fecdca", txt: "En retard" },
+        urgent: { bg: "#fffaeb", fg: "#b54708", bd: "#fedf89", txt: "Échéance proche" },
+        a_suivre: { bg: "#eff8ff", fg: "#175cd3", bd: "#b2ddff", txt: "À suivre" },
+        notifie: { bg: "#ecfdf3", fg: "#067647", bd: "#abefc6", txt: "Notifié" },
+    };
+
+    function banner(s) {
+        if (!s) { return ""; }
+        const c = (n, lbl, col) => '<div style="flex:1;min-width:110px;background:#fff;border:1px solid #e4e7ec;border-radius:12px;padding:10px 13px;">'
+            + '<div style="font-size:22px;font-weight:700;color:' + col + ';">' + n + "</div>"
+            + '<div style="font-size:12px;color:#667085;">' + esc(lbl) + "</div></div>";
+        return '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">'
+            + c(s.en_retard, "En retard (72 h dépassées)", s.en_retard ? "#b42318" : "#101828")
+            + c(s.urgents, "Échéance proche (< 24 h)", s.urgents ? "#b54708" : "#101828")
+            + c(s.a_suivre, "À suivre", "#175cd3")
+            + c(s.notifies, "Notifiés / clôturés", "#067647") + "</div>";
+    }
+
     async function loadList(notice) {
         const box = document.getElementById("cf-incidents-list");
         if (!box) { return; }
         try {
-            const res = await fetch(API() + "/incidents");
+            const [res, resAl] = await Promise.all([
+                fetch(API() + "/incidents"),
+                fetch(API() + "/incidents/alertes"),
+            ]);
             if (!res.ok) { throw new Error("HTTP " + res.status); }
             const data = await res.json();
+            const alertes = resAl.ok ? await resAl.json() : { incidents: [] };
+            const alMap = {};
+            (alertes.incidents || []).forEach((a) => { alMap[a.id] = a; });
             const items = (Array.isArray(data) ? data : (data.items || data.data || []))
                 .sort((x, y) => String(y.date_heure_constatation).localeCompare(String(x.date_heure_constatation)));
             const head = notice ? '<div style="background:#ecfdf3;color:#067647;padding:10px 14px;border-radius:10px;margin-bottom:12px;">' + esc(notice) + "</div>" : "";
             if (!items.length) {
-                box.innerHTML = head + '<p style="color:#667085;">Aucun incident déclaré pour le moment.</p>';
+                box.innerHTML = head + banner(alertes) + '<p style="color:#667085;">Aucun incident déclaré pour le moment.</p>';
                 return;
             }
-            box.innerHTML = head + items.map((i) => {
+            box.innerHTML = head + banner(alertes) + items.map((i) => {
                 const d = deadline(i.date_heure_constatation);
                 const types = (i.types_violation || []).map(label).join(", ") || "Incident de sécurité";
-                const statut = i.statut || i.etat || i.status;
-                return '<div style="border:1px solid #e4e7ec;border-radius:12px;padding:14px 16px;margin-bottom:10px;background:#fff;text-align:left;">'
-                    + '<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">'
-                    + '<strong style="font-size:16px;line-height:1.3;">' + esc(types) + "</strong>"
-                    + '<span style="font-size:14px;font-weight:600;color:' + d.color + ';">' + esc(d.txt) + "</span></div>"
+                const a = alMap[i.id];
+                const niv = a ? NIVEAU[a.niveau] : null;
+                const statut = i.statut || "nouveau";
+                const badge = niv ? '<span style="font-size:12px;font-weight:600;color:' + niv.fg + ';background:' + niv.bg + ';border:1px solid ' + niv.bd + ';padding:3px 9px;border-radius:999px;white-space:nowrap;">' + niv.txt + "</span>" : "";
+                const statutSel = '<select data-inc-statut="' + i.id + '" style="padding:5px 8px;border:1px solid #d0d5dd;border-radius:7px;font:inherit;font-size:13px;">'
+                    + Object.entries(STATUT_INCIDENT).map(([k, v]) => '<option value="' + k + '"' + (k === statut ? " selected" : "") + ">" + esc(v) + "</option>").join("") + "</select>";
+                return '<div class="cf-inc-card" data-inc="' + i.id + '" style="border:1px solid #e4e7ec;border-radius:12px;padding:14px 16px;margin-bottom:10px;background:#fff;text-align:left;">'
+                    + '<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;">'
+                    + '<strong style="font-size:16px;line-height:1.3;flex:1;">' + esc(types) + "</strong>"
+                    + badge + '<span style="font-size:13px;font-weight:600;color:' + d.color + ';">' + esc(d.txt) + "</span></div>"
                     + '<div style="color:#667085;font-size:13px;margin-top:4px;">Constaté le '
                     + esc(new Date(i.date_heure_constatation).toLocaleString("fr-FR"))
-                    + (i.lieu_violation ? " · " + esc(i.lieu_violation) : "")
-                    + (statut ? " · " + esc(label(statut)) : "") + "</div>"
+                    + (i.lieu_violation ? " · " + esc(i.lieu_violation) : "") + "</div>"
                     + (i.resume_incident ? '<p style="margin:8px 0 0;font-size:14px;line-height:1.5;color:#344054;">' + esc(i.resume_incident) + "</p>" : "")
+                    + '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;">'
+                    + '<span style="font-size:13px;color:#667085;">Statut :</span>' + statutSel
+                    + '<button data-inc-steps="' + i.id + '" style="border:1px solid #d0d5dd;background:#fff;border-radius:7px;padding:5px 11px;cursor:pointer;font-size:13px;">Étapes</button></div>'
+                    + '<div class="cf-inc-steps" data-steps="' + i.id + '" style="display:none;margin-top:10px;border-top:1px solid #f2f4f7;padding-top:10px;"></div>'
                     + "</div>";
             }).join("");
+            wireCards(box);
         } catch (e) {
             box.innerHTML = '<p style="color:#b42318;">Impossible de charger les incidents : ' + esc(e.message) + "</p>";
         }
+    }
+
+    function wireCards(box) {
+        box.querySelectorAll("[data-inc-statut]").forEach((sel) => {
+            sel.addEventListener("change", async (e) => {
+                const id = e.target.dataset.incStatut;
+                try {
+                    await fetch(API() + "/incidents/" + id, {
+                        method: "PATCH", headers: authHeaders(),
+                        body: JSON.stringify({ statut: e.target.value }),
+                    });
+                    loadList();
+                } catch (err) { alert("Erreur : " + err.message); }
+            });
+        });
+        box.querySelectorAll("[data-inc-steps]").forEach((b) => {
+            b.addEventListener("click", async (e) => {
+                const id = e.target.dataset.incSteps;
+                const pane = box.querySelector('.cf-inc-steps[data-steps="' + id + '"]');
+                if (pane.style.display === "block") { pane.style.display = "none"; return; }
+                pane.style.display = "block";
+                pane.innerHTML = '<p style="color:#667085;font-size:13px;">Chargement…</p>';
+                try {
+                    const steps = await (await fetch(API() + "/incidents/" + id + "/etapes")).json();
+                    pane.innerHTML = (steps.length ? steps.map((s) =>
+                        '<div style="display:flex;gap:10px;font-size:13px;margin-bottom:6px;">'
+                        + '<span style="color:#98a2b3;white-space:nowrap;">' + esc(new Date(s.date_etape).toLocaleString("fr-FR")) + "</span>"
+                        + '<span style="color:#344054;">' + esc(s.description || s.etape) + "</span></div>").join("")
+                        : '<p style="color:#667085;font-size:13px;">Aucune étape.</p>')
+                        + '<div style="display:flex;gap:8px;margin-top:8px;">'
+                        + '<input data-note="' + id + '" placeholder="Ajouter une note de suivi…" style="flex:1;padding:7px 10px;border:1px solid #d0d5dd;border-radius:7px;font:inherit;font-size:13px;">'
+                        + '<button data-add-note="' + id + '" style="border:0;background:#2563eb;color:#fff;border-radius:7px;padding:7px 12px;cursor:pointer;font-size:13px;">Ajouter</button></div>';
+                    pane.querySelector("[data-add-note]").addEventListener("click", async () => {
+                        const input = pane.querySelector('input[data-note="' + id + '"]');
+                        const txt = (input.value || "").trim();
+                        if (!txt) { return; }
+                        await fetch(API() + "/incidents/" + id + "/etapes", {
+                            method: "POST", headers: authHeaders(),
+                            body: JSON.stringify({ etape: "note", description: txt }),
+                        });
+                        b.click(); b.click();  // recharge le panneau
+                    });
+                } catch (err) { pane.innerHTML = '<p style="color:#b42318;font-size:13px;">Erreur : ' + esc(err.message) + "</p>"; }
+            });
+        });
     }
 
     function checks(name, list) {
@@ -138,7 +226,7 @@
                 if (!organisation_id) { throw new Error("Aucune organisation : créez-la d'abord dans la page Organisation."); }
                 const res = await fetch(API() + "/incidents", {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: authHeaders(),
                     body: JSON.stringify({
                         organisation_id: organisation_id,
                         date_heure_constatation: dt(form.elements.constat.value),

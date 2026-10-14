@@ -5,20 +5,28 @@ from sqlalchemy.orm import Session
 from app import models, schemas
 from app.database import get_db
 from app.documents import generer_document, DocumentGenerationError, TEMPLATES
+from app.services.security import get_current_user, assert_can_write, assert_org_access
 
 router = APIRouter(tags=["documents"])
 
 
-def _get_traitement_ou_404(traitement_id: str, db: Session) -> models.Traitement:
+def _get_traitement_ou_404(traitement_id: str, db: Session, utilisateur) -> models.Traitement:
     traitement = db.get(models.Traitement, traitement_id)
     if not traitement:
         raise HTTPException(status_code=404, detail="Traitement introuvable")
+    assert_org_access(utilisateur, traitement.organisation_id)
     return traitement
 
 
 @router.post("/traitements/{traitement_id}/documents/generer", response_model=schemas.DocumentGenereOut)
-def generer(traitement_id: str, type_document: str, db: Session = Depends(get_db)):
-    traitement = _get_traitement_ou_404(traitement_id, db)
+def generer(
+    traitement_id: str,
+    type_document: str,
+    db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
+):
+    assert_can_write(utilisateur)
+    traitement = _get_traitement_ou_404(traitement_id, db, utilisateur)
 
     if type_document not in TEMPLATES:
         raise HTTPException(status_code=422, detail=f"Type inconnu. Disponibles : {list(TEMPLATES.keys())}")
@@ -50,18 +58,30 @@ def generer(traitement_id: str, type_document: str, db: Session = Depends(get_db
 
 
 @router.get("/traitements/{traitement_id}/documents", response_model=list[schemas.DocumentGenereOut])
-def lister_documents(traitement_id: str, db: Session = Depends(get_db)):
-    _get_traitement_ou_404(traitement_id, db)
+def lister_documents(
+    traitement_id: str,
+    db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
+):
+    _get_traitement_ou_404(traitement_id, db, utilisateur)
     return (db.query(models.DocumentGenere)
             .filter(models.DocumentGenere.traitement_id == traitement_id)
             .order_by(models.DocumentGenere.date_generation.desc()).all())
 
 
 @router.get("/documents/{document_id}/telecharger")
-def telecharger_document(document_id: str, db: Session = Depends(get_db)):
+def telecharger_document(
+    document_id: str,
+    db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
+):
     document = db.get(models.DocumentGenere, document_id)
     if not document:
         raise HTTPException(status_code=404, detail="Document introuvable")
+    # Cloisonnement : le document appartient à un traitement, lui-même à une org.
+    traitement = db.get(models.Traitement, document.traitement_id)
+    if traitement:
+        assert_org_access(utilisateur, traitement.organisation_id)
     return FileResponse(
         path=document.chemin_fichier,
         filename=document.nom_fichier,

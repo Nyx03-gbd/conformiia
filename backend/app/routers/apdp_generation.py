@@ -1,8 +1,12 @@
 from typing import Any
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
+from sqlalchemy.orm import Session
 
+from app import models
+from app.database import get_db
+from app.services.security import get_current_user, assert_can_write
 from app.services.apdp_generator import render_apdp_pdf
 from app.services.apdp_form_schema_builder import build_form_schema
 from app.services.apdp_overlay_builder_generic import build_apdp_overlays
@@ -15,11 +19,31 @@ from app.apdp_annexe4_mapping import APDP_ANNEXE4_MAPPING
 from app.apdp_capteurs_mapping import APDP_CAPTEURS_MAPPING
 from app.apdp_site_web_mapping import APDP_SITE_WEB_MAPPING
 from app.apdp_engagement_conformite_mapping import APDP_ENGAGEMENT_CONFORMITE_MAPPING
+from pathlib import Path
+from app.services.apdp_generator import GENERATED_DIR
 
 router = APIRouter(
     prefix="/apdp",
     tags=["APDP génération"],
 )
+
+
+@router.get("/generated")
+def lister_documents_generes(
+    utilisateur: models.Utilisateur = Depends(get_current_user),
+):
+    """Liste les PDF générés (dossier generated/apdp) pour la page Documents générés."""
+    fichiers = []
+    if GENERATED_DIR.exists():
+        for p in sorted(GENERATED_DIR.glob("*.pdf"), key=lambda x: x.stat().st_mtime, reverse=True):
+            st = p.stat()
+            fichiers.append({
+                "nom_fichier": p.name,
+                "taille": st.st_size,
+                "date_modification": st.st_mtime,
+                "url": f"/generated/apdp/{p.name}",
+            })
+    return {"documents": fichiers}
 
 
 class APDPOverlay(BaseModel):
@@ -50,7 +74,10 @@ class APDPGenerationRequest(BaseModel):
 
 
 @router.get("/formulaires/{document_id}/schema")
-def get_formulaire_schema(document_id: str):
+def get_formulaire_schema(
+    document_id: str,
+    utilisateur: models.Utilisateur = Depends(get_current_user),
+):
 
     mappings = {
         "formulaire_unique": FORMULAIRE_UNIQUE_MAPPING,
@@ -74,6 +101,8 @@ def get_formulaire_schema(document_id: str):
 @router.post("/generer")
 def generer_formulaire_apdp(
     payload: APDPGenerationRequest,
+    db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
     """
     Génère un formulaire APDP par superposition
@@ -81,6 +110,7 @@ def generer_formulaire_apdp(
 
     Le PDF source APDP n'est jamais modifié.
     """
+    assert_can_write(utilisateur)
 
     if not payload.output_name.lower().endswith(".pdf"):
         raise HTTPException(

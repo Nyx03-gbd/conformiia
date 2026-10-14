@@ -433,3 +433,153 @@ class IncidentOut(BaseModel):
 class IncidentUpdate(BaseModel):
     statut: Optional[str] = None
     date_notification: Optional[datetime] = None
+
+
+# ============================================================
+# ANALYSE DES ÉCARTS + PLAN D'ACTION — Bloc 2
+# ============================================================
+
+from app.models import StatutConformite, PrioriteAction, StatutAction
+
+
+class ExigenceReferentielCreate(BaseModel):
+    code: str
+    domaine: str
+    intitule: str
+    description: Optional[str] = None
+    reference_reglementaire: Optional[str] = None
+    organisation_id: Optional[str] = None  # None => globale ; sinon personnalisée
+
+
+class ExigenceReferentielOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: str
+    organisation_id: Optional[str]
+    code: str
+    domaine: str
+    intitule: str
+    description: Optional[str]
+    reference_reglementaire: Optional[str]
+    version_referentiel: str
+    personnalisee: bool
+    active: bool
+
+
+class ActionCorrectiveCreate(BaseModel):
+    action: str
+    responsable: Optional[str] = None
+    echeance: Optional[datetime] = None
+    priorite: PrioriteAction = PrioriteAction.moyenne
+    statut: StatutAction = StatutAction.a_faire
+    preuve_realisation: Optional[str] = None
+
+
+class ActionCorrectiveUpdate(BaseModel):
+    action: Optional[str] = None
+    responsable: Optional[str] = None
+    echeance: Optional[datetime] = None
+    priorite: Optional[PrioriteAction] = None
+    statut: Optional[StatutAction] = None
+    preuve_realisation: Optional[str] = None
+
+
+class ActionCorrectiveOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: str
+    evaluation_ecart_id: str
+    action: str
+    responsable: Optional[str]
+    echeance: Optional[datetime]
+    priorite: PrioriteAction
+    statut: StatutAction
+    preuve_realisation: Optional[str]
+    date_creation: datetime
+    derniere_revision: datetime
+
+
+class EvaluationEcartUpdate(BaseModel):
+    statut: Optional[StatutConformite] = None
+    constat: Optional[str] = None
+    justification: Optional[str] = None
+    reference_reglementaire: Optional[str] = None
+    preuve: Optional[str] = None
+
+
+class EvaluationEcartOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: str
+    organisation_id: str
+    traitement_id: Optional[str]
+    exigence_id: str
+    statut: StatutConformite
+    constat: Optional[str]
+    justification: Optional[str]
+    reference_reglementaire: Optional[str]
+    preuve: Optional[str]
+    date_evaluation: datetime
+    derniere_revision: datetime
+    exigence: ExigenceReferentielOut
+    actions: list[ActionCorrectiveOut] = []
+
+
+class SyntheseEcarts(BaseModel):
+    total: int
+    par_statut: dict[str, int]
+    taux_conformite: float          # % conforme sur exigences évaluées (hors non_applicable/non_evalue)
+    exigences_evaluees: int
+    actions_total: int
+    actions_en_retard: int
+
+
+# ============================================================
+# INCIDENTS — Alertes 72h + historique des étapes
+# ============================================================
+
+class IncidentEtapeCreate(BaseModel):
+    etape: str = "note"
+    description: Optional[str] = None
+
+
+class IncidentEtapeOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: str
+    incident_id: str
+    etape: str
+    description: Optional[str]
+    auteur_id: Optional[str]
+    date_etape: datetime
+
+
+class IncidentAlerte(BaseModel):
+    id: str
+    organisation_id: str
+    statut: str
+    types_violation: list[str]
+    resume_incident: Optional[str]
+    date_heure_constatation: datetime
+    echeance_notification: datetime
+    date_notification: Optional[datetime]
+    heures_restantes: float        # négatif si l'échéance est dépassée
+    en_retard: bool
+    niveau: str                    # retard | urgent | a_suivre | notifie
+
+
+class AlertesSummary(BaseModel):
+    total_ouverts: int
+    en_retard: int
+    urgents: int                   # < 24 h restantes, non notifiés
+    a_suivre: int
+    notifies: int
+    incidents: list[IncidentAlerte]
+
+
+class JournalAuditItem(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: str
+    utilisateur_email: Optional[str]
+    action: str
+    entite: str
+    entite_id: Optional[str]
+    description: Optional[str]
+    adresse_ip: Optional[str]
+    date_action: datetime

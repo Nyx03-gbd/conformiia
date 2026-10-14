@@ -15,7 +15,7 @@ ajoutées au fur et à mesure, une par formulaire implémenté :
   - formations_sensibilisation, demandes_exercice_droits, relations_apdp,
     audits_conformite, plan_remediation (rapport annuel)
 
-Voir ComplianceForge_Synthese_Globale.docx pour le schéma complet.
+Voir ConformiIA_Synthese_Globale.docx pour le schéma complet.
 """
 
 import enum
@@ -43,10 +43,11 @@ class StatutTraitement(str, enum.Enum):
 
 
 class RoleUtilisateur(str, enum.Enum):
-    dpo = "dpo"
-    metier = "metier"
+    dpo = "dpo"              # RSSI / DPO
+    metier = "metier"        # Responsable de traitement
     direction = "direction"
-    admin = "admin"
+    admin = "admin"          # Administrateur
+    auditeur = "auditeur"    # Consultation seule (lecture)
 
 
 class Organisation(Base):
@@ -684,3 +685,203 @@ class JournalSecurite(Base):
         "Utilisateur",
         backref="evenements_securite",
     )
+
+
+# ============================================================
+# ANALYSE DES ÉCARTS APDP + PLAN D'ACTION — Bloc 2
+# ============================================================
+
+class StatutConformite(str, enum.Enum):
+    conforme = "conforme"
+    partiellement_conforme = "partiellement_conforme"
+    non_conforme = "non_conforme"
+    non_evalue = "non_evalue"
+    non_applicable = "non_applicable"
+
+
+class PrioriteAction(str, enum.Enum):
+    faible = "faible"
+    moyenne = "moyenne"
+    elevee = "elevee"
+    critique = "critique"
+
+
+class StatutAction(str, enum.Enum):
+    a_faire = "a_faire"
+    en_cours = "en_cours"
+    realisee = "realisee"
+    validee = "validee"
+
+
+class ExigenceReferentiel(Base):
+    """
+    Une exigence APDP à évaluer.
+
+    organisation_id NULL => exigence du référentiel prédéfini (commune à tous).
+    organisation_id renseigné => exigence personnalisée, propre à l'organisation.
+    """
+
+    __tablename__ = "exigences_referentiel"
+
+    id = Column(UUID(as_uuid=False), primary_key=True, default=gen_uuid)
+    organisation_id = Column(
+        UUID(as_uuid=False), ForeignKey("organisations.id"), nullable=True
+    )
+
+    code = Column(String, nullable=False)
+    domaine = Column(String, nullable=False)
+    intitule = Column(Text, nullable=False)
+    description = Column(Text, nullable=True)
+    reference_reglementaire = Column(String, nullable=True)
+
+    version_referentiel = Column(String, nullable=False, default="v1")
+    personnalisee = Column(Boolean, nullable=False, default=False)
+    ordre = Column(Integer, nullable=True)
+    active = Column(Boolean, nullable=False, default=True)
+
+    date_creation = Column(DateTime, default=datetime.utcnow)
+
+    organisation = relationship("Organisation")
+
+
+class EvaluationEcart(Base):
+    """
+    Évaluation d'une exigence pour une organisation et, éventuellement,
+    un traitement précis.
+
+    traitement_id NULL => analyse au niveau de l'organisation.
+    traitement_id renseigné => analyse au niveau du traitement.
+    """
+
+    __tablename__ = "evaluations_ecarts"
+
+    id = Column(UUID(as_uuid=False), primary_key=True, default=gen_uuid)
+
+    organisation_id = Column(
+        UUID(as_uuid=False), ForeignKey("organisations.id"), nullable=False
+    )
+    traitement_id = Column(
+        UUID(as_uuid=False), ForeignKey("traitements.id"), nullable=True
+    )
+    exigence_id = Column(
+        UUID(as_uuid=False), ForeignKey("exigences_referentiel.id"), nullable=False
+    )
+
+    statut = Column(
+        Enum(StatutConformite),
+        nullable=False,
+        default=StatutConformite.non_evalue,
+    )
+
+    constat = Column(Text, nullable=True)
+    justification = Column(Text, nullable=True)
+    reference_reglementaire = Column(Text, nullable=True)
+    preuve = Column(Text, nullable=True)
+
+    evaluateur_id = Column(
+        UUID(as_uuid=False), ForeignKey("utilisateurs.id"), nullable=True
+    )
+
+    date_evaluation = Column(DateTime, default=datetime.utcnow)
+    derniere_revision = Column(
+        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
+    )
+
+    organisation = relationship("Organisation")
+    traitement = relationship("Traitement")
+    exigence = relationship("ExigenceReferentiel")
+    actions = relationship(
+        "ActionCorrective",
+        back_populates="evaluation",
+        cascade="all, delete-orphan",
+    )
+
+
+class ActionCorrective(Base):
+    """
+    Action corrective rattachée à un écart (une évaluation)."""
+
+    __tablename__ = "actions_correctives"
+
+    id = Column(UUID(as_uuid=False), primary_key=True, default=gen_uuid)
+
+    evaluation_ecart_id = Column(
+        UUID(as_uuid=False),
+        ForeignKey("evaluations_ecarts.id"),
+        nullable=False,
+    )
+
+    action = Column(Text, nullable=False)
+    responsable = Column(String, nullable=True)
+    echeance = Column(DateTime, nullable=True)
+
+    priorite = Column(
+        Enum(PrioriteAction), nullable=False, default=PrioriteAction.moyenne
+    )
+    statut = Column(
+        Enum(StatutAction), nullable=False, default=StatutAction.a_faire
+    )
+
+    preuve_realisation = Column(Text, nullable=True)
+
+    date_creation = Column(DateTime, default=datetime.utcnow)
+    derniere_revision = Column(
+        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
+    )
+
+    evaluation = relationship("EvaluationEcart", back_populates="actions")
+
+
+class IncidentEtape(Base):
+    """
+    Étape de traitement d'un incident (historique).
+
+    Chaque changement de statut et chaque action de suivi est journalisé
+    ici, pour reconstituer la chronologie de la gestion de la violation.
+    """
+
+    __tablename__ = "incidents_etapes"
+
+    id = Column(UUID(as_uuid=False), primary_key=True, default=gen_uuid)
+    incident_id = Column(
+        UUID(as_uuid=False), ForeignKey("incidents.id"), nullable=False
+    )
+
+    etape = Column(String, nullable=False)          # ex: statut, note, notification
+    description = Column(Text, nullable=True)
+    auteur_id = Column(
+        UUID(as_uuid=False), ForeignKey("utilisateurs.id"), nullable=True
+    )
+
+    date_etape = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+    incident = relationship("Incident")
+
+
+class JournalAudit(Base):
+    """
+    Journal d'audit métier : qui a créé / modifié / validé / supprimé quoi.
+
+    Distinct de JournalSecurite (qui ne trace que les événements de compte).
+    Couvre les traitements, scores, écarts, actions correctives et incidents.
+    """
+
+    __tablename__ = "journal_audit"
+
+    id = Column(UUID(as_uuid=False), primary_key=True, default=gen_uuid)
+
+    utilisateur_id = Column(
+        UUID(as_uuid=False), ForeignKey("utilisateurs.id"), nullable=True
+    )
+    utilisateur_email = Column(String, nullable=True)   # figé au moment de l'action
+
+    action = Column(String, nullable=False)             # creation | modification | suppression | validation | calcul
+    entite = Column(String, nullable=False)             # traitement | score | ecart | action | incident
+    entite_id = Column(String, nullable=True)
+    description = Column(Text, nullable=True)
+    details = Column(JSON, nullable=True)
+
+    adresse_ip = Column(String, nullable=True)
+    date_action = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+    utilisateur = relationship("Utilisateur")

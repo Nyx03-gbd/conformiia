@@ -37,12 +37,12 @@ APDP_ANNEXE4_MAPPING = {
 
         "lien_destinataire_responsable": {
             "type": "text",
-            "rect": [103.08, 222.77, 431.11, 22.60]
+            "rect": [160.00, 184.00, 374.00, 12.00]
         },
 
         "pays_transfert": {
             "type": "text",
-            "rect": [103.08, 168.03, 431.11, 22.60]
+            "rect": [103.08, 143.00, 431.11, 18.00]
         },
 
         "entite_protection_donnees_pays_destination": {
@@ -80,6 +80,7 @@ APDP_ANNEXE4_MAPPING = {
                 "rect": [105.82, 196.77, 10.40, 9.90]
             },
             "description_autres": {
+                "type": "text",
                 "rect": [103.08, 191.44, 430.84, 31.09]
             }
         },
@@ -102,6 +103,7 @@ APDP_ANNEXE4_MAPPING = {
                 "rect": [201.82, 432.77, 12.45, 9.90]
             },
             "justification_autre": {
+                "type": "text",
                 "rect": [198.82, 427.76, 335.38, 151.31]
             }
         },
@@ -131,6 +133,7 @@ APDP_ANNEXE4_MAPPING = {
                 "rect": [201.82, 365.77, 12.45, 9.90]
             },
             "description_autres": {
+                "type": "text",
                 "rect": [198.82, 360.44, 335.38, 67.08]
             }
         }

@@ -98,9 +98,9 @@ ANNEXE_1_SOUS_TRAITANCE_MAPPING = {
         "operations_sous_traitant": {
             "type": "multiline",
             "x": 103.08,
-            "y": 374.00,
+            "y": 350.00,
             "width": 431.11,
-            "height": 22.60,
+            "height": 22.00,
         },
 
         # ============================================================

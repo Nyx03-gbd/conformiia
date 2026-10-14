@@ -1,19 +1,30 @@
-/* ComplianceForge — Tableau de bord : emojis, accès rapides, dernière analyse */
+/* ConformiIA — Tableau de bord : emojis, accès rapides, dernière analyse */
 (function () {
     "use strict";
     if (window.__cfDashFix) { return; }
     window.__cfDashFix = true;
 
-    const API = () => window.API_BASE || "https://api.complianceforge.test";
+    const API = () => window.API_BASE || "http://127.0.0.1:8001";
     const PICTO = /^\s*(?:\p{Extended_Pictographic}[\uFE0F\u200D]*)+\s*/u;
-    const ICONS = { organisation: "🏢", formulaires: "📄", registre: "📋", incidents: "🚨",
-        conformite: "📊", risques: "⚠️", documents: "📁", profil: "👤", dashboard: "🏠" };
+    const _svg = (pp) => '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + pp + "</svg>";
+    const ICONS = {
+        organisation: _svg('<path d="M3 21h18"></path><path d="M5 21V7l8-4v18"></path><path d="M19 21V11l-6-4"></path>'),
+        formulaires: _svg('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline>'),
+        registre: _svg('<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1"></rect>'),
+        incidents: _svg('<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>'),
+        conformite: _svg('<line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line>'),
+        risques: _svg('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>'),
+        documents: _svg('<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>'),
+        profil: _svg('<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>'),
+        dashboard: _svg('<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>'),
+    };
+    const DOT = _svg('<circle cx="12" cy="12" r="2.5"></circle>');
     const _fetch = window.fetch.bind(window);
 
     const st = document.createElement("style");
     st.textContent = `
 html body .quick-card > span:first-child { display:flex !important; align-items:center; justify-content:center;
-    font-size:20px !important; line-height:1 !important; opacity:1 !important; visibility:visible !important; text-indent:0 !important; }
+    font-size:0 !important; line-height:1 !important; opacity:1 !important; visibility:visible !important; text-indent:0 !important; }
 html body .quick-card strong { white-space:normal !important; overflow:visible !important; text-overflow:clip !important; line-height:1.25 !important; }
 html body .quick-card small { white-space:normal !important; overflow:visible !important; text-overflow:clip !important; }`;
     document.head.appendChild(st);
@@ -25,8 +36,8 @@ html body .quick-card small { white-space:normal !important; overflow:visible !i
             const strong = card.querySelector("strong");
             const icon = card.querySelector(":scope > span");
             const fromTitle = strong && PICTO.exec(strong.textContent || "");
-            const emoji = (m && ICONS[m[1]]) || (fromTitle && fromTitle[0].trim()) || "📌";
-            if (icon && !PICTO.test(icon.textContent || "")) { icon.textContent = emoji; }
+            const svg = (m && ICONS[m[1]]) || DOT;
+            if (icon) { icon.innerHTML = svg; }
             if (strong && PICTO.test(strong.textContent || "")) {
                 strong.textContent = strong.textContent.replace(PICTO, "");
             }
@@ -76,10 +87,6 @@ html body .quick-card small { white-space:normal !important; overflow:visible !i
         const risk = valueEl("dashboard-score-risque", "score de risque");
         const lvl = valueEl("dashboard-niveau-risque", "niveau de risque");
         const trt = valueEl("dashboard-traitement-evalue", "traitement évalué");
-        decorate(conf, "score de conformité", "✅");
-        decorate(risk, "score de risque", "⚠️");
-        decorate(lvl, "niveau de risque", "🎯");
-        decorate(trt, "traitement évalué", "🔎");
         if (!cache) { return; }
         const { t, lc, lr, when } = cache;
         const date = new Date(when);
@@ -125,7 +132,7 @@ html body .quick-card small { white-space:normal !important; overflow:visible !i
             }));
             if (best) { cache = best; }
         } catch (e) {
-            console.warn("[ComplianceForge] Dernière analyse indisponible :", e);
+            console.warn("[ConformiIA] Dernière analyse indisponible :", e);
         }
         refreshing = false;
         apply();

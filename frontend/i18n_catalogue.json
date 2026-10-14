@@ -125,8 +125,8 @@
     "es": "",
     "pt": ""
   },
-  ",\n                        lang\n                    );\n\n                /*\n                 * Traduire immÃ©diatement toute la page.\n                 */\n                if (\n                    typeof window.complianceForgeTranslatePage ===": {
-    "fr": ",\n                        lang\n                    );\n\n                /*\n                 * Traduire immÃ©diatement toute la page.\n                 */\n                if (\n                    typeof window.complianceForgeTranslatePage ===",
+  ",\n                        lang\n                    );\n\n                /*\n                 * Traduire immÃ©diatement toute la page.\n                 */\n                if (\n                    typeof window.conformiiaTranslatePage ===": {
+    "fr": ",\n                        lang\n                    );\n\n                /*\n                 * Traduire immÃ©diatement toute la page.\n                 */\n                if (\n                    typeof window.conformiiaTranslatePage ===",
     "en": "",
     "es": "",
     "pt": ""
@@ -323,8 +323,8 @@
     "es": "",
     "pt": ""
   },
-  "Configurez les prÃ©fÃ©rences de votre espace ComplianceForge.": {
-    "fr": "Configurez les prÃ©fÃ©rences de votre espace ComplianceForge.",
+  "Configurez les prÃ©fÃ©rences de votre espace ConformiIA.": {
+    "fr": "Configurez les prÃ©fÃ©rences de votre espace ConformiIA.",
     "en": "",
     "es": "",
     "pt": ""
@@ -1037,8 +1037,8 @@
     "es": "",
     "pt": ""
   },
-  "Ouvrir la navigation ComplianceForge": {
-    "fr": "Ouvrir la navigation ComplianceForge",
+  "Ouvrir la navigation ConformiIA": {
+    "fr": "Ouvrir la navigation ConformiIA",
     "en": "",
     "es": "",
     "pt": ""
@@ -1151,8 +1151,8 @@
     "es": "",
     "pt": ""
   },
-  "RÃ©fÃ©rentiel des documents APDP utilisÃ©s par ComplianceForge.": {
-    "fr": "RÃ©fÃ©rentiel des documents APDP utilisÃ©s par ComplianceForge.",
+  "RÃ©fÃ©rentiel des documents APDP utilisÃ©s par ConformiIA.": {
+    "fr": "RÃ©fÃ©rentiel des documents APDP utilisÃ©s par ConformiIA.",
     "en": "",
     "es": "",
     "pt": ""
@@ -1355,8 +1355,8 @@
     "es": "",
     "pt": ""
   },
-  "Vue synthÃ©tique des risques ComplianceForge": {
-    "fr": "Vue synthÃ©tique des risques ComplianceForge",
+  "Vue synthÃ©tique des risques ConformiIA": {
+    "fr": "Vue synthÃ©tique des risques ConformiIA",
     "en": "",
     "es": "",
     "pt": ""

@@ -2,10 +2,10 @@
 window.apdpUIState = window.apdpUIState || {};
 
 /* =========================================================
-   NAVIGATION OVERLAY — COMPLIANCEFORGE
+   NAVIGATION OVERLAY — CONFORMIIA
    ========================================================= */
 
-(function initComplianceForgeSidebar() {
+(function initConformiIASidebar() {
 
     function init() {
 
@@ -159,12 +159,27 @@ window.apdpUIState = window.apdpUIState || {};
 })();
 
 const pages = {
+ ecarts: {
+ title: "Analyse des écarts",
+ subtitle: "Évaluation des exigences APDP et plan d'action",
+ content: `<div id="cf-ecarts-root"><p style="color:#667085;padding:20px;">Chargement…</p></div>`,
+ },
+ utilisateurs: {
+ title: "Utilisateurs",
+ subtitle: "Comptes ayant accès à la plateforme",
+ content: `<div id="cf-users-root"><p style="color:#667085;padding:20px;">Chargement…</p></div>`,
+ },
+ audit: {
+ title: "Journal d'audit",
+ subtitle: "Qui a fait quoi, et quand",
+ content: `<div id="cf-audit-root"><p style="color:#667085;padding:20px;">Chargement…</p></div>`,
+ },
  dashboard: {
- title: "🏠 Tableau de bord",
+ title: "Tableau de bord",
  subtitle: "Vue générale de votre conformité GRC",
  content: `
  <div class="welcome">
- <h2>Bienvenue dans ComplianceForge</h2>
+ <h2>Bienvenue dans ConformiIA</h2>
  <p>Centralisez vos informations d'organisation, traitements, formalités APDP, risques et incidents.</p>
  </div>
 
@@ -176,7 +191,7 @@ const pages = {
  tabindex="0"
  title="Accéder à la page Organisation"
  >
- <div class="card-icon">🏢</div>
+ <div class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V7l8-4v18"></path><path d="M19 21V11l-6-4"></path></svg></div>
  <div>
  <span>Organisation</span>
  <strong id="organisation-count"></strong>
@@ -190,7 +205,7 @@ const pages = {
  tabindex="0"
  title="Accéder au registre des traitements"
  >
- <div class="card-icon">📋</div>
+ <div class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1"></rect></svg></div>
  <div>
  <span>Traitements</span>
  <strong id="traitement-count"></strong>
@@ -204,7 +219,7 @@ const pages = {
  tabindex="0"
  title="Accéder aux incidents et violations"
  >
- <div class="card-icon">🚨</div>
+ <div class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div>
  <div>
  <span>Incidents</span>
  <strong id="incident-count"></strong>
@@ -218,7 +233,7 @@ const pages = {
  tabindex="0"
  title="Consulter les éléments hors délai"
  >
- <div class="card-icon">⏰</div>
+ <div class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg></div>
  <div>
  <span>Hors délai</span>
  <strong id="incident-overdue"></strong>
@@ -278,7 +293,7 @@ const pages = {
  <div class="dashboard-footer-header">
  <div>
  <h2>Accès rapides</h2>
- <p>Les principales fonctions de ComplianceForge</p>
+ <p>Les principales fonctions de ConformiIA</p>
  </div>
  </div>
 
@@ -287,7 +302,7 @@ const pages = {
  <button class="quick-card" onclick="navigate('organisation')">
  <span></span>
  <div>
- <strong>🏢 Organisation</strong>
+ <strong>Organisation</strong>
  <small>Renseigner les informations de l'entreprise</small>
  </div>
  </button>
@@ -295,7 +310,7 @@ const pages = {
  <button class="quick-card" onclick="navigate('formulaires')">
  <span></span>
  <div>
- <strong>🧾 Formulaires APDP</strong>
+ <strong>Formulaires APDP</strong>
  <small>Accéder aux formulaires et annexes</small>
  </div>
  </button>
@@ -303,7 +318,7 @@ const pages = {
  <button class="quick-card" onclick="navigate('registre')">
  <span></span>
  <div>
- <strong>📋 Registre des traitements</strong>
+ <strong>Registre des traitements</strong>
  <small>Gérer les traitements de l'organisation</small>
  </div>
  </button>
@@ -311,7 +326,7 @@ const pages = {
  <button class="quick-card" onclick="navigate('incidents')">
  <span></span>
  <div>
- <strong>🚨 Incidents / Violations</strong>
+ <strong>Incidents / Violations</strong>
  <small>Suivre le workflow de notification</small>
  </div>
  </button>
@@ -319,7 +334,7 @@ const pages = {
  </div>
 
  <div class="dashboard-footer-bottom">
- <span>ComplianceForge</span>
+ <span>ConformiIA</span>
  <span>Plateforme GRC</span>
  </div>
 
@@ -404,7 +419,7 @@ organisation: {
  },
 
  profil: {
- title: "👤 Profil APDP",
+ title: "Profil APDP",
  subtitle: "Informations nécessaires au Formulaire Unique",
  content: `
  <div class="page-card">
@@ -990,7 +1005,7 @@ formulaires: {
  <div class="apdp-info-box">
  <strong> Principe de fonctionnement</strong>
  <p>
- ComplianceForge utilise les mappings APDP existants pour
+ ConformiIA utilise les mappings APDP existants pour
  positionner les données dans les zones prévues du document.
  La structure du PDF officiel n'est pas reconstruite ni
  modifiée.
@@ -1002,15 +1017,15 @@ formulaires: {
  `
 },
  conformite: {
- title: "Analyse des écarts",
- subtitle: "Vue synthétique de la conformité APDP",
+ title: "Conformité du registre",
+ subtitle: "Taux de complétude du registre APDP",
  content: `
  <div class="gap-container">
 
  <div class="page-card gap-summary">
  <div>
  <h2>📊 Analyse des écarts</h2>
- <p>État actuel des processus de conformité APDP et niveau cible ComplianceForge.</p>
+ <p>État actuel des processus de conformité APDP et niveau cible ConformiIA.</p>
  </div>
 
  <div class="gap-summary-stats">
@@ -1140,7 +1155,7 @@ formulaires: {
  <strong>Objectif :</strong>
  réduire les écarts de conformité et atteindre un niveau de maturité
  cible de 4 grâce à la centralisation, l'automatisation, le suivi
- et le pilotage apportés par ComplianceForge.
+ et le pilotage apportés par ConformiIA.
  </div>
 
  </div>
@@ -1148,8 +1163,8 @@ formulaires: {
  },
 
  risques: {
- title: "🛡️ Risques / EBIOS RM",
- subtitle: "Vue synthétique des risques ComplianceForge",
+ title: "Risques / EBIOS RM",
+ subtitle: "Vue synthétique des risques ConformiIA",
  content: `
  <div class="page-card">
  <div class="risk-title">
@@ -1194,7 +1209,7 @@ formulaires: {
  </tr>
  <tr>
  <td>I4</td>
- <td>Utilisateurs de ComplianceForge</td>
+ <td>Utilisateurs de ConformiIA</td>
  <td>Interne</td>
  <td><strong>6</strong></td>
  <td><strong>2</strong></td>
@@ -1391,18 +1406,13 @@ formulaires: {
  },
 
  documents: {
- title: "📁 Documents générés",
- subtitle: "Documents APDP préparés par ComplianceForge",
+ title: "Documents générés",
+ subtitle: "Documents APDP préparés par ConformiIA",
  content: `
  <div class="page-card">
  <h2>Documents</h2>
  <p>Les documents générés à partir des données saisies seront disponibles ici.</p>
-
- <div class="empty-state">
- <div></div>
- <h3>Aucun document affiché</h3>
- <p>Les documents apparaîtront ici après leur génération.</p>
- </div>
+ <div id="docs-generes-list"><p>Chargement...</p></div>
  </div>
  `
  }
@@ -1454,10 +1464,41 @@ function navigate(page) {
  loadScoringPage();
  }
 
+ if (page === "documents") {
+ chargerDocumentsGeneres();
+ }
+
 }
 
 
 window.navigate = navigate;
+
+
+async function chargerDocumentsGeneres() {
+ const box = document.getElementById("docs-generes-list");
+ if (!box) { return; }
+ const base = window.API_BASE || "http://127.0.0.1:8001";
+ try {
+ const res = await fetch(base + "/apdp/generated");
+ if (!res.ok) { throw new Error("HTTP " + res.status); }
+ const data = await res.json();
+ const docs = data.documents || [];
+ if (!docs.length) {
+ box.innerHTML = "<p>Aucun document généré pour le moment.</p>";
+ return;
+ }
+ box.innerHTML = docs.map(function (d) {
+ const url = base + "/generated/apdp/" + encodeURIComponent(d.nom_fichier);
+ const ko = Math.round(d.taille / 1024);
+ return "<div style=\"display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #eee;\">"
+ + "<span>" + d.nom_fichier + " <small>(" + ko + " Ko)</small></span>"
+ + "<a class=\"btn-primary\" style=\"text-decoration:none;padding:6px 12px;\" href=\"" + url + "\" target=\"_blank\">Ouvrir le PDF</a>"
+ + "</div>";
+ }).join("");
+ } catch (e) {
+ box.innerHTML = "<p>Impossible de charger les documents : " + (e.message || e) + "</p>";
+ }
+}
 
 
 function getScoreValue(data, names) {
@@ -1866,7 +1907,7 @@ async function bindTraitementForm() {
  // Charger les organisations
  try {
  const response = await fetch(
- "https://api.complianceforge.test/organisations"
+ "http://127.0.0.1:8001/organisations"
  );
 
  if (!response.ok) {
@@ -2064,7 +2105,7 @@ async function bindTraitementForm() {
 
  try {
  const response = await fetch(
- "https://api.complianceforge.test/traitements",
+ "http://127.0.0.1:8001/traitements",
  {
  method: "POST",
  headers: {
@@ -2141,7 +2182,7 @@ async function bindProfilAPDPForm() {
 
  try {
  const response = await fetch(
- "https://api.complianceforge.test/organisations"
+ "http://127.0.0.1:8001/organisations"
  );
 
  if (!response.ok) {
@@ -2216,7 +2257,7 @@ async function bindProfilAPDPForm() {
 
  try {
  const response = await fetch(
- `https://api.complianceforge.test/apdp/organisations/${organisationId}/profil`,
+ `http://127.0.0.1:8001/apdp/organisations/${organisationId}/profil`,
  {
  method: "POST",
  headers: {
@@ -2299,7 +2340,7 @@ function bindOrganisationForm() {
 
  try {
  const response = await fetch(
- "https://api.complianceforge.test/organisations",
+ "http://127.0.0.1:8001/organisations",
  {
  method: "POST",
  headers: {
@@ -2478,7 +2519,7 @@ async function initAPDPContextSelector() {
  try {
 
  const response = await fetch(
- "https://api.complianceforge.test/organisations"
+ "http://127.0.0.1:8001/organisations"
  );
 
  if (!response.ok) {
@@ -2506,12 +2547,12 @@ async function initAPDPContextSelector() {
 
  const savedOrganisation =
  localStorage.getItem(
- "complianceForgeOrganisationId"
+ "conformiiaOrganisationId"
  );
 
  const savedTraitement =
  localStorage.getItem(
- "complianceForgeTraitementId"
+ "conformiiaTraitementId"
  );
 
  if (savedOrganisation) {
@@ -2557,18 +2598,18 @@ async function initAPDPContextSelector() {
  if (!organisationId) {
 
  localStorage.removeItem(
- "complianceForgeOrganisationId"
+ "conformiiaOrganisationId"
  );
 
  localStorage.removeItem(
- "complianceForgeTraitementId"
+ "conformiiaTraitementId"
  );
 
  return;
  }
 
  localStorage.setItem(
- "complianceForgeOrganisationId",
+ "conformiiaOrganisationId",
  organisationId
  );
 
@@ -2590,7 +2631,7 @@ async function initAPDPContextSelector() {
  return;
  }
 
- setComplianceForgeContext(
+ setConformiIAContext(
  organisationSelect.value,
  traitementId
  );
@@ -2629,7 +2670,7 @@ async function loadAPDPTreatments(
  try {
 
  const response = await fetch(
- `https://api.complianceforge.test/traitements?organisation_id=${encodeURIComponent(organisationId)}`
+ `http://127.0.0.1:8001/traitements?organisation_id=${encodeURIComponent(organisationId)}`
  );
 
  if (!response.ok) {
@@ -2675,7 +2716,7 @@ async function loadAPDPTreatments(
  select.value =
  selectedTreatmentId;
 
- setComplianceForgeContext(
+ setConformiIAContext(
  organisationId,
  selectedTreatmentId
  );
@@ -2741,31 +2782,31 @@ async function loadAPDPTreatments(
  * Organisation -> Traitement -> APDP
  * ============================================================ */
 
-window.complianceForgeContext = {
+window.conformiiaContext = {
  organisationId:
- localStorage.getItem("complianceForgeOrganisationId") || null,
+ localStorage.getItem("conformiiaOrganisationId") || null,
 
  traitementId:
- localStorage.getItem("complianceForgeTraitementId") || null
+ localStorage.getItem("conformiiaTraitementId") || null
 };
 
-function setComplianceForgeContext(organisationId, traitementId) {
+function setConformiIAContext(organisationId, traitementId) {
 
- window.complianceForgeContext = {
+ window.conformiiaContext = {
  organisationId: organisationId || null,
  traitementId: traitementId || null
  };
 
  if (organisationId) {
  localStorage.setItem(
- "complianceForgeOrganisationId",
+ "conformiiaOrganisationId",
  organisationId
  );
  }
 
  if (traitementId) {
  localStorage.setItem(
- "complianceForgeTraitementId",
+ "conformiiaTraitementId",
  traitementId
  );
  }
@@ -2774,15 +2815,15 @@ function setComplianceForgeContext(organisationId, traitementId) {
 async function getTraitementContext() {
 
  const traitementId =
- window.complianceForgeContext?.traitementId ||
- localStorage.getItem("complianceForgeTraitementId");
+ window.conformiiaContext?.traitementId ||
+ localStorage.getItem("conformiiaTraitementId");
 
  if (!traitementId) {
  return null;
  }
 
  const response = await fetch(
- `https://api.complianceforge.test/traitements/${traitementId}`
+ `http://127.0.0.1:8001/traitements/${traitementId}`
  );
 
  if (!response.ok) {
@@ -2801,7 +2842,7 @@ async function getOrganisationContext(organisationId) {
  }
 
  const response = await fetch(
- `https://api.complianceforge.test/organisations/${organisationId}`
+ `http://127.0.0.1:8001/organisations/${organisationId}`
  );
 
  if (!response.ok) {
@@ -2845,7 +2886,7 @@ async function getAPDPContextFromTreatment(traitement) {
  try {
 
  const profilResponse = await fetch(
- `https://api.complianceforge.test/apdp/organisations/${traitement.organisation_id}/profil`
+ `http://127.0.0.1:8001/apdp/organisations/${traitement.organisation_id}/profil`
  );
 
  if (profilResponse.ok) {
@@ -2871,7 +2912,7 @@ async function getAPDPContextFromTreatment(traitement) {
  try {
 
  const response = await fetch(
- `https://api.complianceforge.test/apdp/traitements/${traitement.id}`
+ `http://127.0.0.1:8001/apdp/traitements/${traitement.id}`
  );
 
  if (response.ok) {
@@ -3082,7 +3123,7 @@ function buildAPDPDossierFromContext(context) {
 
 
 /* ============================================================
- * COMPLIANCEFORGE — INTERFACE APDP MÉTIER
+ * CONFORMIIA — INTERFACE APDP MÉTIER
  *
  * L'ordre de l'interface est indépendant du PDF.
  * Les clés APDP restent inchangées pour la génération.
@@ -4398,7 +4439,7 @@ function injectAPDPBusinessStyles() {
 
  if (
  document.getElementById(
- "complianceforge-apdp-business-style"
+ "conformiia-apdp-business-style"
  )
  ) {
  return;
@@ -4408,7 +4449,7 @@ function injectAPDPBusinessStyles() {
  document.createElement("style");
 
  style.id =
- "complianceforge-apdp-business-style";
+ "conformiia-apdp-business-style";
 
  style.textContent = `
 
@@ -4627,7 +4668,7 @@ async function openAPDPForm(documentId) {
 
  try {
  const response = await fetch(
- `https://api.complianceforge.test/apdp/formulaires/${documentId}/schema`
+ `http://127.0.0.1:8001/apdp/formulaires/${documentId}/schema`
  );
 
  if (!response.ok) {
@@ -5301,7 +5342,7 @@ if (documentId !== "formulaire_unique") {
 
  
 /* ============================================================
- * COMPLIANCEFORGE — LOGIQUE CONDITIONNELLE APDP
+ * CONFORMIIA — LOGIQUE CONDITIONNELLE APDP
  * ============================================================ */
 
 
@@ -6649,18 +6690,18 @@ function renderPage(index) {
  }, true);
 
  form.addEventListener('invalid', (e) => {
- console.warn("[ComplianceForge] Champ invalide :", e.target.name || e.target.id);
+ console.warn("[ConformiIA] Champ invalide :", e.target.name || e.target.id);
  }, true);
 
  form.addEventListener('submit', async (event) => {
  event.preventDefault();
- console.info("[ComplianceForge] Formulaire soumis");
+ console.info("[ConformiIA] Formulaire soumis");
 
  try {
  apdpRememberCurrentPage(pageContainer);
  saveCurrentPageValues();
  } catch (erreur) {
- console.error("[ComplianceForge] Sauvegarde de la page :", erreur);
+ console.error("[ConformiIA] Sauvegarde de la page :", erreur);
  }
 
  await generateAPDPDocument(documentId, form);
@@ -6692,7 +6733,7 @@ function renderPage(index) {
 }
 
 async function generateAPDPDocument(documentId, form) {
- console.info("[ComplianceForge] Génération demandée :", documentId);
+ console.info("[ConformiIA] Génération demandée :", documentId);
  let message = document.getElementById("apdp-generation-message");
  if (!message) {
  message = document.createElement("div");
@@ -6827,7 +6868,7 @@ Object.entries(window.apdpUIState || {})
 
  try {
  const response = await fetch(
- "https://api.complianceforge.test/apdp/generer",
+ "http://127.0.0.1:8001/apdp/generer",
  {
  method: "POST",
  headers: {
@@ -6837,11 +6878,11 @@ Object.entries(window.apdpUIState || {})
  document_id: documentId,
 
  output_name:
- "ComplianceForge_" +
+ "ConformiIA_" +
  documentId +
  "_" +
  (
- window.complianceForgeContext?.traitementId ||
+ window.conformiiaContext?.traitementId ||
  "traitement"
  ) +
  ".pdf",
@@ -6852,11 +6893,11 @@ Object.entries(window.apdpUIState || {})
  ...data,
 
  organisation_id:
- window.complianceForgeContext?.organisationId ||
+ window.conformiiaContext?.organisationId ||
  null,
 
  traitement_id:
- window.complianceForgeContext?.traitementId ||
+ window.conformiiaContext?.traitementId ||
  null
  }
  })
@@ -6908,8 +6949,9 @@ Object.entries(window.apdpUIState || {})
 
 
 function openGeneratedAPDPDocument(filename) {
+ const base = window.API_BASE || "http://127.0.0.1:8001";
  const url =
- "https://api.complianceforge.test/generated/apdp/" +
+ base + "/generated/apdp/" +
  encodeURIComponent(filename);
 
  window.open(
@@ -6927,15 +6969,15 @@ function closeAPDPForm() {
 }
 
 
-(function injectComplianceForgeScoringCSS() {
+(function injectConformiIAScoringCSS() {
 
- if (document.getElementById("complianceforge-scoring-css")) {
+ if (document.getElementById("conformiia-scoring-css")) {
  return;
  }
 
  const style = document.createElement("style");
 
- style.id = "complianceforge-scoring-css";
+ style.id = "conformiia-scoring-css";
 
  style.textContent = `
 
@@ -7131,10 +7173,10 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — DASHBOARD / CONTRÔLES UTILISATEUR
+   CONFORMIIA — DASHBOARD / CONTRÔLES UTILISATEUR
    ============================================================ */
 
-(function initComplianceForgeDashboardUI() {
+(function initConformiIADashboardUI() {
 
     function init() {
 
@@ -7158,7 +7200,7 @@ document.addEventListener(
 
         if (
             typeof window.navigate === "function" &&
-            !window.navigate.__complianceForgeWrapped
+            !window.navigate.__conformiiaWrapped
         ) {
 
             const originalNavigate =
@@ -7179,7 +7221,7 @@ document.addEventListener(
                 );
             }
 
-            wrappedNavigate.__complianceForgeWrapped = true;
+            wrappedNavigate.__conformiiaWrapped = true;
             wrappedNavigate.__original = originalNavigate;
 
             window.navigate = wrappedNavigate;
@@ -7295,14 +7337,14 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — ESPACE UTILISATEUR
+   CONFORMIIA — ESPACE UTILISATEUR
    Profil / Paramètres / Sécurité
    ============================================================ */
 
 (function () {
 
-    const USER_PROFILE_KEY = "complianceforge_user_profile";
-    const USER_SETTINGS_KEY = "complianceforge_user_settings";
+    const USER_PROFILE_KEY = "conformiia_user_profile";
+    const USER_SETTINGS_KEY = "conformiia_user_settings";
 
     const defaultProfile = {
         nom: "Utilisateur",
@@ -7399,7 +7441,7 @@ document.addEventListener(
                 <div class="user-page-top">
                     <div>
                         <div class="user-page-kicker">
-                            COMPLIANCEFORGE
+                            CONFORMIIA
                         </div>
 
                         <h1>${titre}</h1>
@@ -7613,7 +7655,7 @@ document.addEventListener(
 
         afficherPageUtilisateur(
             "⚙️ Paramètres",
-            "Configurez les préférences de votre espace ComplianceForge.",
+            "Configurez les préférences de votre espace ConformiIA.",
             `
 
             <div class="user-settings-grid">
@@ -7855,7 +7897,7 @@ document.addEventListener(
                             </span>
 
                             <small>
-                                Votre session ComplianceForge
+                                Votre session ConformiIA
                                 est actuellement active.
                             </small>
                         </div>
@@ -8094,17 +8136,17 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — PARAMÈTRES RÉELS
+   CONFORMIIA — PARAMÈTRES RÉELS
    Langue / Mode / Affichage / Déconnexion
    ============================================================ */
 
 (function () {
 
     const SETTINGS_KEY =
-        "complianceforge_user_settings";
+        "conformiia_user_settings";
 
     const SESSION_KEY =
-        "complianceforge_session";
+        "conformiia_session";
 
     const LANGUAGES = {
         fr: {
@@ -8308,10 +8350,10 @@ document.addEventListener(
         return settings;
     }
 
-    window.complianceForgeApplySettings =
+    window.conformiiaApplySettings =
         applyAllSettings;
 
-    window.complianceForgeSaveSettings =
+    window.conformiiaSaveSettings =
         function () {
 
             const settings = {
@@ -8375,7 +8417,7 @@ document.addEventListener(
      * branchée, cette fonction ferme la session locale.
      */
 
-    window.complianceForgeLogout =
+    window.conformiiaLogout =
         function () {
 
             localStorage.removeItem(
@@ -8412,13 +8454,13 @@ document.addEventListener(
 
                         <p>
                             Vous avez été déconnecté
-                            de ComplianceForge.
+                            de ConformiIA.
                         </p>
 
                         <button
                             type="button"
                             class="user-btn-primary"
-                            onclick="complianceForgeShowLogin()"
+                            onclick="conformiiaShowLogin()"
                         >
                             Se reconnecter
                         </button>
@@ -8694,7 +8736,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — MENU UTILISATEUR — CORRECTION FINALE
+   CONFORMIIA — MENU UTILISATEUR — CORRECTION FINALE
    Un seul gestionnaire prioritaire pour Profil / Paramètres /
    Sécurité.
    ============================================================ */
@@ -8752,9 +8794,9 @@ document.addEventListener(
      * il passe avant les anciens gestionnaires.
      */
 
-    if (!window.__complianceForgeUserMenuFinal) {
+    if (!window.__conformiiaUserMenuFinal) {
 
-        window.__complianceForgeUserMenuFinal = true;
+        window.__conformiiaUserMenuFinal = true;
 
         document.addEventListener(
             "click",
@@ -8901,7 +8943,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — PARAMÈTRES — FORÇAGE DU CLIC
+   CONFORMIIA — PARAMÈTRES — FORÇAGE DU CLIC
    ============================================================ */
 
 (function () {
@@ -8947,7 +8989,7 @@ document.addEventListener(
             event.stopPropagation();
 
             console.log(
-                "[ComplianceForge] Ouverture Paramètres"
+                "[ConformiIA] Ouverture Paramètres"
             );
 
             if (
@@ -8957,14 +8999,14 @@ document.addEventListener(
                 window.afficherParametres();
             } else {
                 console.error(
-                    "[ComplianceForge] afficherParametres introuvable"
+                    "[ConformiIA] afficherParametres introuvable"
                 );
             }
 
         });
 
         console.log(
-            "[ComplianceForge] Bouton Paramètres réparé"
+            "[ConformiIA] Bouton Paramètres réparé"
         );
     }
 
@@ -9014,14 +9056,14 @@ document.addEventListener(
 
 
 /* =========================================================
-   COMPLIANCEFORGE — I18N GLOBAL UNIQUE
+   CONFORMIIA — I18N GLOBAL UNIQUE
    ========================================================= */
 
 /* =========================================================
-   COMPLIANCEFORGE — I18N GLOBAL UNIQUE
+   CONFORMIIA — I18N GLOBAL UNIQUE
    ---------------------------------------------------------
    TRADUIT :
-   - toute l'interface ComplianceForge
+   - toute l'interface ConformiIA
    - contenu dynamique
    - Dashboard
    - menus
@@ -9042,7 +9084,7 @@ document.addEventListener(
    - backend
    ========================================================= */
 
-(function ComplianceForgeGlobalI18N() {
+(function ConformiIAGlobalI18N() {
 
     "use strict";
 
@@ -9052,7 +9094,7 @@ document.addEventListener(
         "i18n_interface";
 
     const SETTINGS_KEY =
-        "complianceforge_user_settings";
+        "conformiia_user_settings";
 
     const state = {
         language: "fr",
@@ -9169,7 +9211,7 @@ document.addEventListener(
             } catch (error) {
 
                 console.error(
-                    `[ComplianceForge i18n] Catalogue ${language} inaccessible`,
+                    `[ConformiIA i18n] Catalogue ${language} inaccessible`,
                     error
                 );
 
@@ -9662,7 +9704,7 @@ document.addEventListener(
         );
 
         console.info(
-            `[ComplianceForge i18n] ${language}`
+            `[ConformiIA i18n] ${language}`
         );
     }
 
@@ -9672,10 +9714,10 @@ document.addEventListener(
      * ---------------------------------------------------------
      */
 
-    window.complianceForgeSetLanguage =
+    window.conformiiaSetLanguage =
         applyLanguage;
 
-    window.complianceForgeTranslatePage =
+    window.conformiiaTranslatePage =
         function() {
 
             return applyLanguage(
@@ -9683,7 +9725,7 @@ document.addEventListener(
             );
         };
 
-    window.complianceForgeGetLanguage =
+    window.conformiiaGetLanguage =
         function() {
 
             return state.language;
@@ -9707,7 +9749,7 @@ document.addEventListener(
         }
 
         if (
-            window.__complianceForgeI18NObserver
+            window.__conformiiaI18NObserver
         ) {
             return;
         }
@@ -9759,7 +9801,7 @@ document.addEventListener(
             }
         );
 
-        window.__complianceForgeI18NObserver =
+        window.__conformiiaI18NObserver =
             observer;
     }
 
@@ -9842,7 +9884,7 @@ document.addEventListener(
         );
 
         console.info(
-            "[ComplianceForge i18n] Global actif."
+            "[ConformiIA i18n] Global actif."
         );
     }
 
@@ -9898,11 +9940,11 @@ document.addEventListener(
              * Synchronisation avec le moteur i18n global.
              */
             if (
-                typeof window.complianceForgeSetLanguage ===
+                typeof window.conformiiaSetLanguage ===
                 "function"
             ) {
 
-                window.complianceForgeSetLanguage(
+                window.conformiiaSetLanguage(
                     language
                 );
             }
@@ -9913,7 +9955,7 @@ document.addEventListener(
             try {
 
                 const key =
-                    "complianceforge_user_settings";
+                    "conformiia_user_settings";
 
                 let settings = {};
 
@@ -9946,11 +9988,11 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — PARAMETRES ET MENU UTILISATEUR FINAL
+   CONFORMIIA — PARAMETRES ET MENU UTILISATEUR FINAL
    ============================================================ */
 
 /* ============================================================
-   COMPLIANCEFORGE — PARAMETRES ET MENU UTILISATEUR FINAL
+   CONFORMIIA — PARAMETRES ET MENU UTILISATEUR FINAL
    ------------------------------------------------------------
    - Français / English uniquement
    - Clair / Sombre
@@ -9961,12 +10003,12 @@ document.addEventListener(
    - Aucun impact APDP / PDF
    ============================================================ */
 
-(function ComplianceForgeFinalUserSettings() {
+(function ConformiIAFinalUserSettings() {
 
     "use strict";
 
     const SETTINGS_KEY =
-        "complianceforge_user_settings";
+        "conformiia_user_settings";
 
     function getSettings() {
 
@@ -10083,7 +10125,7 @@ document.addEventListener(
                 : "light";
 
         localStorage.setItem(
-            "complianceforge_theme",
+            "conformiia_theme",
             dark
                 ? "dark"
                 : "light"
@@ -10129,7 +10171,7 @@ document.addEventListener(
                 "Paramètres",
 
             subtitle:
-                "Configurez les préférences de votre espace ComplianceForge.",
+                "Configurez les préférences de votre espace ConformiIA.",
 
             back:
                 "← Retour au tableau de bord",
@@ -10213,7 +10255,7 @@ document.addEventListener(
                 "⚙️ Settings",
 
             subtitle:
-                "Configure your ComplianceForge workspace preferences.",
+                "Configure your ConformiIA workspace preferences.",
 
             back:
                 "← Back to dashboard",
@@ -10317,7 +10359,7 @@ document.addEventListener(
 
             if (!container) {
                 console.error(
-                    "[ComplianceForge] Conteneur principal introuvable."
+                    "[ConformiIA] Conteneur principal introuvable."
                 );
                 return;
             }
@@ -10332,7 +10374,7 @@ document.addEventListener(
 
                             <div class="cf-brand-small">
                                 <span class="cf-brand-mark">CF</span>
-                                <span>COMPLIANCEFORGE</span>
+                                <span>CONFORMIIA</span>
                             </div>
 
                             <h1>
@@ -10678,12 +10720,12 @@ document.addEventListener(
                         });
 
                         if (
-                            typeof window.complianceForgeSetLanguage ===
+                            typeof window.conformiiaSetLanguage ===
                             "function"
                         ) {
 
                             await window
-                                .complianceForgeSetLanguage(
+                                .conformiiaSetLanguage(
                                     language
                                 );
                         }
@@ -10879,12 +10921,12 @@ document.addEventListener(
                         );
 
                         if (
-                            typeof window.complianceForgeSetLanguage ===
+                            typeof window.conformiiaSetLanguage ===
                             "function"
                         ) {
 
                             window
-                                .complianceForgeSetLanguage(
+                                .conformiiaSetLanguage(
                                     "fr"
                                 );
                         }
@@ -10904,7 +10946,7 @@ document.addEventListener(
 
                         try {
                             localStorage.removeItem(
-                                "complianceforge_session"
+                                "conformiia_session"
                             );
                         } catch (_) {}
 
@@ -10931,7 +10973,7 @@ document.addEventListener(
      * ---------------------------------------------------------
      */
 
-    window.complianceForgeTranslateUserMenu =
+    window.conformiiaTranslateUserMenu =
         function () {
 
             const lang =
@@ -11037,12 +11079,12 @@ document.addEventListener(
 
             if (
                 typeof window
-                    .complianceForgeTranslateUserMenu ===
+                    .conformiiaTranslateUserMenu ===
                 "function"
             ) {
 
                 window
-                    .complianceForgeTranslateUserMenu();
+                    .conformiiaTranslateUserMenu();
             }
 
         },
@@ -11054,21 +11096,21 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — BOUTONS PARAMETRES FINAL
+   CONFORMIIA — BOUTONS PARAMETRES FINAL
    ============================================================ */
 
 /* ============================================================
-   COMPLIANCEFORGE — BOUTONS PARAMETRES FINAL
+   CONFORMIIA — BOUTONS PARAMETRES FINAL
    ------------------------------------------------------------
    Réinitialiser + Déconnexion
    ============================================================ */
 
-(function ComplianceForgeSettingsButtonsFinal() {
+(function ConformiIASettingsButtonsFinal() {
 
     "use strict";
 
     const SETTINGS_KEY =
-        "complianceforge_user_settings";
+        "conformiia_user_settings";
 
     let resetRunning = false;
     let logoutRunning = false;
@@ -11108,7 +11150,7 @@ document.addEventListener(
              * maintenir un ancien état.
              */
             localStorage.removeItem(
-                "complianceforge_theme"
+                "conformiia_theme"
             );
 
             /*
@@ -11146,11 +11188,11 @@ document.addEventListener(
              * Remettre la langue française.
              */
             if (
-                typeof window.complianceForgeSetLanguage ===
+                typeof window.conformiiaSetLanguage ===
                 "function"
             ) {
 
-                await window.complianceForgeSetLanguage(
+                await window.conformiiaSetLanguage(
                     "fr"
                 );
             }
@@ -11168,13 +11210,13 @@ document.addEventListener(
             }
 
             console.info(
-                "[ComplianceForge] Préférences réinitialisées."
+                "[ConformiIA] Préférences réinitialisées."
             );
 
         } catch (error) {
 
             console.error(
-                "[ComplianceForge] Erreur réinitialisation :",
+                "[ConformiIA] Erreur réinitialisation :",
                 error
             );
 
@@ -11228,7 +11270,7 @@ document.addEventListener(
 
                     <p>
                         Vous avez été déconnecté de votre espace
-                        ComplianceForge.
+                        ConformiIA.
                     </p>
 
                     <button
@@ -11291,12 +11333,12 @@ document.addEventListener(
              * Aucun compte ne doit rester considéré comme connecté.
              */
             const sessionKeys = [
-                "complianceforge_session",
-                "complianceforge_auth",
-                "complianceforge_token",
-                "complianceforge_access_token",
-                "complianceforge_authenticated_user",
-                "complianceforge_current_user",
+                "conformiia_session",
+                "conformiia_auth",
+                "conformiia_token",
+                "conformiia_access_token",
+                "conformiia_authenticated_user",
+                "conformiia_current_user",
                 "access_token",
                 "token"
             ];
@@ -11313,7 +11355,7 @@ document.addEventListener(
              */
             window.currentUser = null;
             window.currentUserProfile = null;
-            window.complianceForgeUser = null;
+            window.conformiiaUser = null;
             window.userProfile = null;
 
             /*
@@ -11321,16 +11363,16 @@ document.addEventListener(
              * Aucun retour au dashboard.
              */
             if (
-                typeof window.complianceForgeShowLogin ===
+                typeof window.conformiiaShowLogin ===
                 "function"
             ) {
 
-                window.complianceForgeShowLogin();
+                window.conformiiaShowLogin();
 
             } else {
 
                 console.error(
-                    "[ComplianceForge] Écran de connexion introuvable."
+                    "[ConformiIA] Écran de connexion introuvable."
                 );
 
                 /*
@@ -11342,13 +11384,13 @@ document.addEventListener(
             }
 
             console.info(
-                "[ComplianceForge] Déconnexion effectuée."
+                "[ConformiIA] Déconnexion effectuée."
             );
 
         } catch (error) {
 
             console.error(
-                "[ComplianceForge] Erreur déconnexion :",
+                "[ConformiIA] Erreur déconnexion :",
                 error
             );
 
@@ -11359,10 +11401,10 @@ document.addEventListener(
             try {
 
                 if (
-                    typeof window.complianceForgeShowLogin ===
+                    typeof window.conformiiaShowLogin ===
                     "function"
                 ) {
-                    window.complianceForgeShowLogin();
+                    window.conformiiaShowLogin();
                 } else {
                     window.location.reload();
                 }
@@ -11370,7 +11412,7 @@ document.addEventListener(
             } catch (loginError) {
 
                 console.error(
-                    "[ComplianceForge] Impossible d'afficher la connexion :",
+                    "[ConformiIA] Impossible d'afficher la connexion :",
                     loginError
                 );
 
@@ -11448,10 +11490,10 @@ document.addEventListener(
     /*
      * API publique utile pour les tests.
      */
-    window.complianceForgeResetSettings =
+    window.conformiiaResetSettings =
         resetSettings;
 
-    window.complianceForgeLogout =
+    window.conformiiaLogout =
         logout;
 
 })();
@@ -11462,7 +11504,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — AVATAR DU COMPTE CONNECTÉ
+   CONFORMIIA — AVATAR DU COMPTE CONNECTÉ
    ============================================================ */
 
 (function () {
@@ -11477,7 +11519,7 @@ document.addEventListener(
         const candidates = [
             window.currentUser,
             window.currentUserProfile,
-            window.complianceForgeUser,
+            window.conformiiaUser,
             window.userProfile
         ];
 
@@ -11499,11 +11541,11 @@ document.addEventListener(
         }
 
         /*
-         * Session ComplianceForge.
+         * Session ConformiIA.
          */
         const sessionKeys = [
-            "complianceforge_session",
-            "complianceforge_current_user",
+            "conformiia_session",
+            "conformiia_current_user",
             "currentUser"
         ];
 
@@ -11550,7 +11592,7 @@ document.addEventListener(
 
             const raw =
                 localStorage.getItem(
-                    "complianceforge_user_profile"
+                    "conformiia_user_profile"
                 );
 
             if (raw) {
@@ -11723,7 +11765,7 @@ document.addEventListener(
                 );
         }
 
-        window.complianceForgeUserInitials =
+        window.conformiiaUserInitials =
             initials;
     }
 
@@ -11733,7 +11775,7 @@ document.addEventListener(
      * On pourra l'appeler après une connexion,
      * une modification du profil ou une reconnexion.
      */
-    window.complianceForgeUpdateAvatar =
+    window.conformiiaUpdateAvatar =
         updateConnectedUserAvatar;
 
 
@@ -11763,7 +11805,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — AUTHENTIFICATION API
+   CONFORMIIA — AUTHENTIFICATION API
    ============================================================ */
 
 (function () {
@@ -11771,14 +11813,14 @@ document.addEventListener(
     "use strict";
 
     const API_BASE =
-        window.COMPLIANCEFORGE_API_URL ||
-        "https://api.complianceforge.test";
+        window.CONFORMIIA_API_URL ||
+        "http://127.0.0.1:8001";
 
     const AUTH_TOKEN_KEY =
-        "complianceforge_access_token";
+        "conformiia_access_token";
 
     const AUTH_USER_KEY =
-        "complianceforge_authenticated_user";
+        "conformiia_authenticated_user";
 
 
     function getToken() {
@@ -11813,7 +11855,7 @@ document.addEventListener(
 
         window.currentUser = null;
         window.currentUserProfile = null;
-        window.complianceForgeUser = null;
+        window.conformiiaUser = null;
     }
 
 
@@ -11863,7 +11905,7 @@ document.addEventListener(
              */
             window.currentUser = user;
             window.currentUserProfile = user;
-            window.complianceForgeUser = user;
+            window.conformiiaUser = user;
 
             localStorage.setItem(
                 AUTH_USER_KEY,
@@ -11871,15 +11913,15 @@ document.addEventListener(
             );
 
             localStorage.setItem(
-                "complianceforge_current_user",
+                "conformiia_current_user",
                 JSON.stringify(user)
             );
 
             if (
-                typeof window.complianceForgeUpdateAvatar ===
+                typeof window.conformiiaUpdateAvatar ===
                 "function"
             ) {
-                window.complianceForgeUpdateAvatar();
+                window.conformiiaUpdateAvatar();
             }
 
             return user;
@@ -11892,7 +11934,7 @@ document.addEventListener(
              * comme authentifié localement.
              */
             console.error(
-                "[ComplianceForge] Vérification de session impossible :",
+                "[ConformiIA] Vérification de session impossible :",
                 error
             );
 
@@ -11905,7 +11947,7 @@ document.addEventListener(
     /*
      * API publique.
      */
-    window.complianceForgeAuth = {
+    window.conformiiaAuth = {
         getToken,
         setToken,
         getCurrentUser,
@@ -11927,21 +11969,21 @@ document.addEventListener(
         document.addEventListener(
             "DOMContentLoaded",
             function () {
-                try { Promise.resolve(getCurrentUser()).catch(function (e) { console.warn("[ComplianceForge] Session non restaurée :", e); }); } catch (e) { console.warn("[ComplianceForge] Session non restaurée :", e); }
+                try { Promise.resolve(getCurrentUser()).catch(function (e) { console.warn("[ConformiIA] Session non restaurée :", e); }); } catch (e) { console.warn("[ConformiIA] Session non restaurée :", e); }
             },
             { once: true }
         );
 
     } else {
 
-        try { Promise.resolve(getCurrentUser()).catch(function (e) { console.warn("[ComplianceForge] Session non restaurée :", e); }); } catch (e) { console.warn("[ComplianceForge] Session non restaurée :", e); }
+        try { Promise.resolve(getCurrentUser()).catch(function (e) { console.warn("[ConformiIA] Session non restaurée :", e); }); } catch (e) { console.warn("[ConformiIA] Session non restaurée :", e); }
     }
 
 })();
 
 
 /* ============================================================
-   COMPLIANCEFORGE — ÉCRAN CONNEXION / INSCRIPTION
+   CONFORMIIA — ÉCRAN CONNEXION / INSCRIPTION
    ============================================================ */
 
 (function () {
@@ -11949,11 +11991,11 @@ document.addEventListener(
     "use strict";
 
     const AUTH_TOKEN_KEY =
-        "complianceforge_access_token";
+        "conformiia_access_token";
 
     const API_BASE =
-        window.COMPLIANCEFORGE_API_URL ||
-        "https://api.complianceforge.test";
+        window.CONFORMIIA_API_URL ||
+        "http://127.0.0.1:8001";
 
 
     function createAuthScreen() {
@@ -11985,7 +12027,7 @@ document.addEventListener(
                         CF
                     </div>
 
-                    <h1>ComplianceForge</h1>
+                    <h1>ConformiIA</h1>
 
                     <p>
                         Plateforme GRC-as-Code
@@ -12559,7 +12601,7 @@ document.addEventListener(
 
             /*
              * Alimente le système d'avatar
-             * déjà présent dans ComplianceForge.
+             * déjà présent dans ConformiIA.
              */
             window.currentUser =
                 user;
@@ -12567,19 +12609,19 @@ document.addEventListener(
             window.currentUserProfile =
                 user;
 
-            window.complianceForgeUser =
+            window.conformiiaUser =
                 user;
 
             localStorage.setItem(
-                "complianceforge_current_user",
+                "conformiia_current_user",
                 JSON.stringify(user)
             );
 
             if (
-                typeof window.complianceForgeUpdateAvatar ===
+                typeof window.conformiiaUpdateAvatar ===
                 "function"
             ) {
-                window.complianceForgeUpdateAvatar();
+                window.conformiiaUpdateAvatar();
             }
 
             hideAuth();
@@ -12653,7 +12695,7 @@ document.addEventListener(
         };
 
         const emailCheck =
-            window.complianceForgeValidateEmail(
+            window.conformiiaValidateEmail(
                 data.email
             );
 
@@ -12667,7 +12709,7 @@ document.addEventListener(
         }
 
         const passwordCheck =
-            window.complianceForgeValidatePassword(
+            window.conformiiaValidatePassword(
                 data.mot_de_passe
             );
 
@@ -12964,7 +13006,7 @@ document.addEventListener(
         }
 
         /*
-         * Restaurer le shell de ComplianceForge.
+         * Restaurer le shell de ConformiIA.
          */
         if (
             Array.isArray(
@@ -13003,10 +13045,10 @@ document.addEventListener(
             "";
 
         if (
-            typeof window.complianceForgeUpdateAvatar ===
+            typeof window.conformiiaUpdateAvatar ===
             "function"
         ) {
-            window.complianceForgeUpdateAvatar();
+            window.conformiiaUpdateAvatar();
         }
     }
 
@@ -13020,7 +13062,7 @@ document.addEventListener(
 
         if (!overlay) {
             console.error(
-                "[ComplianceForge] Overlay de connexion introuvable."
+                "[ConformiIA] Overlay de connexion introuvable."
             );
             return;
         }
@@ -13188,21 +13230,21 @@ document.addEventListener(
             window.currentUserProfile =
                 user;
 
-            window.complianceForgeUser =
+            window.conformiiaUser =
                 user;
 
             localStorage.setItem(
-                "complianceforge_current_user",
+                "conformiia_current_user",
                 JSON.stringify(user)
             );
 
             hideAuth();
 
             if (
-                typeof window.complianceForgeUpdateAvatar ===
+                typeof window.conformiiaUpdateAvatar ===
                 "function"
             ) {
-                window.complianceForgeUpdateAvatar();
+                window.conformiiaUpdateAvatar();
             }
 
             return;
@@ -13282,7 +13324,7 @@ document.addEventListener(
     /*
      * API publique.
      */
-    window.complianceForgeShowLogin =
+    window.conformiiaShowLogin =
         () => {
             showSection(
                 "cf-login-section"
@@ -13290,7 +13332,7 @@ document.addEventListener(
             showAuth();
         };
 
-    window.complianceForgeShowRegister =
+    window.conformiiaShowRegister =
         () => {
             showSection(
                 "cf-register-section"
@@ -13302,7 +13344,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — CHANGEMENT DU MOT DE PASSE
+   CONFORMIIA — CHANGEMENT DU MOT DE PASSE
    ============================================================ */
 
 (function () {
@@ -13310,11 +13352,11 @@ document.addEventListener(
     "use strict";
 
     const API_BASE =
-        window.COMPLIANCEFORGE_API_URL ||
-        "https://api.complianceforge.test";
+        window.CONFORMIIA_API_URL ||
+        "http://127.0.0.1:8001";
 
     const TOKEN_KEY =
-        "complianceforge_access_token";
+        "conformiia_access_token";
 
 
     function createPasswordModal() {
@@ -13598,7 +13640,7 @@ document.addEventListener(
                 .value;
 
         const passwordCheck =
-            window.complianceForgeValidatePassword(
+            window.conformiiaValidatePassword(
                 newPassword
             );
 
@@ -13802,14 +13844,14 @@ document.addEventListener(
     }
 
 
-    window.complianceForgeShowPasswordModal =
+    window.conformiiaShowPasswordModal =
         showPasswordModal;
 
 })();
 
 
 /* ============================================================
-   COMPLIANCEFORGE — CORRECTION BOUTON MOT DE PASSE DYNAMIQUE
+   CONFORMIIA — CORRECTION BOUTON MOT DE PASSE DYNAMIQUE
    ============================================================ */
 
 (function () {
@@ -13839,10 +13881,10 @@ document.addEventListener(
             event.stopPropagation();
 
             if (
-                typeof window.complianceForgeShowPasswordModal ===
+                typeof window.conformiiaShowPasswordModal ===
                 "function"
             ) {
-                window.complianceForgeShowPasswordModal();
+                window.conformiiaShowPasswordModal();
             }
 
         },
@@ -13853,14 +13895,14 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — POLITIQUE MOT DE PASSE / E-MAIL
+   CONFORMIIA — POLITIQUE MOT DE PASSE / E-MAIL
    ============================================================ */
 
 (function () {
 
     "use strict";
 
-    window.complianceForgeValidatePassword =
+    window.conformiiaValidatePassword =
         function (password) {
 
             if (password.length < 8) {
@@ -13902,7 +13944,7 @@ document.addEventListener(
         };
 
 
-    window.complianceForgeValidateEmail =
+    window.conformiiaValidateEmail =
         function (email) {
 
             const value =
@@ -13938,13 +13980,13 @@ document.addEventListener(
 
 
 /* ============================================================
-   COMPLIANCEFORGE — SESSION ACTUELLE
+   CONFORMIIA — SESSION ACTUELLE
    ============================================================ */
 
-(function initComplianceForgeCurrentSession() {
+(function initConformiIACurrentSession() {
 
     const SESSION_STARTED_KEY =
-        "complianceforge_session_started_at";
+        "conformiia_session_started_at";
 
     function getBrowserName() {
 
@@ -14027,7 +14069,7 @@ document.addEventListener(
 
         const token =
             localStorage.getItem(
-                "complianceforge_access_token"
+                "conformiia_access_token"
             );
 
         if (!token) {
@@ -14115,7 +14157,7 @@ document.addEventListener(
 
             const token =
                 localStorage.getItem(
-                    "complianceforge_access_token"
+                    "conformiia_access_token"
                 );
 
             if (token) {
@@ -14135,7 +14177,7 @@ document.addEventListener(
         true
     );
 
-    window.complianceForgeInitCurrentSession =
+    window.conformiiaInitCurrentSession =
         initializeSession;
 
     initializeSession();
@@ -14148,15 +14190,15 @@ document.addEventListener(
    CORRECTION — INITIALISATION SESSION APRÈS RENDU DE LA PAGE
    ============================================================ */
 
-(function fixComplianceForgeSessionRendering() {
+(function fixConformiIASessionRendering() {
 
     function refreshSessionDisplay() {
 
         if (
-            typeof window.complianceForgeInitCurrentSession ===
+            typeof window.conformiiaInitCurrentSession ===
             "function"
         ) {
-            window.complianceForgeInitCurrentSession();
+            window.conformiiaInitCurrentSession();
         }
     }
 
@@ -14215,7 +14257,7 @@ document.addEventListener(
 // JOURNAL DE SÉCURITÉ — API
 // ============================================================
 
-window.complianceForgeLoadSecurityLog = async function () {
+window.conformiiaLoadSecurityLog = async function () {
     const container = document.getElementById(
         "cf-security-log-container"
     );
@@ -14225,7 +14267,7 @@ window.complianceForgeLoadSecurityLog = async function () {
     }
 
     const token = localStorage.getItem(
-        "complianceforge_access_token"
+        "conformiia_access_token"
     );
 
     if (!token) {
@@ -14239,7 +14281,7 @@ window.complianceForgeLoadSecurityLog = async function () {
 
     try {
         const response = await fetch(
-            "https://api.complianceforge.test/auth/security-log",
+            "http://127.0.0.1:8001/auth/security-log",
             {
                 method: "GET",
                 headers: {
@@ -14349,10 +14391,10 @@ window.complianceForgeLoadSecurityLog = async function () {
         journalCharge = true;
 
         if (
-            typeof window.complianceForgeLoadSecurityLog
+            typeof window.conformiiaLoadSecurityLog
             === "function"
         ) {
-            window.complianceForgeLoadSecurityLog();
+            window.conformiiaLoadSecurityLog();
         }
 
         observer.disconnect();

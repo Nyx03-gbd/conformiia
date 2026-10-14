@@ -123,9 +123,9 @@ ANNEXE_2_COMMUNICATION_MAPPING = {
         "finalite_communication": {
             "type": "multiline",
             "x": 103.08,
-            "y": 351.15,
+            "y": 332.00,
             "width": 431.11,
-            "height": 22.60,
+            "height": 22.00,
         },
 
         # ------------------------------------------------------------
@@ -133,11 +133,11 @@ ANNEXE_2_COMMUNICATION_MAPPING = {
         # ------------------------------------------------------------
 
         "texte_legal_reglementaire": {
-            "type": "multiline",
+            "type": "text",
             "x": 103.08,
-            "y": 296.41,
+            "y": 287.00,
             "width": 431.11,
-            "height": 31.64,
+            "height": 13.00,
         },
 
         # ------------------------------------------------------------

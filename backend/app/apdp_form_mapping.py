@@ -202,6 +202,16 @@ FORMULAIRE_UNIQUE_MAPPING = {
             "width": 144.93,
             "height": 22.85,
         },
+
+        # II.A — Données personnelles concernées
+        # (« Enoncez les données personnelles collectées et traitées »)
+        "donnees_personnelles": {
+            "type": "multiline",
+            "x": 102.96,
+            "y": 35.00,
+            "width": 431.36,
+            "height": 70.00,
+        },
     },
 
     # =========================================================
@@ -503,9 +513,9 @@ FORMULAIRE_UNIQUE_MAPPING = {
 
         "operation_autre_precision": {
             "type": "text",
-            "x": 250.39,
+            "x": 300.00,
             "y": 276.43,
-            "width": 266.88,
+            "width": 217.00,
             "height": 12.29,
         },
 
@@ -603,9 +613,9 @@ FORMULAIRE_UNIQUE_MAPPING = {
         "fondement_juridique": {
             "type": "multiline",
             "x": 102.96,
-            "y": 556.74,
+            "y": 502.00,
             "width": 431.36,
-            "height": 31.89,
+            "height": 40.00,
         },
 
         "duree_conservation": {
@@ -617,11 +627,11 @@ FORMULAIRE_UNIQUE_MAPPING = {
         },
 
         "texte_legal_conservation": {
-            "type": "multiline",
+            "type": "text",
             "x": 102.96,
-            "y": 382.20,
+            "y": 383.00,
             "width": 431.36,
-            "height": 44.15,
+            "height": 12.00,
         },
 
         "support_papier": {
@@ -650,25 +660,25 @@ FORMULAIRE_UNIQUE_MAPPING = {
 
         "lieu_stockage": {
             "type": "text",
-            "x": 102.96,
+            "x": 180.00,
             "y": 227.80,
-            "width": 103.40,
+            "width": 300.00,
             "height": 22.85,
         },
 
         "modalites_stockage": {
             "type": "text",
-            "x": 102.96,
+            "x": 180.00,
             "y": 204.95,
-            "width": 103.40,
+            "width": 300.00,
             "height": 22.85,
         },
 
         "responsable_stockage": {
             "type": "text",
-            "x": 102.96,
+            "x": 180.00,
             "y": 182.10,
-            "width": 103.40,
+            "width": 300.00,
             "height": 22.85,
         },
     },
@@ -1184,50 +1194,26 @@ FORMULAIRE_UNIQUE_MAPPING = {
     # Mesures prises en compte
 "mesures_physique": {
     "type": "text",
-    "x": 303.59,
+    "x": 378.00,
     "y": 292.05,
-    "width": 230.98,
+    "width": 155.00,
     "height": 22.85,
-    "clear_zones": [
-        {
-            "x": 307.71,
-            "y": 530.98,
-            "width": 45.25,
-            "height": 15.02,
-        },
-    ],
 },
 
 "mesures_electronique": {
     "type": "text",
-    "x": 303.59,
+    "x": 378.00,
     "y": 269.20,
-    "width": 230.98,
+    "width": 155.00,
     "height": 22.85,
-    "clear_zones": [
-        {
-            "x": 307.71,
-            "y": 553.83,
-            "width": 64.20,
-            "height": 15.02,
-        },
-    ],
 },
 
 "mesures_autres": {
     "type": "text",
-    "x": 303.59,
+    "x": 378.00,
     "y": 246.35,
-    "width": 230.98,
+    "width": 155.00,
     "height": 22.85,
-    "clear_zones": [
-        {
-            "x": 307.71,
-            "y": 576.68,
-            "width": 40.97,
-            "height": 15.02,
-        },
-    ],
 },
     # Accès
     "acces_physique": {
@@ -1302,10 +1288,10 @@ FORMULAIRE_UNIQUE_MAPPING = {
         },
         "protection_objets_persistants_details": {
             "type": "text",
-            "x": 345,
-            "y": 646,
-            "width": 185,
-            "height": 18,
+            "x": 320,
+            "y": 632,
+            "width": 210,
+            "height": 16,
         },
 
         "procedure_test_securite": {
@@ -1315,10 +1301,10 @@ FORMULAIRE_UNIQUE_MAPPING = {
         },
         "procedure_test_securite_details": {
             "type": "text",
-            "x": 345,
-            "y": 596,
-            "width": 185,
-            "height": 18,
+            "x": 320,
+            "y": 582,
+            "width": 210,
+            "height": 16,
         },
 
         "autres_mesures_logiques": {
@@ -1328,10 +1314,10 @@ FORMULAIRE_UNIQUE_MAPPING = {
         },
         "autres_mesures_logiques_details": {
             "type": "text",
-            "x": 345,
-            "y": 546,
-            "width": 185,
-            "height": 18,
+            "x": 320,
+            "y": 532,
+            "width": 210,
+            "height": 16,
         },
 
         "certification_agrement": {
@@ -1340,11 +1326,11 @@ FORMULAIRE_UNIQUE_MAPPING = {
             "oui": {"rect": [308.19, 498.14, 9.70, 7.15]},
         },
         "certification_agrement_details": {
-            "type": "multiline",
-            "x": 345,
-            "y": 490,
-            "width": 185,
-            "height": 35,
+            "type": "text",
+            "x": 320,
+            "y": 470,
+            "width": 210,
+            "height": 16,
         },
 
         "verification_identite_tiers": {
@@ -1354,10 +1340,10 @@ FORMULAIRE_UNIQUE_MAPPING = {
         },
         "verification_identite_tiers_details": {
             "type": "text",
-            "x": 345,
-            "y": 434,
-            "width": 185,
-            "height": 18,
+            "x": 320,
+            "y": 420,
+            "width": 210,
+            "height": 16,
         },
 
         "journalisation_identite": {
@@ -1367,10 +1353,10 @@ FORMULAIRE_UNIQUE_MAPPING = {
         },
         "journalisation_identite_details": {
             "type": "text",
-            "x": 345,
-            "y": 378,
-            "width": 185,
-            "height": 18,
+            "x": 320,
+            "y": 362,
+            "width": 210,
+            "height": 16,
         },
 
         "authentification_cryptographie": {
@@ -1399,10 +1385,10 @@ FORMULAIRE_UNIQUE_MAPPING = {
         },
         "mesures_juridiques_details": {
             "type": "text",
-            "x": 125,
+            "x": 240,
             "y": 70,
-            "width": 405,
-            "height": 18,
+            "width": 290,
+            "height": 16,
         },
     },
 
@@ -1608,18 +1594,18 @@ FORMULAIRE_UNIQUE_MAPPING = {
         # Interrogation
         "interrogation_modalites": {
             "type": "checkbox_group",
-            "requete_ecrite": {"rect": [211.19, 355.54, 9.70, 7.15]},
-            "requete_orale": {"rect": [308.47, 355.54, 9.70, 7.15]},
-            "formulaire": {"rect": [397.19, 355.54, 9.70, 7.15]},
-            "guichet": {"rect": [469.37, 355.54, 9.70, 7.15]},
-            "autres": {"rect": [211.19, 341.79, 9.70, 7.15]},
+            "requete_ecrite": {"rect": [211.19, 340.54, 9.70, 7.15]},
+            "requete_orale": {"rect": [308.47, 340.54, 9.70, 7.15]},
+            "formulaire": {"rect": [397.19, 340.54, 9.70, 7.15]},
+            "guichet": {"rect": [469.37, 340.54, 9.70, 7.15]},
+            "autres": {"rect": [211.19, 326.79, 9.70, 7.15]},
         },
         "interrogation_autres": {
             "type": "text",
             "x": 260,
-            "y": 337,
+            "y": 322,
             "width": 270,
-            "height": 18,
+            "height": 16,
         },
         "interrogation_responsables": {
             "type": "text",
@@ -1639,18 +1625,18 @@ FORMULAIRE_UNIQUE_MAPPING = {
         # Rectification / suppression
         "rectification_modalites": {
             "type": "checkbox_group",
-            "requete_ecrite": {"rect": [211.19, 220.54, 9.70, 7.15]},
-            "requete_orale": {"rect": [308.47, 220.54, 9.70, 7.15]},
-            "formulaire": {"rect": [397.19, 220.54, 9.70, 7.15]},
-            "guichet": {"rect": [469.37, 220.54, 9.70, 7.15]},
-            "autres": {"rect": [211.19, 206.79, 9.70, 7.15]},
+            "requete_ecrite": {"rect": [211.19, 205.54, 9.70, 7.15]},
+            "requete_orale": {"rect": [308.47, 205.54, 9.70, 7.15]},
+            "formulaire": {"rect": [397.19, 205.54, 9.70, 7.15]},
+            "guichet": {"rect": [469.37, 205.54, 9.70, 7.15]},
+            "autres": {"rect": [211.19, 191.79, 9.70, 7.15]},
         },
         "rectification_autres": {
             "type": "text",
             "x": 260,
-            "y": 202,
+            "y": 187,
             "width": 270,
-            "height": 18,
+            "height": 16,
         },
         "rectification_responsables": {
             "type": "text",
@@ -1703,36 +1689,36 @@ FORMULAIRE_UNIQUE_MAPPING = {
         # Traitements antérieurs
         "traitement_anterieur_apdp": {
             "type": "checkbox_group",
-            "non": {"rect": [308.44, 587.54, 9.70, 7.15]},
-            "oui": {"rect": [308.44, 575.54, 9.70, 7.15]},
+            "non": {"rect": [308.44, 589.80, 9.70, 7.15]},
+            "oui": {"rect": [308.44, 577.80, 9.70, 7.15]},
         },
         "traitement_anterieur_references": {
             "type": "text",
-            "x": 345,
-            "y": 574,
-            "width": 185,
-            "height": 20,
+            "x": 320,
+            "y": 560,
+            "width": 210,
+            "height": 16,
         },
 
         "registre_traitements": {
             "type": "checkbox_group",
-            "non": {"rect": [308.44, 531.54, 9.70, 7.15]},
-            "oui": {"rect": [308.44, 519.54, 9.70, 7.15]},
+            "non": {"rect": [308.44, 545.80, 9.70, 7.15]},
+            "oui": {"rect": [308.44, 533.80, 9.70, 7.15]},
         },
 
         "dpo_designe": {
             "type": "checkbox_group",
-            "non": {"rect": [308.44, 475.54, 9.70, 7.15]},
-            "oui": {"rect": [308.44, 463.54, 9.70, 7.15]},
+            "non": {"rect": [308.44, 489.80, 9.70, 7.15]},
+            "oui": {"rect": [308.44, 477.80, 9.70, 7.15]},
         },
 
         # Représentant légal
         "representant_nom_prenoms": {
             "type": "multiline",
             "x": 303.59,
-            "y": 436.60,
+            "y": 418.00,
             "width": 230.98,
-            "height": 67.89,
+            "height": 40.00,
         },
         "representant_cip": {
             "type": "text",
@@ -1771,16 +1757,16 @@ FORMULAIRE_UNIQUE_MAPPING = {
         },
         "representant_adresse_electronique": {
             "type": "text",
-            "x": 206.61,
+            "x": 305.00,
             "y": 316.86,
-            "width": 327.96,
+            "width": 229.00,
             "height": 22.85,
         },
         "representant_contact_telephonique": {
             "type": "text",
-            "x": 206.61,
+            "x": 305.00,
             "y": 294.01,
-            "width": 197.12,
+            "width": 95.00,
             "height": 22.85,
         },
         "representant_autres_contacts": {

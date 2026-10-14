@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
+from app import models
 from app.database import get_db
 from app.models import (
     Organisation,
@@ -26,12 +27,28 @@ from app.schemas import (
     TraitementsAnterieursAPDPCreate,
     TraitementsAnterieursAPDPOut,
 )
+from app.services.security import (
+    get_current_user,
+    assert_can_write,
+    assert_org_access,
+)
 
 
 router = APIRouter(
     prefix="/apdp",
     tags=["APDP"],
 )
+
+
+def _traitement_ou_404(traitement_id: str, db: Session, utilisateur) -> Traitement:
+    """Charge un traitement, 404 s'il n'existe pas, 403 hors de l'organisation."""
+    traitement = db.query(Traitement).filter(
+        Traitement.id == traitement_id
+    ).first()
+    if not traitement:
+        raise HTTPException(status_code=404, detail="Traitement introuvable")
+    assert_org_access(utilisateur, traitement.organisation_id)
+    return traitement
 
 
 # ============================================================
@@ -46,7 +63,10 @@ def creer_profil_apdp(
     organisation_id: str,
     data: ProfilResponsableAPDPCreate,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
+    assert_can_write(utilisateur)
+    assert_org_access(utilisateur, organisation_id)
     organisation = db.query(Organisation).filter(
         Organisation.id == organisation_id
     ).first()
@@ -86,7 +106,9 @@ def creer_profil_apdp(
 def obtenir_profil_apdp(
     organisation_id: str,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
+    assert_org_access(utilisateur, organisation_id)
     profil = db.query(ProfilResponsableAPDP).filter(
         ProfilResponsableAPDP.organisation_id == organisation_id
     ).first()
@@ -112,16 +134,10 @@ def creer_traitement_apdp(
     traitement_id: str,
     data: TraitementAPDPCreate,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
-    traitement = db.query(Traitement).filter(
-        Traitement.id == traitement_id
-    ).first()
-
-    if not traitement:
-        raise HTTPException(
-            status_code=404,
-            detail="Traitement introuvable",
-        )
+    assert_can_write(utilisateur)
+    _traitement_ou_404(traitement_id, db, utilisateur)
 
     existant = db.query(TraitementAPDP).filter(
         TraitementAPDP.traitement_id == traitement_id
@@ -154,7 +170,9 @@ def creer_traitement_apdp(
 def obtenir_traitement_apdp(
     traitement_id: str,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
+    _traitement_ou_404(traitement_id, db, utilisateur)
     apdp = db.query(TraitementAPDP).filter(
         TraitementAPDP.traitement_id == traitement_id
     ).first()
@@ -180,16 +198,10 @@ def enregistrer_principes(
     traitement_id: str,
     data: PrincipesAPDPCreate,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
-    traitement = db.query(Traitement).filter(
-        Traitement.id == traitement_id
-    ).first()
-
-    if not traitement:
-        raise HTTPException(
-            status_code=404,
-            detail="Traitement introuvable",
-        )
+    assert_can_write(utilisateur)
+    _traitement_ou_404(traitement_id, db, utilisateur)
 
     principes = db.query(PrincipesAPDP).filter(
         PrincipesAPDP.traitement_id == traitement_id
@@ -220,7 +232,9 @@ def enregistrer_principes(
 def obtenir_principes(
     traitement_id: str,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
+    _traitement_ou_404(traitement_id, db, utilisateur)
     principes = db.query(PrincipesAPDP).filter(
         PrincipesAPDP.traitement_id == traitement_id
     ).first()
@@ -246,16 +260,10 @@ def enregistrer_securite(
     traitement_id: str,
     data: SecuriteAPDPCreate,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
-    traitement = db.query(Traitement).filter(
-        Traitement.id == traitement_id
-    ).first()
-
-    if not traitement:
-        raise HTTPException(
-            status_code=404,
-            detail="Traitement introuvable",
-        )
+    assert_can_write(utilisateur)
+    _traitement_ou_404(traitement_id, db, utilisateur)
 
     securite = db.query(SecuriteAPDP).filter(
         SecuriteAPDP.traitement_id == traitement_id
@@ -286,7 +294,9 @@ def enregistrer_securite(
 def obtenir_securite(
     traitement_id: str,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
+    _traitement_ou_404(traitement_id, db, utilisateur)
     securite = db.query(SecuriteAPDP).filter(
         SecuriteAPDP.traitement_id == traitement_id
     ).first()
@@ -312,16 +322,10 @@ def enregistrer_droits(
     traitement_id: str,
     data: DroitsPersonnesAPDPCreate,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
-    traitement = db.query(Traitement).filter(
-        Traitement.id == traitement_id
-    ).first()
-
-    if not traitement:
-        raise HTTPException(
-            status_code=404,
-            detail="Traitement introuvable",
-        )
+    assert_can_write(utilisateur)
+    _traitement_ou_404(traitement_id, db, utilisateur)
 
     droits = db.query(DroitsPersonnesAPDP).filter(
         DroitsPersonnesAPDP.traitement_id == traitement_id
@@ -352,7 +356,9 @@ def enregistrer_droits(
 def obtenir_droits(
     traitement_id: str,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
+    _traitement_ou_404(traitement_id, db, utilisateur)
     droits = db.query(DroitsPersonnesAPDP).filter(
         DroitsPersonnesAPDP.traitement_id == traitement_id
     ).first()
@@ -378,16 +384,10 @@ def enregistrer_anterieurs(
     traitement_id: str,
     data: TraitementsAnterieursAPDPCreate,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
-    traitement = db.query(Traitement).filter(
-        Traitement.id == traitement_id
-    ).first()
-
-    if not traitement:
-        raise HTTPException(
-            status_code=404,
-            detail="Traitement introuvable",
-        )
+    assert_can_write(utilisateur)
+    _traitement_ou_404(traitement_id, db, utilisateur)
 
     anterieurs = db.query(TraitementsAnterieursAPDP).filter(
         TraitementsAnterieursAPDP.traitement_id == traitement_id
@@ -418,7 +418,9 @@ def enregistrer_anterieurs(
 def obtenir_anterieurs(
     traitement_id: str,
     db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
+    _traitement_ou_404(traitement_id, db, utilisateur)
     anterieurs = db.query(TraitementsAnterieursAPDP).filter(
         TraitementsAnterieursAPDP.traitement_id == traitement_id
     ).first()

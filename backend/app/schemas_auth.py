@@ -88,3 +88,21 @@ class SecurityLogItem(BaseModel):
     adresse_ip: str | None = None
     user_agent: str | None = None
     date_evenement: datetime
+
+
+class AdminUserItem(BaseModel):
+    id: str
+    nom: str
+    prenoms: Optional[str] = None
+    email: str
+    fonction: Optional[str] = None
+    role: str
+    organisation_id: Optional[str] = None
+    email_verifie: bool
+    date_creation: datetime
+
+
+class AdminUserUpdate(BaseModel):
+    # Réaffectation d'un compte par un administrateur.
+    organisation_id: Optional[str] = None
+    role: Optional[str] = None  # admin | dpo | direction | metier | auditeur

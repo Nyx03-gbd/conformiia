@@ -149,7 +149,7 @@
                  * Traduire immÃ©diatement toute la page.
                  */
                 if (
-                    typeof window.complianceForgeTranslatePage ===
+                    typeof window.conformiiaTranslatePage ===
 0023. ,
                     language
                 );
@@ -242,7 +242,7 @@
 0052. CONSENTEMENT A LA TRANSMISSION PAR VOIE ELECTRONIQUE
 0053. CaractÃ©ristiques techniques des Ã©quipements utilisÃ©s
 0054. Communication / transmission
-0055. Configurez les prÃ©fÃ©rences de votre espace ComplianceForge.
+0055. Configurez les prÃ©fÃ©rences de votre espace ConformiIA.
 0056. Conserver intÃ©gralement le texte officiel.
 0057. Conserver intÃ©gralement les points 10 Ã  15.
 0058. Conserver la numÃ©rotation officielle.
@@ -384,7 +384,7 @@ IMPORTANT :
 0171. NumÃ©ro NPI ou RCCM
 0172. Organisation associÃ©e
 0173. Organisation crÃ©Ã©e :
-0174. Ouvrir la navigation ComplianceForge
+0174. Ouvrir la navigation ConformiIA
 0175. Ouvrir le PDF
 0176. Ouvrir le menu utilisateur
 0177. Personne Ã  contacter par lâAPDP en cas de besoin (DPO)
@@ -403,7 +403,7 @@ IMPORTANT :
 0190. REGISTRE DES ACTIVITES DE TRAITEMENT
 0191. RESPECT DES PRINCIPES RELATIFS AU TRAITEMENT
 0192. Registre des traitements
-0193. RÃ©fÃ©rentiel des documents APDP utilisÃ©s par ComplianceForge.
+0193. RÃ©fÃ©rentiel des documents APDP utilisÃ©s par ConformiIA.
 0194. RÃ©solution du capteur
 0195. SECURITE DES TRAITEMENTS ET DES DONNEES
 0196. SECURITE DU DISPOSITIF
@@ -437,7 +437,7 @@ IMPORTANT :
 0224. Visualisation des images en temps rÃ©el
 0225. Vue gÃ©nÃ©rale de votre conformitÃ© GRC
 0226. Vue synthÃ©tique de la conformitÃ© APDP
-0227. Vue synthÃ©tique des risques ComplianceForge
+0227. Vue synthÃ©tique des risques ConformiIA
 0228. VÃ©rification du remplissage du formulaire de dÃ©claration
 0229. XI. Droits des personnes
 0230. XII. FormalitÃ©s et suivi

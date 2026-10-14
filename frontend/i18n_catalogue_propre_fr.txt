@@ -54,7 +54,7 @@
 0054. Autres contacts
 0055. Autres modalités d’information des personnes concernées
 0056. Base légale
-0057. Bienvenue dans ComplianceForge
+0057. Bienvenue dans ConformiIA
 0058. CARACTERISTIQUES ET FONCTIONNALITÉS DU SYSTEME
 0059. Cadre juridique et objectif du traitement.
 0060. Calcul et consultation des scores
@@ -76,7 +76,7 @@
 0076. Communication / transmission / diffusion
 0077. Communication des données personnelles.
 0078. Compact
-0079. ComplianceForge utilise les mappings APDP existants pour
+0079. ConformiIA utilise les mappings APDP existants pour
 0080. Compromission d'un prestataire.
 0081. Compromission d’identifiants / hameçonnage
 0082. Compromission d’un accès de prestataire
@@ -85,7 +85,7 @@
 0085. Configuration critique
 0086. Configurez les préférences de votre
 0087. Conformité documentaire
-0088. Connexion ComplianceForge
+0088. Connexion ConformiIA
 0089. Conserver intégralement le texte officiel.
 0090. Conserver intégralement les points 10 à 15.
 0091. Conserver la numérotation officielle.
@@ -200,7 +200,7 @@
 0200. Les documents apparaîtront ici après leur génération.
 0201. Les documents générés à partir des données saisies seront disponibles ici.
 0202. Les incidents enregistrés et leur état de délai seront affichés ici.
-0203. Les principales fonctions de ComplianceForge
+0203. Les principales fonctions de ConformiIA
 0204. Les événements de sécurité pourront
 0205. Liaison et Réseau
 0206. Lieu d’installation du système de vidéosurveillance
@@ -298,7 +298,7 @@
 0298. Risques identifiés
 0299. Réessayer
 0300. Réf.
-0301. Référentiel des documents APDP utilisés par ComplianceForge.
+0301. Référentiel des documents APDP utilisés par ConformiIA.
 0302. Réinitialiser
 0303. Résolution du capteur
 0304. Résultat :
@@ -346,13 +346,13 @@
 0346. Téléphone / email
 0347. Utilisateur
 0348. Utilisateur négligent ou malveillant
-0349. Utilisateurs de ComplianceForge
+0349. Utilisateurs de ConformiIA
 0350. Utilisation de systèmes experts
 0351. Veuillez préciser la nature des traitements opérés par le destinataire des données
 0352. Violations de données
 0353. Visualisation des images en temps réel
 0354. Voir l'analyse
-0355. Votre session ComplianceForge
+0355. Votre session ConformiIA
 0356. Vous avez été déconnecté
 0357. Vue générale de votre conformité GRC
 0358. Vérification du remplissage du formulaire de déclaration
@@ -376,7 +376,7 @@
 0376. d'un système d'authentification.
 0377. dans le registre.
 0378. dans votre espace de travail.
-0379. de ComplianceForge.
+0379. de ConformiIA.
 0380. de conformité et de pilotage.
 0381. de conformité et de risque.
 0382. de l'application.
@@ -388,10 +388,10 @@
 0388. du Formulaire Unique APDP.
 0389. du traitement.
 0390. enregistrerParametresUtilisateur()
-0391. espace ComplianceForge.
+0391. espace ConformiIA.
 0392. est actuellement active.
 0393. et indiquez si elles sont sensibles.
-0394. et le pilotage apportés par ComplianceForge.
+0394. et le pilotage apportés par ConformiIA.
 0395. form-actions full
 0396. form-group full
 0397. form-message error
@@ -403,7 +403,7 @@
 0403. input[ ]
 0404. input[ ], textarea[ ], select[ ]
 0405. input[ ]:checked
-0406. l'interface ComplianceForge.
+0406. l'interface ConformiIA.
 0407. label[ ]
 0408. licéite_legitimite
 0409. modifiée.
@@ -426,7 +426,7 @@
 0426. Écrit
 0427. Élèves et étudiants
 0428. Équipe informatique
-0429. État actuel des processus de conformité APDP et niveau cible ComplianceForge.
+0429. État actuel des processus de conformité APDP et niveau cible ConformiIA.
 0430. État de l'authentification multifacteur.
 0431. Évaluation de la conformité et du risque
 0432. Évaluation de la conformité et du risque des traitements.

@@ -1,4 +1,4 @@
-"""Référentiel des documents APDP utilisés par ComplianceForge."""
+"""Référentiel des documents APDP utilisés par ConformiIA."""
 
 from pathlib import Path
 import json

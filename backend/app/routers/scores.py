@@ -4,20 +4,27 @@ from sqlalchemy.orm import Session
 from app import models, schemas
 from app.database import get_db
 from app.scoring import calculer_score_conformite, calculer_score_risque, CriteresRisque
+from app.services.security import get_current_user, assert_can_write, assert_org_access
 
 router = APIRouter(prefix="/traitements/{traitement_id}/scores", tags=["scores"])
 
 
-def _get_traitement_ou_404(traitement_id: str, db: Session) -> models.Traitement:
+def _get_traitement_ou_404(traitement_id: str, db: Session, utilisateur) -> models.Traitement:
     traitement = db.get(models.Traitement, traitement_id)
     if not traitement:
         raise HTTPException(status_code=404, detail="Traitement introuvable")
+    assert_org_access(utilisateur, traitement.organisation_id)
     return traitement
 
 
 @router.post("/calculer", response_model=schemas.ScoresCalcules)
-def calculer_scores(traitement_id: str, db: Session = Depends(get_db)):
-    traitement = _get_traitement_ou_404(traitement_id, db)
+def calculer_scores(
+    traitement_id: str,
+    db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
+):
+    assert_can_write(utilisateur)
+    traitement = _get_traitement_ou_404(traitement_id, db, utilisateur)
 
     champs_manquants = [
         c for c in ("sensibilite_donnees", "niveau_mesures_securite",
@@ -75,16 +82,24 @@ def calculer_scores(traitement_id: str, db: Session = Depends(get_db)):
 
 
 @router.get("/conformite", response_model=list[schemas.ScoreConformiteOut])
-def historique_conformite(traitement_id: str, db: Session = Depends(get_db)):
-    _get_traitement_ou_404(traitement_id, db)
+def historique_conformite(
+    traitement_id: str,
+    db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
+):
+    _get_traitement_ou_404(traitement_id, db, utilisateur)
     return (db.query(models.ScoreConformite)
             .filter(models.ScoreConformite.traitement_id == traitement_id)
             .order_by(models.ScoreConformite.date_calcul.desc()).all())
 
 
 @router.get("/risque", response_model=list[schemas.ScoreRisqueOut])
-def historique_risque(traitement_id: str, db: Session = Depends(get_db)):
-    _get_traitement_ou_404(traitement_id, db)
+def historique_risque(
+    traitement_id: str,
+    db: Session = Depends(get_db),
+    utilisateur: models.Utilisateur = Depends(get_current_user),
+):
+    _get_traitement_ou_404(traitement_id, db, utilisateur)
     return (db.query(models.ScoreRisque)
             .filter(models.ScoreRisque.traitement_id == traitement_id)
             .order_by(models.ScoreRisque.date_calcul.desc()).all())

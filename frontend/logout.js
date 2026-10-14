@@ -1,5 +1,5 @@
 /* ============================================================
-   COMPLIANCEFORGE — DÉCONNEXION UNIQUE (page Sécurité)
+   CONFORMIIA — DÉCONNEXION UNIQUE (page Sécurité)
    Un seul bouton : #cf-dedicated-logout
    Une seule fonction : cfLogout()
    ============================================================ */
@@ -12,18 +12,18 @@
     window.__cfLogoutUnique = true;
 
     /* Laisser vide si le frontend et l'API ont la même origine. */
-    const API_BASE = window.COMPLIANCEFORGE_API_BASE || "https://api.complianceforge.test";
+    const API_BASE = window.CONFORMIIA_API_BASE || "http://127.0.0.1:8001";
 
     const SESSION_KEYS = [
-        "complianceforge_access_token",
-        "complianceforge_token",
-        "complianceforge_session",
-        "complianceforge_session_started_at",
-        "complianceforge_auth",
-        "complianceforge_authenticated_user",
-        "complianceforge_current_user",
-        "complianceforge_user",
-        "complianceforge_user_profile",
+        "conformiia_access_token",
+        "conformiia_token",
+        "conformiia_session",
+        "conformiia_session_started_at",
+        "conformiia_auth",
+        "conformiia_authenticated_user",
+        "conformiia_current_user",
+        "conformiia_user",
+        "conformiia_user_profile",
         "access_token",
         "auth_token",
         "token",
@@ -32,8 +32,8 @@
     ];
 
     const TOKEN_KEYS = [
-        "complianceforge_access_token",
-        "complianceforge_token",
+        "conformiia_access_token",
+        "conformiia_token",
         "access_token"
     ];
 
@@ -60,17 +60,17 @@
 
         window.currentUser = null;
         window.currentUserProfile = null;
-        window.complianceForgeUser = null;
+        window.conformiiaUser = null;
         window.userProfile = null;
     }
 
     function showLogin() {
 
         function afficher() {
-            if (typeof window.complianceForgeShowLogin === "function") {
-                window.complianceForgeShowLogin();
+            if (typeof window.conformiiaShowLogin === "function") {
+                window.conformiiaShowLogin();
             } else {
-                console.error("[ComplianceForge] complianceForgeShowLogin indisponible.");
+                console.error("[ConformiIA] conformiiaShowLogin indisponible.");
             }
         }
 
@@ -108,7 +108,7 @@
                         signal: controller.signal
                     });
                 } catch (error) {
-                    console.warn("[ComplianceForge] Logout serveur :", error);
+                    console.warn("[ConformiIA] Logout serveur :", error);
                 } finally {
                     clearTimeout(timer);
                 }
@@ -121,8 +121,8 @@
         }
     }
 
-    window.complianceForgeLogout = cfLogout;
-    window.complianceForgeLogoutDefinitif = cfLogout;
+    window.conformiiaLogout = cfLogout;
+    window.conformiiaLogoutDefinitif = cfLogout;
 
     /* Seul clic géré : le bouton de la page Sécurité. */
     document.addEventListener("click", function (event) {

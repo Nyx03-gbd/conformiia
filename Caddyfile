@@ -2,13 +2,14 @@
     auto_https disable_redirects
 }
 
-complianceforge.test {
+conformiia.test, conformiia.localhost {
     tls internal
     root * ./frontend
+    header Cache-Control "no-store"
     try_files {path} /index.html
     file_server
 }
-api.complianceforge.test {
+api.conformiia.test, api.conformiia.localhost {
     tls internal
-    reverse_proxy 127.0.0.1:8000
+    reverse_proxy 127.0.0.1:8001
 }

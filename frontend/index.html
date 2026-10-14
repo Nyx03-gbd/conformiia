@@ -7,18 +7,18 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ComplianceForge</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ConformiIA</title>
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 
 <body>
 
-<!-- Bouton principal ComplianceForge -->
+<!-- Bouton principal ConformiIA -->
 <button
     type="button"
     id="sidebar-toggle"
     class="sidebar-toggle"
-    aria-label="Ouvrir la navigation ComplianceForge"
+    aria-label="Ouvrir la navigation ConformiIA"
     aria-expanded="false"
 >
     <span class="cf-logo-button" aria-hidden="true">
@@ -55,7 +55,7 @@
         <div class="brand">
             <div class="brand-mark">CF</div>
             <div>
-                <strong>ComplianceForge</strong>
+                <strong>ConformiIA</strong>
                 <span>Plateforme GRC</span>
             </div>
         </div>
@@ -63,56 +63,73 @@
         <nav class="menu">
 
             <a href="#" class="menu-item nav-item active" data-page="dashboard">
-                <span>🏠</span>
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>
                 <span>Tableau de bord</span>
             </a>
 
             <div class="menu-section">ORGANISATION</div>
 
             <a href="#" class="menu-item nav-item" data-page="organisation">
-                <span>🏢</span>
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V7l8-4v18"></path><path d="M19 21V11l-6-4"></path></svg></span>
                 <span>Organisation</span>
             </a>
 
             <a href="#" class="menu-item nav-item" data-page="profil">
-                <span>👤</span>
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
                 <span>Profil APDP</span>
             </a>
 
             <div class="menu-section">CONFORMITÉ</div>
 
             <a href="#" class="menu-item nav-item" data-page="registre">
-                <span>📋</span>
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="M8 11h8M8 15h5"></path></svg></span>
                 <span>Registre des traitements</span>
             </a>
 
             <a href="#" class="menu-item nav-item" data-page="formulaires">
-                <span>📄</span>
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M8 13h8M8 17h8"></path></svg></span>
                 <span>Formulaires APDP</span>
             </a>
 
             <a href="#" class="menu-item nav-item" data-page="conformite">
-                <span>📊</span>
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
+                <span>Conformité du registre</span>
+            </a>
+
+            <a href="#" class="menu-item nav-item" data-page="ecarts">
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></span>
                 <span>Analyse des écarts</span>
             </a>
 
             <div class="menu-section">RISQUES & INCIDENTS</div>
 
             <a href="#" class="menu-item nav-item" data-page="risques">
-                <span>🛡️</span>
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span>
                 <span>Risques / EBIOS RM</span>
             </a>
 
             <a href="#" class="menu-item nav-item" data-page="incidents">
-                <span>⚠️</span>
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
                 <span>Incidents / Violations</span>
             </a>
 
             <div class="menu-section">DOCUMENTS</div>
 
             <a href="#" class="menu-item nav-item" data-page="documents">
-                <span>📁</span>
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></span>
                 <span>Documents générés</span>
+            </a>
+
+            <div class="menu-section cf-admin-only" style="display:none;">ADMINISTRATION</div>
+
+            <a href="#" class="menu-item nav-item cf-admin-only" data-page="utilisateurs" style="display:none;">
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+                <span>Utilisateurs</span>
+            </a>
+
+            <a href="#" class="menu-item nav-item cf-admin-only" data-page="audit" style="display:none;">
+                <span class="nav-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8"></path><path d="M8 17h8"></path><path d="M8 9h2"></path></svg></span>
+                <span>Journal d'audit</span>
             </a>
 
         </nav>
@@ -192,7 +209,7 @@
 
             <div class="welcome">
                 <div>
-                    <h2>Bienvenue dans ComplianceForge</h2>
+                    <h2>Bienvenue dans ConformiIA</h2>
                     <p>
                         Centralisez vos informations d'organisation,
                         traitements, formalités APDP, risques et incidents.
@@ -239,7 +256,7 @@
             <div class="section-header">
                 <div>
                     <h2>Accès rapides</h2>
-                    <p>Les principales fonctions de ComplianceForge</p>
+                    <p>Les principales fonctions de ConformiIA</p>
                 </div>
             </div>
 
@@ -277,8 +294,18 @@
 
 </div>
 
-<script>window.API_BASE = "https://api.complianceforge.test";</script>
-<script src="app.js"></script>
+<script>
+(function () {
+    var httpsApi = "https://api.conformiia";
+    var httpApi = "http://127.0.0.1:8001";
+    var base = (location.protocol === "https:") ? httpsApi : httpApi;
+    window.API_BASE = base;
+    window.CONFORMIIA_API_URL = base;
+    window.CONFORMIIA_API_BASE = base;
+})();
+</script>
+<script src="auth-fetch.js?v=7"></script>
+<script src="app.js?v=13"></script>
 
 <script>
 (function () {
@@ -361,7 +388,7 @@
 
         quickHeader.innerHTML = `
             <h2>⚡ Accès rapides</h2>
-            <p>Les principales fonctions de ComplianceForge</p>
+            <p>Les principales fonctions de ConformiIA</p>
         `;
 
         const quickGrid = document.createElement("div");
@@ -424,9 +451,12 @@
 })();
 </script>
 
-<script src="logout.js"></script>
-<script src="routes.js"></script>
-<script src="incidents.js"></script>
-<script src="dashboard-fix.js"></script>
+<script src="logout.js?v=12"></script>
+<script src="routes.js?v=12"></script>
+<script src="incidents.js?v=12"></script>
+<script src="ecarts.js?v=12"></script>
+<script src="admin.js?v=12"></script>
+<script src="dashboard-fix.js?v=12"></script>
+<script src="emoji-bw.js?v=3"></script>
 </body>
 </html>
