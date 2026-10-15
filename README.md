@@ -61,4 +61,4 @@ Notes : `.env` n'est jamais commité ; les PDF générés (`backend/generated/`)
 
 ## Sources et licences
 
-Les formulaires APDP sont les documents officiels de l'APDP du Bénin. Les dépendances open source sont listées dans `backend/requirements.txt`. Code applicatif : équipe Nyx.
+Les formulaires APDP sont les documents officiels de l'APDP du Bénin. Les dépendances open source sont listées dans `backend/requirements.txt`. Code applicatif : Nyx (auteur).
