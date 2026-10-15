@@ -3,7 +3,7 @@ from docx.shared import Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 doc = Document()
-title = doc.add_heading("COMPLIANCEFORGE", level=1)
+title = doc.add_heading("CONFORMIIA", level=1)
 title.alignment = WD_ALIGN_PARAGRAPH.CENTER
 subtitle = doc.add_heading("Fiche de synthèse du traitement", level=2)
 subtitle.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -50,7 +50,7 @@ score_table.cell(1, 1).paragraphs[0].add_run("{{ score_risque }} / 100 ({{ nivea
 doc.add_paragraph()
 footer = doc.add_paragraph()
 footer_run = footer.add_run(
-    "Document généré automatiquement le {{ date_generation }} par ComplianceForge — "
+    "Document généré automatiquement le {{ date_generation }} par ConformiIA — "
     "ne constitue pas en l'état un document officiel APDP."
 )
 footer_run.italic = True

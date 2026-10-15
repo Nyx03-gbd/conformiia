@@ -10,7 +10,7 @@ data = {
     # =====================================================
 
     "nom_prenoms_raison_sociale":
-        "Entreprise Démonstration ComplianceForge",
+        "Entreprise Démonstration ConformiIA",
 
     "npi_rccm":
         "TEST-2026-001",
@@ -28,7 +28,7 @@ data = {
         "BP 0000 Cotonou",
 
     "adresse_electronique":
-        "demo@complianceforge.local",
+        "demo@conformiia.local",
 
     "contact_telephonique":
         "+229 00 00 00 00",
@@ -67,7 +67,7 @@ data = {
         "Adresse fictive",
 
     "representant_legal_adresse_electronique":
-        "representant@complianceforge.local",
+        "representant@conformiia.local",
 
     "representant_legal_contact":
         "+229 11 11 11 11",
@@ -201,7 +201,7 @@ data = {
         False,
 
     "procedure_mise_en_oeuvre":
-        "Les données sont collectées et traitées dans ComplianceForge.",
+        "Les données sont collectées et traitées dans ConformiIA.",
 
     "mode_automatise":
         True,
