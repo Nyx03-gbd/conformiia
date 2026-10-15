@@ -1,3 +1,4 @@
+# ConformiIA — fichiers locaux et générés exclus du dépôt
 .env
 *.bak*
 __pycache__/
