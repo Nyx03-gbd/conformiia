@@ -2,7 +2,7 @@
 
 Plateforme GRC-as-Code : registre des traitements APDP, génération des formulaires APDP (PDF), scoring de conformité et de risque, analyse des écarts, suivi des incidents (notification de violation sous 72 h).
 
-Équipe : Nyx
+Auteur : Nyx
 
 ## Fonctionnalités
 
