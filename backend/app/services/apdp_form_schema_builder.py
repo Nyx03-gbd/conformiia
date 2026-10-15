@@ -7,6 +7,10 @@ IGNORED_TYPES = {
     "official_fixed_text",
     "texte_officiel",
     "checklist_officielle",
+    "information_officielle",
+    "official_fixed_structure",
+    # same_area : zone partagée déjà exposée via le champ frère.
+    "same_area",
 }
 
 
@@ -174,6 +178,61 @@ def _extract_node(key: str, node: Any) -> dict[str, Any] | None:
 
     if node_type in IGNORED_TYPES:
         return None
+
+    if node.get("editable") is False:
+        return None
+
+    # Signature : nom du signataire (texte).
+    if node_type == "signature":
+        return {
+            "key": key,
+            "label": label_from_key(key),
+            "type": "text",
+        }
+
+    # Feuille sans type mais avec géométrie directe : champ texte.
+    # (ex. sections du consentement : {"rect": [...]}).
+    if node_type is None and any(
+        coord in node for coord in ("rect", "position", "zone", "x")
+    ):
+        hauteur = 0
+        try:
+            rect = node.get("rect") or node.get("position") or []
+            if isinstance(rect, (list, tuple)) and len(rect) == 4:
+                hauteur = float(rect[3])
+            elif "height" in node:
+                hauteur = float(node.get("height") or 0)
+        except (TypeError, ValueError):
+            hauteur = 0
+        return {
+            "key": key,
+            "label": label_from_key(key),
+            "type": "textarea" if hauteur >= 30 else "text",
+        }
+
+    # Table enveloppée {"table": {...}} : exposée sous le nom parent.
+    sous_cles = [k for k in node if k not in ("type",)]
+    if sous_cles == ["table"] and isinstance(node.get("table"), dict):
+        enveloppee = _extract_node(key, node["table"])
+        if enveloppee:
+            return enveloppee
+        return None
+
+    # Grille "colonnes + data_rows" : exposée comme table.
+    if node_type is None and isinstance(
+        node.get("colonnes") or node.get("columns"), dict
+    ):
+        colonnes = node.get("colonnes") or node.get("columns")
+        return {
+            "key": key,
+            "label": label_from_key(key),
+            "type": "table",
+            "columns": [
+                {"key": col, "label": label_from_key(col)}
+                for col in colonnes
+                if isinstance(col, str)
+            ],
+        }
 
     # ------------------------------------------------------------------
     # Structures composites de l'Annexe 1

@@ -9,16 +9,11 @@ from app.database import get_db
 from app.services.security import get_current_user, assert_can_write
 from app.services.apdp_generator import render_apdp_pdf
 from app.services.apdp_form_schema_builder import build_form_schema
-from app.services.apdp_overlay_builder_generic import build_apdp_overlays
+from app.services.apdp_overlay_builder_generic import (
+    build_apdp_overlays,
+    MAPPINGS as GENERIC_MAPPINGS,
+)
 from app.services.apdp_global_engine import resolve_document_data
-from app.apdp_form_mapping import FORMULAIRE_UNIQUE_MAPPING
-from app.apdp_annexe1_mapping import ANNEXE_1_SOUS_TRAITANCE_MAPPING
-from app.apdp_annexe2_mapping import ANNEXE_2_COMMUNICATION_MAPPING
-from app.apdp_annexe3_mapping import ANNEXE_3_INTERCONNEXION_MAPPING
-from app.apdp_annexe4_mapping import APDP_ANNEXE4_MAPPING
-from app.apdp_capteurs_mapping import APDP_CAPTEURS_MAPPING
-from app.apdp_site_web_mapping import APDP_SITE_WEB_MAPPING
-from app.apdp_engagement_conformite_mapping import APDP_ENGAGEMENT_CONFORMITE_MAPPING
 from pathlib import Path
 from app.services.apdp_generator import GENERATED_DIR
 
@@ -79,16 +74,7 @@ def get_formulaire_schema(
     utilisateur: models.Utilisateur = Depends(get_current_user),
 ):
 
-    mappings = {
-        "formulaire_unique": FORMULAIRE_UNIQUE_MAPPING,
-        "annexe_1_sous_traitance": ANNEXE_1_SOUS_TRAITANCE_MAPPING,
-        "annexe_2_communication": ANNEXE_2_COMMUNICATION_MAPPING,
-        "annexe_3_interconnexion": ANNEXE_3_INTERCONNEXION_MAPPING,
-        "annexe_4_transfert": APDP_ANNEXE4_MAPPING,
-        "formulaire_capteurs": APDP_CAPTEURS_MAPPING,
-        "formulaire_site_web": APDP_SITE_WEB_MAPPING,
-        "engagement_conformite": APDP_ENGAGEMENT_CONFORMITE_MAPPING,
-    }
+    mappings = GENERIC_MAPPINGS
 
     if document_id not in mappings:
         raise HTTPException(
