@@ -7,7 +7,7 @@ Auteur : Nyx
 ## Fonctionnalités
 
 - Registre des traitements + organisations multi-tenant (rôles : admin, métier, auditeur).
-- 14 formulaires APDP générés par superposition sur les PDF officiels (jamais modifiés) : formulaire unique (10 pages), annexes 1 à 4, capteurs, site web, engagement de conformité, engagement DPO, signalement, consentement électronique, registres, outil de vérification.
+- 8 formulaires APDP générables par superposition sur les PDF officiels (jamais modifiés) : formulaire unique (10 pages), annexes 1 à 4, capteurs, site web, engagement de conformité.
 - Scoring de conformité / risque, analyse des écarts + plan d'action, journal d'audit et de sécurité.
 - Vérification e-mail + SMTP réel (STARTTLS 587 ou SMTPS 465).
 
