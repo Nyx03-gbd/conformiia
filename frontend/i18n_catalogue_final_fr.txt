@@ -1,11 +1,11 @@
-0001. * APDP — MISE EN PAGE COMPACTE
+0001. * APDP - MISE EN PAGE COMPACTE
 0002. * Aucun impact sur les données ou le mapping PDF.
 0003. * Les blocs s'enchaînent sans espaces artificiels.
 0004. + Ajouter une catégorie
 0005. + Nouvel incident
 0006. - Sélectionner -
-0007. 1 — Faible
-0008. 4 — Élevée
+0007. 1 - Faible
+0008. 4 - Élevée
 0009. A_licéite_legitimite
 0010. Abus de privilèges internes
 0011. Abus de privilèges ou mauvaise configuration

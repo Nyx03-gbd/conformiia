@@ -1,4 +1,4 @@
-/* ConformiIA — injecte le jeton d'authentification sur TOUS les appels API.
+/* ConformiIA - injecte le jeton d'authentification sur TOUS les appels API.
    Chargé en premier : les modules suivants (qui appellent fetch) sont ainsi
    authentifiés automatiquement, sans modifier chaque appel. */
 (function () {

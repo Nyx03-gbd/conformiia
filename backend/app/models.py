@@ -1,5 +1,5 @@
 """
-Modèles cœur du registre — Phase 2 du plan de construction.
+Modèles cœur du registre - Phase 2 du plan de construction.
 
 Tables volontairement limitées au strict nécessaire pour faire tourner
 un premier CRUD de bout en bout (Phase 3). Les tables suivantes seront
@@ -51,7 +51,7 @@ class RoleUtilisateur(str, enum.Enum):
 
 
 class Organisation(Base):
-    """Support du multi-tenant — voir section 5 de la synthèse (organisation_id partout)."""
+    """Support du multi-tenant - voir section 5 de la synthèse (organisation_id partout)."""
     __tablename__ = "organisations"
 
     id = Column(UUID(as_uuid=False), primary_key=True, default=gen_uuid)
@@ -93,7 +93,7 @@ class Utilisateur(Base):
 
 
 class Traitement(Base):
-    """Le registre pivot — table centrale de toute la plateforme."""
+    """Le registre pivot - table centrale de toute la plateforme."""
     __tablename__ = "traitements"
 
     id = Column(UUID(as_uuid=False), primary_key=True, default=gen_uuid)
@@ -168,12 +168,12 @@ class DocumentGenere(Base):
     template_version = Column(String, nullable=False)
     date_generation = Column(DateTime, default=datetime.utcnow)
 # ============================================================
-# APDP — FORMULAIRE UNIQUE
+# APDP - FORMULAIRE UNIQUE
 # ============================================================
 
 class ProfilResponsableAPDP(Base):
     """
-    Section I — Identification du responsable de traitement.
+    Section I - Identification du responsable de traitement.
     """
 
     __tablename__ = "profils_responsables_apdp"
@@ -211,7 +211,7 @@ class ProfilResponsableAPDP(Base):
 
 class TraitementAPDP(Base):
     """
-    Section II — Le traitement envisagé.
+    Section II - Le traitement envisagé.
     """
 
     __tablename__ = "traitements_apdp"
@@ -226,14 +226,14 @@ class TraitementAPDP(Base):
     )
 
     # ========================================================
-    # II.A — DONNÉES PERSONNELLES
+    # II.A - DONNÉES PERSONNELLES
     # ========================================================
 
     donnees_personnelles = Column(Text)
     origine_donnees = Column(Text)
 
     # ========================================================
-    # II.B — PERSONNES CONCERNÉES
+    # II.B - PERSONNES CONCERNÉES
     # ========================================================
 
     personnes_salaries = Column(Boolean)
@@ -248,7 +248,7 @@ class TraitementAPDP(Base):
     nombre_personnes = Column(Integer)
 
     # ========================================================
-    # II.C — OPÉRATIONS DE TRAITEMENT
+    # II.C - OPÉRATIONS DE TRAITEMENT
     # ========================================================
 
     operation_collecte = Column(Boolean)
@@ -276,7 +276,7 @@ class TraitementAPDP(Base):
     operation_autre = Column(Text)
 
     # ========================================================
-    # II.C — TYPE DE TRAITEMENT
+    # II.C - TYPE DE TRAITEMENT
     # ========================================================
 
     type_video_photo = Column(Boolean)
@@ -284,7 +284,7 @@ class TraitementAPDP(Base):
     type_biometrique = Column(Boolean)
 
     # ========================================================
-    # II.C — PROCÉDURE
+    # II.C - PROCÉDURE
     # ========================================================
 
     procedure_manuelle = Column(Boolean)
@@ -294,7 +294,7 @@ class TraitementAPDP(Base):
     fonctionnalites = Column(Text)
 
     # ========================================================
-    # II.F — CONSERVATION
+    # II.F - CONSERVATION
     # ========================================================
 
     duree_conservation = Column(Text)
@@ -305,7 +305,7 @@ class TraitementAPDP(Base):
     autre_support = Column(Text)
 
     # ========================================================
-    # II.G — STOCKAGE
+    # II.G - STOCKAGE
     # ========================================================
 
     lieu_stockage = Column(Text)
@@ -318,7 +318,7 @@ class TraitementAPDP(Base):
     stockage_lvm = Column(Boolean)
 
     # ========================================================
-    # II.H — PARTAGE
+    # II.H - PARTAGE
     # ========================================================
 
     sous_traitance_oui_non = Column(Boolean)
@@ -336,7 +336,7 @@ class TraitementAPDP(Base):
     transfert_autorisation_annexe = Column(Text)
 
     # ========================================================
-    # II.I — MISE EN ŒUVRE
+    # II.I - MISE EN ŒUVRE
     # ========================================================
 
     traitement = relationship("Traitement")
@@ -344,7 +344,7 @@ class TraitementAPDP(Base):
 
 class PrincipesAPDP(Base):
     """
-    Section III — Respect des principes relatifs au traitement.
+    Section III - Respect des principes relatifs au traitement.
     """
 
     __tablename__ = "principes_apdp"
@@ -358,7 +358,7 @@ class PrincipesAPDP(Base):
         unique=True,
     )
 
-    # III.A — Licéité / légitimité
+    # III.A - Licéité / légitimité
     licéite_consentement = Column(Boolean)
     licéite_contrat = Column(Boolean)
     licéite_obligation_legale = Column(Boolean)
@@ -367,7 +367,7 @@ class PrincipesAPDP(Base):
     licéite_interets_vitaux = Column(Boolean)
     licéite_exceptions = Column(Text)
 
-    # III.B — Transparence / loyauté
+    # III.B - Transparence / loyauté
     information_prealable = Column(Boolean)
     information_exceptions = Column(Text)
     information_modalites = Column(Text)
@@ -378,7 +378,7 @@ class PrincipesAPDP(Base):
     consentement_finalites = Column(Text)
     consentement_duree = Column(Text)
 
-    # III.C — Pertinence / proportionnalité / minimisation
+    # III.C - Pertinence / proportionnalité / minimisation
     pertinence_utilite = Column(Text)
     pertinence_quantite = Column(Text)
     pertinence_adequation = Column(Text)
@@ -387,7 +387,7 @@ class PrincipesAPDP(Base):
 
 class SecuriteAPDP(Base):
     """
-    Section IV — Sécurité du dispositif.
+    Section IV - Sécurité du dispositif.
     """
 
     __tablename__ = "securites_apdp"
@@ -401,11 +401,11 @@ class SecuriteAPDP(Base):
         unique=True,
     )
 
-    # IV — Accès au système
+    # IV - Accès au système
     personnes_autorisees = Column(Text)
     protection_intervention_non_autorisee = Column(Text)
 
-    # IV — Sécurité physique
+    # IV - Sécurité physique
     politique_acces_physique = Column(Text)
     mesures_physiques = Column(Text)
     mesures_electroniques = Column(Text)
@@ -416,7 +416,7 @@ class SecuriteAPDP(Base):
     protection_surtensions = Column(Text)
     protection_phenomenes_magnetiques = Column(Text)
 
-    # IV — Sécurité organisationnelle / logique
+    # IV - Sécurité organisationnelle / logique
     mesures_organisationnelles = Column(Text)
     mesures_logiques = Column(Text)
     tests = Column(Text)
@@ -428,7 +428,7 @@ class SecuriteAPDP(Base):
     sensibilisation_personnel = Column(Text)
     mesures_juridiques = Column(Text)
 
-    # IV — Confidentialité / intégrité / disponibilité
+    # IV - Confidentialité / intégrité / disponibilité
     confidentialite = Column(Text)
     integrite = Column(Text)
     disponibilite = Column(Text)
@@ -442,7 +442,7 @@ class SecuriteAPDP(Base):
 
 class DroitsPersonnesAPDP(Base):
     """
-    Section V — Droits des personnes concernées.
+    Section V - Droits des personnes concernées.
     """
 
     __tablename__ = "droits_personnes_apdp"
@@ -456,7 +456,7 @@ class DroitsPersonnesAPDP(Base):
         unique=True,
     )
 
-    # V — Droits
+    # V - Droits
     droit_acces = Column(Text)
     droit_portabilite = Column(Text)
     droit_opposition_retrait_consentement = Column(Text)
@@ -464,7 +464,7 @@ class DroitsPersonnesAPDP(Base):
     droit_rectification_suppression = Column(Text)
     droit_oubli_numerique = Column(Text)
 
-    # V — Modalités d'exercice
+    # V - Modalités d'exercice
     modalites_exercice = Column(Text)
     responsable_exercice = Column(Text)
     delai_exercice = Column(Text)
@@ -474,7 +474,7 @@ class DroitsPersonnesAPDP(Base):
 
 class TraitementsAnterieursAPDP(Base):
     """
-    Section VI — Traitements antérieurs.
+    Section VI - Traitements antérieurs.
     """
 
     __tablename__ = "traitements_anterieurs_apdp"
@@ -488,25 +488,25 @@ class TraitementsAnterieursAPDP(Base):
         unique=True,
     )
 
-    # VI — Situation antérieure auprès de l'APDP
+    # VI - Situation antérieure auprès de l'APDP
     enregistrement_apdp_anterieur = Column(Text)
     reference_apdp_anterieure = Column(String)
 
-    # VI — Registre des activités
+    # VI - Registre des activités
     registre_activites_a_jour = Column(Text)
 
-    # VI — DPO
+    # VI - DPO
     dpo_designe = Column(Text)
 
-    # VI — Représentant légal
+    # VI - Représentant légal
     representant_legal_declaration = Column(Text)
 
-    # VI — Déclaration sur l'honneur
+    # VI - Déclaration sur l'honneur
     declaration_sur_honneur = Column(Text)
 
     traitement = relationship("Traitement")
 # ============================================================
-# APDP — GESTION DES VIOLATIONS DE DONNÉES — WORKFLOW 72 H
+# APDP - GESTION DES VIOLATIONS DE DONNÉES - WORKFLOW 72 H
 # ============================================================
 
 class StatutIncident(str, enum.Enum):
@@ -605,7 +605,7 @@ class Incident(Base):
     pieces = Column(JSON, nullable=False, default=list)
 
     # --------------------------------------------------------
-    # Workflow interne — délai de 72 h
+    # Workflow interne - délai de 72 h
     # --------------------------------------------------------
 
     statut = Column(
@@ -632,7 +632,7 @@ class Incident(Base):
 
 
 # ============================================================
-# AUTHENTIFICATION — JOURNAL DE SÉCURITÉ
+# AUTHENTIFICATION - JOURNAL DE SÉCURITÉ
 # ============================================================
 
 class JournalSecurite(Base):
@@ -688,7 +688,7 @@ class JournalSecurite(Base):
 
 
 # ============================================================
-# ANALYSE DES ÉCARTS APDP + PLAN D'ACTION — Bloc 2
+# ANALYSE DES ÉCARTS APDP + PLAN D'ACTION - Bloc 2
 # ============================================================
 
 class StatutConformite(str, enum.Enum):

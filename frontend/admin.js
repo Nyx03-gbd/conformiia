@@ -1,4 +1,4 @@
-/* ConformiIA — Administration : liste des comptes (admin uniquement) */
+/* ConformiIA - Administration : liste des comptes (admin uniquement) */
 (function () {
     "use strict";
     if (window.__cfAdminInstalled) { return; }
@@ -52,12 +52,12 @@
         const rows = users.map((u) => {
             const rc = ROLE_COLOR[u.role] || "#475467";
             const nom = [u.nom, u.prenoms].filter(Boolean).join(" ");
-            const d = u.date_creation ? new Date(u.date_creation).toLocaleDateString("fr-FR") : "—";
+            const d = u.date_creation ? new Date(u.date_creation).toLocaleDateString("fr-FR") : "-";
             return "<tr style='border-top:1px solid #f2f4f7;'>"
-                + "<td style='padding:11px 10px;font-size:14px;color:#172033;'>" + esc(nom || "—") + "</td>"
+                + "<td style='padding:11px 10px;font-size:14px;color:#172033;'>" + esc(nom || "-") + "</td>"
                 + "<td style='padding:11px 10px;font-size:14px;color:#475467;'>" + esc(u.email) + "</td>"
                 + "<td style='padding:11px 10px;'><span style='font-size:12px;font-weight:600;color:" + rc + ";background:" + rc + "14;padding:3px 9px;border-radius:999px;'>" + esc(ROLE_LABEL[u.role] || u.role) + "</span></td>"
-                + "<td style='padding:11px 10px;font-size:13px;color:#667085;'>" + esc(u.fonction || "—") + "</td>"
+                + "<td style='padding:11px 10px;font-size:13px;color:#667085;'>" + esc(u.fonction || "-") + "</td>"
                 + "<td style='padding:11px 10px;font-size:13px;'>" + (u.email_verifie
                     ? "<span style='color:#067647;'>✓ Vérifié</span>"
                     : "<span style='color:#b54708;'>En attente</span>") + "</td>"
@@ -100,7 +100,7 @@
     function renderAudit(root, rows) {
         const body = rows.map((r) => {
             const a = ACTION[r.action] || { l: r.action, c: "#475467" };
-            const d = r.date_action ? new Date(r.date_action).toLocaleString("fr-FR") : "—";
+            const d = r.date_action ? new Date(r.date_action).toLocaleString("fr-FR") : "-";
             return "<tr style='border-top:1px solid #f2f4f7;'>"
                 + "<td style='padding:10px;font-size:13px;color:#667085;white-space:nowrap;'>" + esc(d) + "</td>"
                 + "<td style='padding:10px;font-size:13px;color:#172033;'>" + esc(r.utilisateur_email || "anonyme") + "</td>"

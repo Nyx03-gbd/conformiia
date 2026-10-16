@@ -338,7 +338,7 @@ def _extract_node(key: str, node: Any) -> dict[str, Any] | None:
     if node_type == "checkbox_group":
 
         # ------------------------------------------------------------
-        # Annexe 1 — Information des personnes impliquées
+        # Annexe 1 - Information des personnes impliquées
         #
         # Le mapping officiel contient :
         #   non / oui / comment
@@ -370,7 +370,7 @@ def _extract_node(key: str, node: Any) -> dict[str, Any] | None:
             }
 
         # ------------------------------------------------------------
-        # Annexe 1 — Sécurité organisée par le sous-traitant
+        # Annexe 1 - Sécurité organisée par le sous-traitant
         #
         # Les quatre entrées du mapping sont des cases indépendantes.
         # ------------------------------------------------------------

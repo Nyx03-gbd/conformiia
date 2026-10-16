@@ -334,7 +334,7 @@ class TraitementsAnterieursAPDPOut(TraitementsAnterieursAPDPCreate):
     id: str
 
 # ============================================================
-# APDP — INCIDENTS / VIOLATIONS — WORKFLOW 72 H
+# APDP - INCIDENTS / VIOLATIONS - WORKFLOW 72 H
 # ============================================================
 
 class IncidentCreate(BaseModel):
@@ -427,7 +427,7 @@ class IncidentOut(BaseModel):
     date_creation: datetime
     derniere_revision: datetime
 # ============================================================
-# APDP — MISE À JOUR INCIDENT / SUIVI NOTIFICATION 72 H
+# APDP - MISE À JOUR INCIDENT / SUIVI NOTIFICATION 72 H
 # ============================================================
 
 class IncidentUpdate(BaseModel):
@@ -436,7 +436,7 @@ class IncidentUpdate(BaseModel):
 
 
 # ============================================================
-# ANALYSE DES ÉCARTS + PLAN D'ACTION — Bloc 2
+# ANALYSE DES ÉCARTS + PLAN D'ACTION - Bloc 2
 # ============================================================
 
 from app.models import StatutConformite, PrioriteAction, StatutAction
@@ -532,7 +532,7 @@ class SyntheseEcarts(BaseModel):
 
 
 # ============================================================
-# INCIDENTS — Alertes 72h + historique des étapes
+# INCIDENTS - Alertes 72h + historique des étapes
 # ============================================================
 
 class IncidentEtapeCreate(BaseModel):

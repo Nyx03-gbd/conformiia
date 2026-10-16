@@ -1,5 +1,5 @@
 """
-Envoi d'e-mails — vérification de compte et réinitialisation de mot de passe.
+Envoi d'e-mails - vérification de compte et réinitialisation de mot de passe.
 
 Si SMTP n'est pas configuré (voir app/config.py), aucun e-mail n'est envoyé :
 le lien est simplement journalisé (mode développement). Dès que les variables
@@ -20,7 +20,7 @@ def send_email(to: str, subject: str, text: str, html: str | None = None) -> boo
     """Envoie un e-mail. Retourne True si réellement envoyé, False sinon."""
     if not smtp_configured():
         logger.warning(
-            "E-MAIL NON ENVOYÉ (SMTP non configuré) — destinataire=%s sujet=%r",
+            "E-MAIL NON ENVOYÉ (SMTP non configuré) - destinataire=%s sujet=%r",
             to,
             subject,
         )
@@ -74,7 +74,7 @@ def _page(titre: str, intro: str, bouton: str, lien: str, pied: str) -> str:
 def send_verification_email(to: str, lien: str) -> bool:
     return send_email(
         to,
-        "ConformiIA — Vérifiez votre adresse e-mail",
+        "ConformiIA - Vérifiez votre adresse e-mail",
         f"Bienvenue sur ConformiIA.\n\nActivez votre compte : {lien}\n\n"
         "Ce lien expire dans 24 heures.",
         _page(
@@ -90,7 +90,7 @@ def send_verification_email(to: str, lien: str) -> bool:
 def send_reset_email(to: str, lien: str) -> bool:
     return send_email(
         to,
-        "ConformiIA — Réinitialisation du mot de passe",
+        "ConformiIA - Réinitialisation du mot de passe",
         f"Vous avez demandé la réinitialisation de votre mot de passe.\n\n{lien}\n\n"
         "Ce lien expire dans 30 minutes.",
         _page(

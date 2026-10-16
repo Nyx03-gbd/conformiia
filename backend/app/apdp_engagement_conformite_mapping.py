@@ -419,7 +419,7 @@ APDP_ENGAGEMENT_CONFORMITE_MAPPING = {
     },
 
     # ==========================================================
-    # PAGE 5 — SECURITE
+    # PAGE 5 - SECURITE
     # ==========================================================
     "page_5": {
 
@@ -479,7 +479,7 @@ APDP_ENGAGEMENT_CONFORMITE_MAPPING = {
     },
 
     # ==========================================================
-    # PAGE 6 — TRAÇABILITE / AUTRES PRECISIONS / DECLARATION
+    # PAGE 6 - TRAÇABILITE / AUTRES PRECISIONS / DECLARATION
     # ==========================================================
     "page_6": {
 

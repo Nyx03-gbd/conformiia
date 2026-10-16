@@ -1,5 +1,5 @@
 """
-Mapping officiel — APDP — Annexe 4 : TRANSFERT
+Mapping officiel - APDP - Annexe 4 : TRANSFERT
 
 IMPORTANT :
 - Le PDF officiel reste la source de vérité.

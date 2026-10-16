@@ -365,7 +365,7 @@ button {
 }
 
 /* =========================================================
-   CONFORMIIA — ESPACEMENT ET ESTHETIQUE DES BLOCS
+   CONFORMIIA - ESPACEMENT ET ESTHETIQUE DES BLOCS
    ========================================================= */
 
 .main-content {
@@ -647,7 +647,7 @@ button {
 }
 
 /* =========================================================
-   PIED DE PAGE — TABLEAU DE BORD
+   PIED DE PAGE - TABLEAU DE BORD
    ========================================================= */
 
 .dashboard-footer {
@@ -924,7 +924,7 @@ button {
 }
 
 /* ============================================================
-   APDP — FORMULAIRE MULTI-ÉTAPES
+   APDP - FORMULAIRE MULTI-ÉTAPES
    ============================================================ */
 
 .apdp-form-container {
@@ -1280,7 +1280,7 @@ button {
 
 
 /* ============================================================
-   APDP — FORMULAIRE MULTI-ÉTAPES
+   APDP - FORMULAIRE MULTI-ÉTAPES
    ============================================================ */
 
 .apdp-form-container {
@@ -1635,7 +1635,7 @@ button {
 }
 
 
-/* Analyse des écarts — vue synthétique */
+/* Analyse des écarts - vue synthétique */
 
 .gap-summary {
     display: flex;
@@ -1862,7 +1862,7 @@ button {
 
 
 /* ============================================================
-   RISQUES / EBIOS RM — VUE SYNTHÉTIQUE
+   RISQUES / EBIOS RM - VUE SYNTHÉTIQUE
    ============================================================ */
 
 .risk-container {
@@ -2270,7 +2270,7 @@ button {
 
 
 /* =========================================================
-   CONFORMIIA — NAVIGATION OVERLAY
+   CONFORMIIA - NAVIGATION OVERLAY
    Sidebar fermée par défaut
    ========================================================= */
 
@@ -2421,7 +2421,7 @@ button {
 
 
 /* ============================================================
-   CONFORMIIA — DASHBOARD FINAL V2
+   CONFORMIIA - DASHBOARD FINAL V2
    Couche visuelle finale
    ============================================================ */
 
@@ -2917,7 +2917,7 @@ body.dashboard-active .cf-logo-button {
 
 
 /* ============================================================
-   CONFORMIIA — DASHBOARD VISUEL FINAL
+   CONFORMIIA - DASHBOARD VISUEL FINAL
    ============================================================ */
 
 /* ============================================================
@@ -3517,7 +3517,7 @@ body.dashboard-active .dashboard-footer .quick-card > span {
 
 
 /* ============================================================
-   CONFORMIIA — CORRECTION MENU UTILISATEUR
+   CONFORMIIA - CORRECTION MENU UTILISATEUR
    ============================================================ */
 
 /* Le menu utilisateur est fermé par défaut */
@@ -3578,7 +3578,7 @@ body.dashboard-active .dashboard-footer .quick-card > span {
 }
 
 /* ============================================================
-   DASHBOARD STATIQUE — ZONE BASSE
+   DASHBOARD STATIQUE - ZONE BASSE
    ============================================================ */
 
 body.dashboard-active .dashboard-static-bottom {
@@ -3754,7 +3754,7 @@ body {
 
 
 /* ============================================================
-   CONFORMIIA — ACCÈS RAPIDES — CORRECTION TYPOGRAPHIE
+   CONFORMIIA - ACCÈS RAPIDES - CORRECTION TYPOGRAPHIE
    ============================================================ */
 
 /*
@@ -3921,7 +3921,7 @@ body.dashboard-active
 
 
 /* ============================================================
-   CONFORMIIA — ESPACE UTILISATEUR
+   CONFORMIIA - ESPACE UTILISATEUR
    STYLE PROFESSIONNEL
    ============================================================ */
 
@@ -4536,7 +4536,7 @@ body.dashboard-active
 
 
 /* ============================================================
-   CONFORMIIA — THÈME / AFFICHAGE / DÉCONNEXION
+   CONFORMIIA - THÈME / AFFICHAGE / DÉCONNEXION
    ============================================================ */
 
 /* ------------------------------------------------------------
@@ -4764,11 +4764,11 @@ body.theme-dark .logout-card p {
 
 
 /* ============================================================
-   CONFORMIIA — PARAMETRES FINAL STYLE
+   CONFORMIIA - PARAMETRES FINAL STYLE
    ============================================================ */
 
 /* ============================================================
-   CONFORMIIA — PARAMETRES FINAL STYLE
+   CONFORMIIA - PARAMETRES FINAL STYLE
    ============================================================ */
 
 .cf-settings-page {
@@ -5169,7 +5169,7 @@ body.compact-mode .cf-settings-header {
 
 
 /* ============================================================
-   CONFORMIIA — AUTHENTIFICATION
+   CONFORMIIA - AUTHENTIFICATION
    ============================================================ */
 
 .cf-auth-overlay {
@@ -5363,7 +5363,7 @@ body.compact-mode .cf-settings-header {
 
 
 /* ============================================================
-   CONFORMIIA — MODAL SÉCURITÉ
+   CONFORMIIA - MODAL SÉCURITÉ
    ============================================================ */
 
 .cf-security-modal {
@@ -5517,7 +5517,7 @@ body.compact-mode .cf-settings-header {
 
 
 /* ============================================================
-   CONFORMIIA — TYPOGRAPHIE OFFICIELLE
+   CONFORMIIA - TYPOGRAPHIE OFFICIELLE
    Bebas Neue : titres
    Roboto     : interface et contenu
    ============================================================ */
@@ -5675,7 +5675,7 @@ i,
 
 
 /* ============================================================
-   CONFORMIIA — SESSION ACTUELLE
+   CONFORMIIA - SESSION ACTUELLE
    ============================================================ */
 
 .cf-current-session {
@@ -5728,7 +5728,7 @@ i,
 
 
 /* ============================================================
-   AUTHENTIFICATION — VERROUILLAGE COMPLET DE L'APPLICATION
+   AUTHENTIFICATION - VERROUILLAGE COMPLET DE L'APPLICATION
    ============================================================ */
 
 /*
@@ -5757,7 +5757,7 @@ body.cf-auth-locked #cf-auth-overlay {
 
 
 /* ============================================================
-   AUTH — MASQUER COMPLETEMENT LE SHELL APRÈS DÉCONNEXION
+   AUTH - MASQUER COMPLETEMENT LE SHELL APRÈS DÉCONNEXION
    ============================================================ */
 
 body.cf-auth-locked .app {
@@ -5775,7 +5775,7 @@ body.cf-auth-locked #cf-auth-overlay {
 }
 
 /* ============================================================
-   CONFORMIIA — AUTHENTIFICATION PLEIN ÉCRAN DÉFINITIVE
+   CONFORMIIA - AUTHENTIFICATION PLEIN ÉCRAN DÉFINITIVE
    ============================================================ */
 
 #cf-auth-overlay {
@@ -5831,7 +5831,7 @@ body.cf-auth-locked #cf-auth-overlay {
 }
 
 /* ============================================================
-   CONFORMIIA — CORRECTION CLICS INTERFACE
+   CONFORMIIA - CORRECTION CLICS INTERFACE
    ============================================================ */
 
 /*

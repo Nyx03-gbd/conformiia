@@ -1,4 +1,4 @@
-/* ConformiIA — Incidents : déclaration + liste avec délai de 72 h */
+/* ConformiIA - Incidents : déclaration + liste avec délai de 72 h */
 (function () {
     "use strict";
     if (window.__cfIncidentsInstalled) { return; }
@@ -45,7 +45,7 @@
 
     function deadline(iso) {
         const t = new Date(iso);
-        if (isNaN(t)) { return { txt: "—", color: "#667085" }; }
+        if (isNaN(t)) { return { txt: "-", color: "#667085" }; }
         const left = t.getTime() + 72 * 3600e3 - Date.now();
         const a = Math.abs(left), h = Math.floor(a / 3600e3), m = Math.floor((a % 3600e3) / 60e3);
         if (left < 0) { return { txt: "Délai de 72 h dépassé de " + h + " h " + m + " min", color: "#b42318" }; }

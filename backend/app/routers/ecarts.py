@@ -1,5 +1,5 @@
 """
-Analyse des écarts de conformité APDP + plan d'action — Bloc 2.
+Analyse des écarts de conformité APDP + plan d'action - Bloc 2.
 
 - Un référentiel d'exigences APDP prédéfini (commun) + des exigences
   personnalisées par organisation.
@@ -232,7 +232,7 @@ def modifier_evaluation(
     descr = f"Écart {code}"
     if "statut" in modifs:
         st = getattr(modifs["statut"], "value", modifs["statut"])
-        descr += f" — statut : {str(st).replace('_', ' ')}"
+        descr += f" - statut : {str(st).replace('_', ' ')}"
     journaliser_audit(
         db, "modification", "ecart", evaluation_id, descr,
         utilisateur=utilisateur, request=request, details=modifs,

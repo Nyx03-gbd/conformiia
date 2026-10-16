@@ -16,7 +16,7 @@ from typing import Any
 
 APDP_DOCUMENTS = {
     "formulaire_unique": {
-        "title": "Formulaire de formalités préalables — traitement envisagé",
+        "title": "Formulaire de formalités préalables - traitement envisagé",
         "template": "templates/apdp/formulaire_unique.pdf",
     },
     "annexe_1_sous_traitance": {
@@ -36,11 +36,11 @@ APDP_DOCUMENTS = {
         "template": "templates/apdp/annexe_4_transfert.pdf",
     },
     "formulaire_capteurs": {
-        "title": "Formulaire complémentaire — traitements par capteurs",
+        "title": "Formulaire complémentaire - traitements par capteurs",
         "template": "templates/apdp/formulaire_capteurs.pdf",
     },
     "formulaire_site_web": {
-        "title": "Formulaire complémentaire — traitements sur site web",
+        "title": "Formulaire complémentaire - traitements sur site web",
         "template": "templates/apdp/formulaire_site_web.pdf",
     },
     "engagement_conformite": {

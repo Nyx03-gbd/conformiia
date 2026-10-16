@@ -1,4 +1,4 @@
-/* ConformiIA — une URL par page : https://conformiia.localhost/<page> */
+/* ConformiIA - une URL par page : https://conformiia.localhost/<page> */
 (function () {
     "use strict";
 

@@ -1,8 +1,8 @@
-/* État global APDP — doit être disponible avant tout rendu */
+/* État global APDP - doit être disponible avant tout rendu */
 window.apdpUIState = window.apdpUIState || {};
 
 /* =========================================================
-   NAVIGATION OVERLAY — CONFORMIIA
+   NAVIGATION OVERLAY - CONFORMIIA
    ========================================================= */
 
 (function initConformiIASidebar() {
@@ -261,25 +261,25 @@ const pages = {
 
  <div class="dashboard-score-card">
  <span>Score de conformité</span>
- <strong id="dashboard-score-conformite">—</strong>
+ <strong id="dashboard-score-conformite">-</strong>
  <small>Dernière évaluation</small>
  </div>
 
  <div class="dashboard-score-card">
  <span>Score de risque</span>
- <strong id="dashboard-score-risque">—</strong>
+ <strong id="dashboard-score-risque">-</strong>
  <small>Dernière évaluation</small>
  </div>
 
  <div class="dashboard-score-card">
  <span>Niveau de risque</span>
- <strong id="dashboard-niveau-risque">—</strong>
+ <strong id="dashboard-niveau-risque">-</strong>
  <small>Niveau calculé</small>
  </div>
 
  <div class="dashboard-score-card">
  <span>Traitement évalué</span>
- <strong id="dashboard-traitement-score">—</strong>
+ <strong id="dashboard-traitement-score">-</strong>
  <small id="dashboard-scoring-status">
  Aucun traitement évalué
  </small>
@@ -760,10 +760,10 @@ registre: {
  <label>Sensibilité des données</label>
  <select name="sensibilite_donnees">
  <option value="">Non renseigné</option>
- <option value="1">1 — Faible</option>
+ <option value="1">1 - Faible</option>
  <option value="2">2</option>
  <option value="3">3</option>
- <option value="4">4 — Élevée</option>
+ <option value="4">4 - Élevée</option>
  </select>
  </div>
 
@@ -1429,7 +1429,7 @@ formulaires: {
  <li><strong>Formulaires APDP</strong> : 8 documents générables par superposition sur les PDF officiels (jamais modifiés).</li>
  <li><strong>Conformité / Risques</strong> : calculez les scores du traitement.</li>
  <li><strong>Écarts</strong> : évaluez les 29 exigences, suivez le plan d'action.</li>
- <li><strong>Incidents</strong> : déclarez toute violation — notification APDP sous 72 h.</li>
+ <li><strong>Incidents</strong> : déclarez toute violation - notification APDP sous 72 h.</li>
  <li><strong>Documents générés</strong> : retrouvez et ouvrez vos PDF.</li>
  </ol>
  </div>
@@ -1438,9 +1438,9 @@ formulaires: {
  <p>Taux par section = points des champs remplis / points totaux × 100. Score global pondéré :</p>
  <p><strong>Score = (Taux × Poids) somme / somme des poids</strong></p>
  <ul>
- <li>Identification — poids 15 (nom 5, service 10)</li>
- <li>Finalité et base légale — poids 40 (finalité 15, base 15, justification 10)</li>
- <li>Données traitées — poids 45 (catégories 45)</li>
+ <li>Identification - poids 15 (nom 5, service 10)</li>
+ <li>Finalité et base légale - poids 40 (finalité 15, base 15, justification 10)</li>
+ <li>Données traitées - poids 45 (catégories 45)</li>
  </ul>
  <p>Échelle : 0 à 100. Exemple démo : 100 (dossier RH complet).</p>
  </div>
@@ -1577,7 +1577,7 @@ function getScoreValue(data, names) {
 
 function formatScore(value) {
  if (value === null || value === undefined || value === "") {
- return "—";
+ return "-";
  }
 
  if (typeof value === "number") {
@@ -1591,7 +1591,7 @@ function formatScore(value) {
 
 function calculateRiskLevel(value) {
  if (value === null || value === undefined || value === "") {
- return "—";
+ return "-";
  }
 
  const score = Number(value);
@@ -3172,7 +3172,7 @@ function buildAPDPDossierFromContext(context) {
 
 
 /* ============================================================
- * CONFORMIIA — INTERFACE APDP MÉTIER
+ * CONFORMIIA - INTERFACE APDP MÉTIER
  *
  * L'ordre de l'interface est indépendant du PDF.
  * Les clés APDP restent inchangées pour la génération.
@@ -3642,7 +3642,7 @@ function apdpCreateLogicalPages(documentId, pages) {
 
     /*
      * ============================================================
-     * CAS SPÉCIAL — ANNEXE 1 SOUS-TRAITANCE
+     * CAS SPÉCIAL - ANNEXE 1 SOUS-TRAITANCE
      *
      * L'Annexe 1 possède sa propre structure métier officielle.
      * Elle ne doit PAS être passée dans APDP_UI_GROUPS
@@ -3655,7 +3655,7 @@ function apdpCreateLogicalPages(documentId, pages) {
 
     /*
      * ============================================================
-     * CAS SPÉCIAL — ANNEXE 2 COMMUNICATION
+     * CAS SPÉCIAL - ANNEXE 2 COMMUNICATION
      *
      * Présentation métier indépendante de l'ordre du PDF.
      * Le mapping officiel reste inchangé côté backend.
@@ -3706,7 +3706,7 @@ function apdpCreateLogicalPages(documentId, pages) {
         }
 
         /*
-         * I — DESTINATAIRES
+         * I - DESTINATAIRES
          */
 
         const destinatairesBenin =
@@ -3722,7 +3722,7 @@ function apdpCreateLogicalPages(documentId, pages) {
             );
 
         /*
-         * II — FINALITÉ ET BASE
+         * II - FINALITÉ ET BASE
          */
 
         const finalite =
@@ -3750,7 +3750,7 @@ function apdpCreateLogicalPages(documentId, pages) {
             );
 
         /*
-         * III — CONSENTEMENT
+         * III - CONSENTEMENT
          */
 
         const consentement =
@@ -3769,7 +3769,7 @@ function apdpCreateLogicalPages(documentId, pages) {
             );
 
         /*
-         * IV — MODALITÉS
+         * IV - MODALITÉS
          */
 
         const modalites =
@@ -3779,7 +3779,7 @@ function apdpCreateLogicalPages(documentId, pages) {
             );
 
         /*
-         * V — SÉCURITÉ
+         * V - SÉCURITÉ
          */
 
         const securite =
@@ -3789,7 +3789,7 @@ function apdpCreateLogicalPages(documentId, pages) {
             );
 
         /*
-         * VI — INFORMATION PRÉALABLE
+         * VI - INFORMATION PRÉALABLE
          */
 
         const informationSource =
@@ -3857,7 +3857,7 @@ function apdpCreateLogicalPages(documentId, pages) {
         }
 
         /*
-         * VII — DÉCLARATION
+         * VII - DÉCLARATION
          */
 
         const declarationSource =
@@ -5164,7 +5164,7 @@ if (documentId !== "formulaire_unique") {
 
  /*
  * ============================================================
- * PROFIL APDP — REPRÉSENTANT LÉGAL
+ * PROFIL APDP - REPRÉSENTANT LÉGAL
  * ============================================================
  * Ces informations sont déjà saisies dans Profil APDP.
  * Elles sont récupérées automatiquement et restent disponibles
@@ -5391,12 +5391,12 @@ if (documentId !== "formulaire_unique") {
 
  
 /* ============================================================
- * CONFORMIIA — LOGIQUE CONDITIONNELLE APDP
+ * CONFORMIIA - LOGIQUE CONDITIONNELLE APDP
  * ============================================================ */
 
 
 /* ============================================================
- * APDP — LOGIQUE CONDITIONNELLE
+ * APDP - LOGIQUE CONDITIONNELLE
  *
  * Le schéma officiel regroupe les choix Oui/Non en radios.
  * Les champs dépendants sont affichés selon la réponse.
@@ -5614,7 +5614,7 @@ function apdpBindConditionalRules() {
 
 
 /* ============================================================
- * APDP — LIBELLÉS PROPRES
+ * APDP - LIBELLÉS PROPRES
  * ============================================================ */
 
 function apdpPrettyLabel(name, label) {
@@ -5814,7 +5814,7 @@ function apdpPrettyLabel(name, label) {
 
 
 /* ============================================================
- * APDP — RENDU DES CHAMPS
+ * APDP - RENDU DES CHAMPS
  * ============================================================ */
 
 function renderField(field) {
@@ -6380,7 +6380,7 @@ function normalizeExclusiveAPDPChoices() {
 
 
 /* ============================================================
- * APDP — STYLE DES CHOIX
+ * APDP - STYLE DES CHOIX
  * ============================================================ */
 
 function injectAPDPChoiceStyles() {
@@ -6399,7 +6399,7 @@ function injectAPDPChoiceStyles() {
 
  
  /* ============================================================
-  * APDP — MISE EN PAGE COMPACTE
+  * APDP - MISE EN PAGE COMPACTE
   * Les blocs s'enchaînent sans espaces artificiels.
   * Aucun impact sur les données ou le mapping PDF.
   * ============================================================ */
@@ -6531,7 +6531,7 @@ injectAPDPChoiceStyles();
 
 
 /* ============================================================
- * APDP — FORMULAIRE CONTINU
+ * APDP - FORMULAIRE CONTINU
  * ============================================================ */
 
 function injectAPDPContinuousFormStyles() {
@@ -7222,7 +7222,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — DASHBOARD / CONTRÔLES UTILISATEUR
+   CONFORMIIA - DASHBOARD / CONTRÔLES UTILISATEUR
    ============================================================ */
 
 (function initConformiIADashboardUI() {
@@ -7386,7 +7386,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — ESPACE UTILISATEUR
+   CONFORMIIA - ESPACE UTILISATEUR
    Profil / Paramètres / Sécurité
    ============================================================ */
 
@@ -8031,11 +8031,11 @@ document.addEventListener(
                             </small>
 
                             <small id="cf-session-started">
-                                Session active depuis : —
+                                Session active depuis : -
                             </small>
 
                             <small id="cf-session-last-activity">
-                                Dernière activité : —
+                                Dernière activité : -
                             </small>
 
                         </div>
@@ -8185,7 +8185,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — PARAMÈTRES RÉELS
+   CONFORMIIA - PARAMÈTRES RÉELS
    Langue / Mode / Affichage / Déconnexion
    ============================================================ */
 
@@ -8785,7 +8785,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — MENU UTILISATEUR — CORRECTION FINALE
+   CONFORMIIA - MENU UTILISATEUR - CORRECTION FINALE
    Un seul gestionnaire prioritaire pour Profil / Paramètres /
    Sécurité.
    ============================================================ */
@@ -8992,7 +8992,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — PARAMÈTRES — FORÇAGE DU CLIC
+   CONFORMIIA - PARAMÈTRES - FORÇAGE DU CLIC
    ============================================================ */
 
 (function () {
@@ -9105,11 +9105,11 @@ document.addEventListener(
 
 
 /* =========================================================
-   CONFORMIIA — I18N GLOBAL UNIQUE
+   CONFORMIIA - I18N GLOBAL UNIQUE
    ========================================================= */
 
 /* =========================================================
-   CONFORMIIA — I18N GLOBAL UNIQUE
+   CONFORMIIA - I18N GLOBAL UNIQUE
    ---------------------------------------------------------
    TRADUIT :
    - toute l'interface ConformiIA
@@ -9959,9 +9959,9 @@ document.addEventListener(
 
 
 
-/* CF — SYNC SETTING LANGUE FR EN */
+/* CF - SYNC SETTING LANGUE FR EN */
 
-/* CF — SYNC SETTING LANGUE FR EN */
+/* CF - SYNC SETTING LANGUE FR EN */
 (function () {
 
     "use strict";
@@ -10037,11 +10037,11 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — PARAMETRES ET MENU UTILISATEUR FINAL
+   CONFORMIIA - PARAMETRES ET MENU UTILISATEUR FINAL
    ============================================================ */
 
 /* ============================================================
-   CONFORMIIA — PARAMETRES ET MENU UTILISATEUR FINAL
+   CONFORMIIA - PARAMETRES ET MENU UTILISATEUR FINAL
    ------------------------------------------------------------
    - Français / English uniquement
    - Clair / Sombre
@@ -11145,11 +11145,11 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — BOUTONS PARAMETRES FINAL
+   CONFORMIIA - BOUTONS PARAMETRES FINAL
    ============================================================ */
 
 /* ============================================================
-   CONFORMIIA — BOUTONS PARAMETRES FINAL
+   CONFORMIIA - BOUTONS PARAMETRES FINAL
    ------------------------------------------------------------
    Réinitialiser + Déconnexion
    ============================================================ */
@@ -11553,7 +11553,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — AVATAR DU COMPTE CONNECTÉ
+   CONFORMIIA - AVATAR DU COMPTE CONNECTÉ
    ============================================================ */
 
 (function () {
@@ -11854,7 +11854,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — AUTHENTIFICATION API
+   CONFORMIIA - AUTHENTIFICATION API
    ============================================================ */
 
 (function () {
@@ -12032,7 +12032,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — ÉCRAN CONNEXION / INSCRIPTION
+   CONFORMIIA - ÉCRAN CONNEXION / INSCRIPTION
    ============================================================ */
 
 (function () {
@@ -13393,7 +13393,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — CHANGEMENT DU MOT DE PASSE
+   CONFORMIIA - CHANGEMENT DU MOT DE PASSE
    ============================================================ */
 
 (function () {
@@ -13900,7 +13900,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — CORRECTION BOUTON MOT DE PASSE DYNAMIQUE
+   CONFORMIIA - CORRECTION BOUTON MOT DE PASSE DYNAMIQUE
    ============================================================ */
 
 (function () {
@@ -13944,7 +13944,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — POLITIQUE MOT DE PASSE / E-MAIL
+   CONFORMIIA - POLITIQUE MOT DE PASSE / E-MAIL
    ============================================================ */
 
 (function () {
@@ -14029,7 +14029,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CONFORMIIA — SESSION ACTUELLE
+   CONFORMIIA - SESSION ACTUELLE
    ============================================================ */
 
 (function initConformiIACurrentSession() {
@@ -14093,13 +14093,13 @@ document.addEventListener(
     function formatDate(value) {
 
         if (!value) {
-            return "—";
+            return "-";
         }
 
         const date = new Date(value);
 
         if (Number.isNaN(date.getTime())) {
-            return "—";
+            return "-";
         }
 
         return date.toLocaleString(
@@ -14236,7 +14236,7 @@ document.addEventListener(
 
 
 /* ============================================================
-   CORRECTION — INITIALISATION SESSION APRÈS RENDU DE LA PAGE
+   CORRECTION - INITIALISATION SESSION APRÈS RENDU DE LA PAGE
    ============================================================ */
 
 (function fixConformiIASessionRendering() {
@@ -14303,7 +14303,7 @@ document.addEventListener(
 
 
 // ============================================================
-// JOURNAL DE SÉCURITÉ — API
+// JOURNAL DE SÉCURITÉ - API
 // ============================================================
 
 window.conformiiaLoadSecurityLog = async function () {

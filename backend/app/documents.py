@@ -1,5 +1,5 @@
 """
-Génération de documents — Phase 5 du plan de construction.
+Génération de documents - Phase 5 du plan de construction.
 """
 import hashlib
 from datetime import datetime
@@ -18,9 +18,9 @@ def build_context_fiche_synthese(traitement: models.Traitement, score_conformite
     return {
         "organisation_nom": traitement.organisation.nom,
         "traitement_nom": traitement.nom,
-        "service_responsable": traitement.service_responsable or "—",
-        "finalite": traitement.finalite or "—",
-        "base_legale": traitement.base_legale or "—",
+        "service_responsable": traitement.service_responsable or "-",
+        "finalite": traitement.finalite or "-",
+        "base_legale": traitement.base_legale or "-",
         "statut": traitement.statut.value,
         "categories_donnees": [
             {
@@ -31,7 +31,7 @@ def build_context_fiche_synthese(traitement: models.Traitement, score_conformite
         ],
         "score_conformite": score_conformite.score_global if score_conformite else "non calculé",
         "score_risque": score_risque.score_global if score_risque else "non calculé",
-        "niveau_risque": score_risque.niveau if score_risque else "—",
+        "niveau_risque": score_risque.niveau if score_risque else "-",
         "date_generation": datetime.now().strftime("%d/%m/%Y"),
     }
 

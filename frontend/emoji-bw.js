@@ -1,4 +1,4 @@
-/* ConformiIA — émoticônes noir & blanc sur toute la plateforme.
+/* ConformiIA - émoticônes noir & blanc sur toute la plateforme.
    Enveloppe chaque emoji dans un span.cf-emoji-bw (filtre grayscale),
    y compris le contenu rendu dynamiquement via navigate(). */
 (function () {

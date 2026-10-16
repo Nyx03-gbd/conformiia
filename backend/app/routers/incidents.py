@@ -96,7 +96,7 @@ def creer_incident(
         db,
         incident.id,
         "creation",
-        "Incident déclaré — début du délai de 72 h à la constatation.",
+        "Incident déclaré - début du délai de 72 h à la constatation.",
     )
     journaliser_audit(
         db, "creation", "incident", incident.id,

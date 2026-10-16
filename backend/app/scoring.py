@@ -1,16 +1,16 @@
 """
-Moteur de scoring — Phase 4 du plan de construction.
+Moteur de scoring - Phase 4 du plan de construction.
 
 Deux scores, jamais fusionnés :
   - Score de risque : le traitement est-il dangereux pour les personnes concernées ?
   - Score de conformité documentaire : le dossier est-il complet et bien rempli ?
-    (reproduit la logique de l'Outil de vérification de l'APDP — poids par
+    (reproduit la logique de l'Outil de vérification de l'APDP - poids par
     section, agrégés en un taux de conformité).
 
 Ce module ne touche jamais à la base de données : il prend des données en
 entrée (dicts simples) et retourne des résultats en dicts simples. Ça le rend
 testable avec de simples appels de fonction, sans dépendance à FastAPI ou à
-un traitement en base — voir tests_scoring.py.
+un traitement en base - voir tests_scoring.py.
 """
 
 import json

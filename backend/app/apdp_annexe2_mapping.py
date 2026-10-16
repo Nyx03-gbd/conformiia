@@ -1,5 +1,5 @@
 """
-Mapping officiel — Annexe 2 APDP : COMMUNICATION.
+Mapping officiel - Annexe 2 APDP : COMMUNICATION.
 
 IMPORTANT :
 - Le PDF officiel APDP est la source de vérité.

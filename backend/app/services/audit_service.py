@@ -1,9 +1,9 @@
 """
-Journal d'audit métier — trace « qui a fait quoi, quand ».
+Journal d'audit métier - trace « qui a fait quoi, quand ».
 
 `journaliser_audit(...)` ajoute une entrée (le commit reste à l'appelant).
 `get_current_user_optional` est une dépendance qui renvoie l'utilisateur
-connecté si un jeton valide est présent, sinon None — pour pouvoir attribuer
+connecté si un jeton valide est présent, sinon None - pour pouvoir attribuer
 l'action à son auteur sans rendre l'authentification obligatoire.
 """
 

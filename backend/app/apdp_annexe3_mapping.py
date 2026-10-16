@@ -1,5 +1,5 @@
 """
-Mapping officiel — Annexe 3 APDP : INTERCONNEXION.
+Mapping officiel - Annexe 3 APDP : INTERCONNEXION.
 
 IMPORTANT :
 - Le PDF officiel APDP est la source de vérité.
@@ -418,7 +418,7 @@ ANNEXE_3_INTERCONNEXION_MAPPING = {
         },
 
         # ------------------------------------------------------------
-        # RISQUES IDENTIFIES — CASES
+        # RISQUES IDENTIFIES - CASES
         # ------------------------------------------------------------
 
         "risques_cases": {

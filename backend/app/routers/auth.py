@@ -202,7 +202,7 @@ def register(
     if not envoye:
         # SMTP non configuré : on journalise le lien (mode développement).
         logger.warning(
-            "LIEN DE VERIFICATION DEV — email=%s %s",
+            "LIEN DE VERIFICATION DEV - email=%s %s",
             email,
             _lien_verification(verification_token),
         )
@@ -275,7 +275,7 @@ def verify_email(
         db=db,
         evenement="EMAIL_VERIFIE",
         description=(
-            "Adresse e-mail vérifiée — rôle administrateur octroyé."
+            "Adresse e-mail vérifiée - rôle administrateur octroyé."
             if promu_admin
             else "Adresse e-mail vérifiée avec succès."
         ),
@@ -337,7 +337,7 @@ def resend_verification(
     envoye = send_verification_email(email, _lien_verification(verification_token))
     if not envoye:
         logger.warning(
-            "LIEN DE VERIFICATION DEV — email=%s %s",
+            "LIEN DE VERIFICATION DEV - email=%s %s",
             email,
             _lien_verification(verification_token),
         )
@@ -598,7 +598,7 @@ def forgot_password(
     envoye = send_reset_email(email, _lien_reset(reset_token))
     if not envoye:
         logger.warning(
-            "LIEN RESET DEV — email=%s %s",
+            "LIEN RESET DEV - email=%s %s",
             email,
             _lien_reset(reset_token),
         )
@@ -767,7 +767,7 @@ def lister_utilisateurs(
     admin: Utilisateur = Depends(require_admin),
     db: Session = Depends(get_db),
 ):
-    """Liste de tous les comptes — réservée aux administrateurs (qui utilise la plateforme)."""
+    """Liste de tous les comptes - réservée aux administrateurs (qui utilise la plateforme)."""
     utilisateurs = (
         db.query(Utilisateur)
         .order_by(Utilisateur.date_creation.desc())
@@ -809,7 +809,7 @@ def reset_password_page(token: str):
     html = (
         "<!doctype html><html lang='fr'><head><meta charset='utf-8'>"
         "<meta name='viewport' content='width=device-width,initial-scale=1'>"
-        "<title>ConformiIA — Nouveau mot de passe</title></head>"
+        "<title>ConformiIA - Nouveau mot de passe</title></head>"
         "<body style='margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f2f4f7;"
         "display:flex;min-height:100vh;align-items:center;justify-content:center;'>"
         "<form id='f' style='background:#fff;max-width:420px;width:92%;padding:30px 26px;"
@@ -851,7 +851,7 @@ def journal_audit(
     admin: Utilisateur = Depends(require_admin),
     db: Session = Depends(get_db),
 ):
-    """Journal d'audit métier (qui a fait quoi, quand) — réservé aux administrateurs."""
+    """Journal d'audit métier (qui a fait quoi, quand) - réservé aux administrateurs."""
     query = db.query(JournalAudit)
     if entite:
         query = query.filter(JournalAudit.entite == entite)
@@ -873,7 +873,7 @@ def modifier_utilisateur(
     admin: Utilisateur = Depends(require_admin),
     db: Session = Depends(get_db),
 ):
-    """Réaffecte l'organisation et/ou le rôle d'un compte — réservé aux administrateurs."""
+    """Réaffecte l'organisation et/ou le rôle d'un compte - réservé aux administrateurs."""
     cible = db.query(Utilisateur).filter(Utilisateur.id == utilisateur_id).first()
     if not cible:
         raise HTTPException(status_code=404, detail="Utilisateur introuvable.")

@@ -203,7 +203,7 @@ FORMULAIRE_UNIQUE_MAPPING = {
             "height": 22.85,
         },
 
-        # II.A — Données personnelles concernées
+        # II.A - Données personnelles concernées
         # (« Enoncez les données personnelles collectées et traitées »)
         "donnees_personnelles": {
             "type": "multiline",
@@ -683,7 +683,7 @@ FORMULAIRE_UNIQUE_MAPPING = {
         },
     },
     4: {
-        # H — PARTAGE DES DONNÉES
+        # H - PARTAGE DES DONNÉES
 
         "sous_traitance_oui": {
             "type": "checkbox_group",
@@ -749,7 +749,7 @@ FORMULAIRE_UNIQUE_MAPPING = {
             "height": 7.15,
         },
 
-        # III.A — LICÉITÉ ET LÉGITIMITÉ DU TRAITEMENT
+        # III.A - LICÉITÉ ET LÉGITIMITÉ DU TRAITEMENT
 
         "consentement": {
             "type": "checkbox",
@@ -1018,9 +1018,9 @@ FORMULAIRE_UNIQUE_MAPPING = {
 },
 6: {
     # ---------------------------------------------------------
-    # IV — SECURITE DU DISPOSITIF
-    # A — SECURITE DU SYSTEME D'INFORMATION
-    # 1 — SECURITE TECHNIQUE
+    # IV - SECURITE DU DISPOSITIF
+    # A - SECURITE DU SYSTEME D'INFORMATION
+    # 1 - SECURITE TECHNIQUE
     # ---------------------------------------------------------
 "personne_acces_1_mme": {
     "type": "text",
@@ -1157,7 +1157,7 @@ FORMULAIRE_UNIQUE_MAPPING = {
     },
 
     # ---------------------------------------------------------
-    # 2 — SECURITE PHYSIQUE
+    # 2 - SECURITE PHYSIQUE
     # ---------------------------------------------------------
 
     "politique_acces_non": {

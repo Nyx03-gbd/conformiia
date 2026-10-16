@@ -12,7 +12,7 @@ IMPORTANT :
 FORMULAIRE_UNIQUE_SECTIONS = {
 
     # =========================================================
-    # I — IDENTIFICATION DU RESPONSABLE DE TRAITEMENT
+    # I - IDENTIFICATION DU RESPONSABLE DE TRAITEMENT
     # =========================================================
 
     "I": {
@@ -43,7 +43,7 @@ FORMULAIRE_UNIQUE_SECTIONS = {
     },
 
     # =========================================================
-    # II — LE TRAITEMENT ENVISAGE
+    # II - LE TRAITEMENT ENVISAGE
     # =========================================================
 
     "II": {
@@ -51,13 +51,13 @@ FORMULAIRE_UNIQUE_SECTIONS = {
 
         "rubriques": {
 
-            # II.A — Données personnelles
+            # II.A - Données personnelles
             "donnees": [
                 "donnees_personnelles",
                 "origine_donnees",
             ],
 
-            # II.B — Personnes concernées
+            # II.B - Personnes concernées
             "personnes_concernees": [
                 "salaries",
                 "adherents",
@@ -70,7 +70,7 @@ FORMULAIRE_UNIQUE_SECTIONS = {
                 "nombre_personnes",
             ],
 
-            # II.C — Opérations effectuées
+            # II.C - Opérations effectuées
             "operations": [
                 "collecte",
                 "developpement",
@@ -96,14 +96,14 @@ FORMULAIRE_UNIQUE_SECTIONS = {
                 "autre",
             ],
 
-            # II.C — Type de traitement
+            # II.C - Type de traitement
             "type_traitement": [
                 "video_photo",
                 "site_web_application",
                 "biometrique",
             ],
 
-            # II.C — Procédure
+            # II.C - Procédure
             "procedure": [
                 "manuelle",
                 "automatisee",
@@ -111,18 +111,18 @@ FORMULAIRE_UNIQUE_SECTIONS = {
                 "fonctionnalites",
             ],
 
-            # II.D — Finalité
+            # II.D - Finalité
             "finalite": [
                 "description",
             ],
 
-            # II.E — Fondement juridique
+            # II.E - Fondement juridique
             "fondement_juridique": [
                 "fondement",
                 "justification",
             ],
 
-            # II.F — Conservation
+            # II.F - Conservation
             "conservation": [
                 "duree",
                 "texte_legal_reglementaire",
@@ -131,7 +131,7 @@ FORMULAIRE_UNIQUE_SECTIONS = {
                 "autre_support",
             ],
 
-            # II.G — Stockage
+            # II.G - Stockage
             "stockage": [
                 "lieu",
                 "modalites",
@@ -142,7 +142,7 @@ FORMULAIRE_UNIQUE_SECTIONS = {
                 "lvm",
             ],
 
-            # II.H — Partage
+            # II.H - Partage
             "partage": {
                 "sous_traitance": [
                     "oui_non",
@@ -164,7 +164,7 @@ FORMULAIRE_UNIQUE_SECTIONS = {
                 ],
             },
 
-            # II.I — Date de mise en œuvre
+            # II.I - Date de mise en œuvre
             "mise_en_oeuvre": [
                 "date",
             ],
@@ -172,7 +172,7 @@ FORMULAIRE_UNIQUE_SECTIONS = {
     },
 
     # =========================================================
-    # III — RESPECT DES PRINCIPES RELATIFS AU TRAITEMENT
+    # III - RESPECT DES PRINCIPES RELATIFS AU TRAITEMENT
     # =========================================================
 
     "III": {
@@ -210,7 +210,7 @@ FORMULAIRE_UNIQUE_SECTIONS = {
     },
 
     # =========================================================
-    # IV — SECURITE DU DISPOSITIF
+    # IV - SECURITE DU DISPOSITIF
     # =========================================================
 
     "IV": {
@@ -259,7 +259,7 @@ FORMULAIRE_UNIQUE_SECTIONS = {
     },
 
     # =========================================================
-    # V — DROITS DES PERSONNES CONCERNEES
+    # V - DROITS DES PERSONNES CONCERNEES
     # =========================================================
 
     "V": {
@@ -285,7 +285,7 @@ FORMULAIRE_UNIQUE_SECTIONS = {
     },
 
     # =========================================================
-    # VI — TRAITEMENTS ANTERIEURS
+    # VI - TRAITEMENTS ANTERIEURS
     # =========================================================
 
     "VI": {

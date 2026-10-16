@@ -1,6 +1,6 @@
 # Frontend
 
-Pas encore implémenté — voir Phase 6 du plan de construction
+Pas encore implémenté - voir Phase 6 du plan de construction
 (dashboard DPO + formulaire de saisie guidé).
 
 Deux options envisagées :

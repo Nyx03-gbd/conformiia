@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     app_base_url: str = "https://conformiia.localhost"
     api_base_url: str = "https://api.conformiia.localhost"
 
-    # --- Envoi d'e-mails (SMTP) — facultatif ---
+    # --- Envoi d'e-mails (SMTP) - facultatif ---
     # Renseignez ces valeurs dans .env pour activer l'envoi réel des e-mails.
     # Exemple Gmail : SMTP_HOST=smtp.gmail.com, SMTP_PORT=587, SMTP_TLS=true,
     # SMTP_USER=<adresse>, SMTP_PASSWORD=<mot de passe d'application>.

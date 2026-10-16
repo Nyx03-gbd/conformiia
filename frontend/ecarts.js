@@ -1,4 +1,4 @@
-/* ConformiIA — Analyse des écarts APDP + plan d'action (bloc 2) */
+/* ConformiIA - Analyse des écarts APDP + plan d'action (bloc 2) */
 (function () {
     "use strict";
     if (window.__cfEcartsInstalled) { return; }
@@ -154,7 +154,7 @@
 
     function scopeBar() {
         const orgOpts = state.orgs.map((o) => '<option value="' + o.id + '"' + (o.id === state.orgId ? " selected" : "") + ">" + esc(o.nom) + "</option>").join("");
-        const trOpts = '<option value="">— Toute l\'organisation —</option>' + state.traitements.map((t) =>
+        const trOpts = '<option value="">- Toute l\'organisation -</option>' + state.traitements.map((t) =>
             '<option value="' + t.id + '"' + (t.id === state.traitementId ? " selected" : "") + ">" + esc(t.nom) + "</option>").join("");
         return '<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px;">'
             + '<div><div style="font-size:12px;color:#667085;margin-bottom:3px;">Organisation</div>'

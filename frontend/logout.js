@@ -1,5 +1,5 @@
 /* ============================================================
-   CONFORMIIA — DÉCONNEXION UNIQUE (page Sécurité)
+   CONFORMIIA - DÉCONNEXION UNIQUE (page Sécurité)
    Un seul bouton : #cf-dedicated-logout
    Une seule fonction : cfLogout()
    ============================================================ */

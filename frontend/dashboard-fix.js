@@ -1,4 +1,4 @@
-/* ConformiIA — Tableau de bord : emojis, accès rapides, dernière analyse */
+/* ConformiIA - Tableau de bord : emojis, accès rapides, dernière analyse */
 (function () {
     "use strict";
     if (window.__cfDashFix) { return; }

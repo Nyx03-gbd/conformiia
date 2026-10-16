@@ -1,10 +1,10 @@
 """
-Authentification et cloisonnement par organisation — priorité 5 (RBAC côté API).
+Authentification et cloisonnement par organisation - priorité 5 (RBAC côté API).
 
 - `get_current_user` : dépendance stricte (401 sans jeton valide).
 - `get_current_user_optional` : utilisateur si jeton valide, sinon None.
 - `require_admin` : réserve l'accès aux administrateurs (403 sinon).
-- `resolve_org_scope(user, requested)` : organisation effective à filtrer —
+- `resolve_org_scope(user, requested)` : organisation effective à filtrer -
   l'admin voit tout (ou l'org demandée), les autres sont restreints à la leur.
 - `assert_org_access(user, org_id)` : 403 si l'utilisateur n'a pas accès à une
   ressource appartenant à `org_id`.

@@ -1,5 +1,5 @@
 """
-Mapping officiel — Annexe 1 APDP : SOUS-TRAITANCE.
+Mapping officiel - Annexe 1 APDP : SOUS-TRAITANCE.
 
 IMPORTANT :
 - Le PDF officiel APDP est la source de vérité.

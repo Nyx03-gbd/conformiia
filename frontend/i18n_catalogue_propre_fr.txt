@@ -1,4 +1,4 @@
-0001. * APDP — MISE EN PAGE COMPACTE
+0001. * APDP - MISE EN PAGE COMPACTE
 0002. * Aucun impact sur les données ou le mapping PDF.
 0003. * Les blocs s'enchaînent sans espaces artificiels.
 0004. + Ajouter une catégorie
@@ -8,9 +8,9 @@
 0008. /traitements
 0009. /traitements/ /scores/calculer
 0010. 0 2px 5px rgba(
-0011. 1 — Faible
+0011. 1 - Faible
 0012. 135deg,
-0013. 4 — Élevée
+0013. 4 - Élevée
 0014. A_licéite_legitimite
 0015. Abus de privilèges internes
 0016. Abus de privilèges ou mauvaise configuration
