@@ -1434,7 +1434,7 @@ formulaires: {
  </ol>
  </div>
  <div class="page-card">
- <h2>📊 Score de conformité (grille v1)</h2>
+ <h2>📊 Score de conformité (grille de pondération)</h2>
  <p>Taux par section = points des champs remplis / points totaux × 100. Score global pondéré :</p>
  <p><strong>Score = (Taux × Poids) somme / somme des poids</strong></p>
  <ul>
