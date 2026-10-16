@@ -5874,3 +5874,26 @@ body:not(.cf-auth-locked) #cf-auth-overlay {
     background: #111 !important;
     color: #fff !important;
 }
+
+/* Lisibilité : espaces entre phrases et paragraphes */
+.page-card p {
+    line-height: 1.75 !important;
+    margin: 0 0 14px !important;
+}
+.page-card li {
+    line-height: 1.7 !important;
+    margin-bottom: 10px !important;
+}
+.page-card ol, .page-card ul {
+    margin: 6px 0 16px !important;
+    padding-left: 24px !important;
+}
+.page-card h2 {
+    margin: 4px 0 14px !important;
+}
+.page-card h2 + p, .page-card h2 + ol, .page-card h2 + ul {
+    margin-top: 4px !important;
+}
+.page-card .page-card {
+    margin-bottom: 18px !important;
+}
