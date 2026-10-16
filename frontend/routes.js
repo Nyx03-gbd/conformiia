@@ -9,7 +9,7 @@
 
     const PAGES = [
         "dashboard", "organisation", "profil", "registre", "formulaires",
-        "conformite", "ecarts", "risques", "incidents", "documents", "utilisateurs", "audit"
+        "conformite", "ecarts", "risques", "incidents", "documents", "aide", "utilisateurs", "audit"
     ];
 
     const USER_PAGES = {

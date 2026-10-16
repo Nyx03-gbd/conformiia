@@ -1415,6 +1415,55 @@ formulaires: {
  <div id="docs-generes-list"><p>Chargement...</p></div>
  </div>
  `
+ },
+
+ aide: {
+ title: "Aide",
+ subtitle: "Démarches, calcul des scores et politique de sécurité",
+ content: `
+ <div class="page-card">
+ <h2>📋 Démarches</h2>
+ <ol>
+ <li><strong>Organisation</strong> : créez votre entreprise (admin requis).</li>
+ <li><strong>Registre</strong> : déclarez chaque traitement (finalité, base légale, données, critères 1 à 4).</li>
+ <li><strong>Formulaires APDP</strong> : 8 documents générables par superposition sur les PDF officiels (jamais modifiés).</li>
+ <li><strong>Conformité / Risques</strong> : calculez les scores du traitement.</li>
+ <li><strong>Écarts</strong> : évaluez les 29 exigences, suivez le plan d'action.</li>
+ <li><strong>Incidents</strong> : déclarez toute violation — notification APDP sous 72 h.</li>
+ <li><strong>Documents générés</strong> : retrouvez et ouvrez vos PDF.</li>
+ </ol>
+ </div>
+ <div class="page-card">
+ <h2>📊 Score de conformité (grille v1)</h2>
+ <p>Taux par section = points des champs remplis / points totaux × 100. Score global pondéré :</p>
+ <p><strong>Score = (Taux × Poids) somme / somme des poids</strong></p>
+ <ul>
+ <li>Identification — poids 15 (nom 5, service 10)</li>
+ <li>Finalité et base légale — poids 40 (finalité 15, base 15, justification 10)</li>
+ <li>Données traitées — poids 45 (catégories 45)</li>
+ </ul>
+ <p>Échelle : 0 à 100. Exemple démo : 100 (dossier RH complet).</p>
+ </div>
+ <div class="page-card">
+ <h2>⚠️ Score de risque (critères 1 à 4)</h2>
+ <p><strong>Score = 100 × (0,25×sensibilité + 0,25×mesures + 0,20×non-conformité + 0,15×sous-traitance + 0,10×exposition + 0,05×volume) / 4</strong></p>
+ <p>Non-conformité = 1 + 3 × (1 − score_conformité / 100). Niveaux : ≤ 25 faible, ≤ 50 moyen, ≤ 75 élevé, sinon critique. Revue &gt; 12 mois : +10 % par an.</p>
+ </div>
+ <div class="page-card">
+ <h2>✅ Taux des écarts</h2>
+ <p><strong>Taux = (conformes + 0,5 × partiels) / (conformes + partiels + non conformes) × 100</strong>. Exemple démo : (12 + 5) / 26 = 65,4 %.</p>
+ </div>
+ <div class="page-card">
+ <h2>🔐 Politique de sécurité</h2>
+ <ul>
+ <li>Rôles : <strong>admin</strong> (tout), <strong>métier</strong> (sa seule organisation), <strong>auditeur</strong> (lecture seule).</li>
+ <li>E-mail en minuscules + vérification obligatoire ; compte non vérifié = pas d'accès.</li>
+ <li>Mot de passe : 8 caractères min, 1 lettre + 1 chiffre + 1 caractère spécial.</li>
+ <li>Violation de données : notification APDP sous <strong>72 h</strong> (compte à rebours suivi dans Incidents).</li>
+ <li>Toute action sensible est journalisée (audit + sécurité) ; e-mails réels via SMTP (STARTTLS 587 ou SMTPS 465).</li>
+ </ul>
+ </div>
+ `
  }
 };
 
